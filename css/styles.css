@@ -8,7 +8,6 @@ body {
 
 #gif-container {
 	height: 100vh;
-	background-color: indianred;
 }
 
 .gif-img {
@@ -17,4 +16,13 @@ body {
 
 .soundcloud-player {
 	position: absolute;
+}
+
+.static {
+	background: url(https://media.giphy.com/media/PIbPrnuEpGEla/giphy.gif) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
 }
