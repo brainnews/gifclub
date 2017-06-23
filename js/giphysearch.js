@@ -5,7 +5,7 @@ var postHTML = '" />';
 var gifIndex = 0;
 var searchLimit = 500;
 
-var searchUrl = 'http://api.giphy.com/v1/gifs/search?q=dance&api_key=79994bd6eeb14f4d8df417c81a1bd217&limit=' + searchLimit;
+var searchUrl = 'https://api.giphy.com/v1/gifs/search?q=dance&api_key=79994bd6eeb14f4d8df417c81a1bd217&limit=' + searchLimit;
 
 gifContainer = document.getElementById("gif-container");
 
