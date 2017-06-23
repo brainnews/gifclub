@@ -1,0 +1,20 @@
+body {
+	background-color: #222;
+	color: #fff;
+	margin: 0 auto;
+	font-family: 'Helvetica Neue', sans-serif;
+	overflow-y: hidden;
+}
+
+#gif-container {
+	height: 100vh;
+	background-color: indianred;
+}
+
+.gif-img {
+	width: 100%;
+}
+
+.soundcloud-player {
+	position: absolute;
+}
