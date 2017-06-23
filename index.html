@@ -3,17 +3,47 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>It's GifClub :)</title>
-		 <link rel = "stylesheet" type = "text/css" href = "css/styles.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel = "stylesheet" type = "text/css" href = "css/styles.css" />
+		<link rel = "stylesheet" type = "text/css" href = "css/animate.css" />
 	</head>
 	<body>
 		<div class="wrapper">
+			<!-- <h3 id="danceDisplay" class="dance-display"></h3> -->
 			<div class="static"></div>
 			<div class="header">
 			</div>
 			<div id="gif-container" class="main">
 			</div>
 			<div class="footer">
-				<h3>GifClub 🤖</h3>
+				<div class="fixed-action-btn toolbar">
+			    <a class="btn-floating btn-large green see-through">
+			      <i class="large material-icons">settings</i>
+			    </a>
+			    <ul>
+			    	<li id="danceButton" class="waves-effect waves-light active-dance">
+			      		<a>Just dance</a>
+			      	</li>
+				    <li id="salsaButton" class="waves-effect waves-light">
+				    	<a>Salsa dance</a>
+				    </li>
+			      	<li id="breakdanceButton" class="waves-effect waves-light">
+			      		<a>Breakdance</a>
+			      	</li>
+			      	<!-- <li>
+			      		<form action="#">
+						    <p class="range-field">
+						      <input type="range" id="bpmSlider" min="1000" max="5000" />
+						    </p>
+					  	</form>
+					</li> -->
+			      	<li class="toolbar-search">
+			        	<input type="text" id="danceSearch" placeholder="Search GIPHY" onkeydown="if (event.keyCode == 13) { keywordSearch()}">
+			        	<a id="searchButton" class="waves-effect waves-light btn">Go</a>
+	        	   	</li>
+			    </ul>
+			  </div>
 			</div>
 			<div class="soundcloud-player">
 				<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/327539704&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
@@ -21,6 +51,7 @@
 		</div>
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 		<script src="js/giphysearch.js"></script>
 		<script src="js/sc-api.js"></script>
 		<script src="js/music.js"></script>
