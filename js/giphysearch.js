@@ -57,7 +57,7 @@ function keywordSearch() {
 function ShowGif() {
 	numResults = Object.keys(dancegifs.data).length;
 
-	var randomNum = Math.floor((Math.random() * (numResults-1)) + 1);
+	var randomNum = Math.floor((Math.random() * (numResults-1)));
 	
 
 	setTimeout(function () {
@@ -68,7 +68,7 @@ function ShowGif() {
       	litMode = $(litModeSwitch).is(':checked');
 
       	if (litMode) {
-      		var randomNum2 = Math.floor((Math.random() * (numResults-1)) + 1);
+      		var randomNum2 = Math.floor((Math.random() * (numResults-1)));
       		var randomCell = Math.floor((Math.random() * 16) + 1);
       		var randomPopup = document.getElementById('popupGif-' + randomCell);
       		var randomDepth = Math.floor((Math.random() * 5) + 1);
