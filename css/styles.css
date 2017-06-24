@@ -11,12 +11,27 @@ body {
   	height: 100vh;
 }
 
-.header {
+.track-control {
 	grid-column-start: 1;
-  	grid-column-end: span 6;
+	grid-column-end: span 6;
   	grid-row-start: 1;
 	background-color: transparent;
+	text-align: right;
 	z-index: 1;
+	padding: 30px 30px;
+}
+
+.fixed-action-btn-top {
+	top: 23px;
+}
+
+.fixed-action-btn.toolbar-top {
+	top: 0;
+}
+
+.track-control:hover {
+	opacity: 1;
+	transition: all 0.3s;
 }
 
 .static {
@@ -38,6 +53,25 @@ body {
   	grid-row-start: 1;
   	grid-row-end: span 6;
 	z-index: 0;
+	display: grid;
+	grid-template-columns: 1fr);
+  	grid-template-rows: 1fr);
+	overflow-y: hidden;
+}
+
+#video-background {
+/*  making the video fullscreen  */
+grid-column-start: 1;
+  grid-row-start: 1;
+/*  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;*/
+  align-self: center;
+  width: 100%;
 }
 
 .dance-display {

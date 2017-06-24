@@ -1,5 +1,4 @@
 var dancegifs;
-var gifContainer;
 var preHTML = '<img src="';
 var postHTML = '" />';
 var gifIndex = 0;
@@ -12,17 +11,15 @@ var searchUrlPost = '&api_key=79994bd6eeb14f4d8df417c81a1bd217&limit=' + searchL
 
 var bpmSlider = document.getElementById("bpmSlider");
 
-gifContainer = document.getElementById("gif-container");
-
 var salsaButton = document.getElementById("salsaButton");
 var tangoButton = document.getElementById("tangoButton");
 var breakdanceButton = document.getElementById("breakdanceButton");
 var danceSearch = document.getElementById("danceSearch");
 var danceDisplay = document.getElementById("danceDisplay");
+var videoBackground = document.getElementById("gif-container");
 
 window.onload = function() {
   GetGifs(onloadSearch);
-  // ShowGif();
 };
 
 function GetGifs(q) {
@@ -58,13 +55,28 @@ function ShowGif() {
 
 	var randomNum = Math.floor((Math.random() * (numResults-1)) + 1);
 	setTimeout(function () {
-      var dancegif = dancegifs.data[randomNum].images.downsized.url;
+      	var dancegif = dancegifs.data[randomNum].images.original_mp4.mp4;
+      	videoBackground.innerHTML = '<video autoplay loop id="video-background" muted><source src="' + dancegif + '"></video>';
 
-      $(gifContainer).css({
-		"background": "url(" + dancegif + ") no-repeat center center fixed",
-		"background-size": "cover"
+      	ShowGif();
+
+   	}, 1500)
+}
+
+function ShowGifMobile() {
+	numResults = Object.keys(dancegifs.data).length;
+
+	var randomNum = Math.floor((Math.random() * (numResults-1)) + 1);
+	setTimeout(function () {
+		videoBackground.innerHTML = "";
+      	var dancegif = dancegifs.data[randomNum].images.downsized.url;
+      	$(videoBackground).css({
+			"background": "url(" + dancegif + ") no-repeat center center fixed",
+			"background-size": "cover"
 		});
-      ShowGif();
+
+
+      	ShowGif();
 
    	}, 1500)
 }
