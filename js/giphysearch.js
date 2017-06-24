@@ -9,7 +9,8 @@ var onloadSearch = "dance";
 var searchUrlPre = 'https://api.giphy.com/v1/gifs/search?q=';
 var searchUrlPost = '&api_key=79994bd6eeb14f4d8df417c81a1bd217&limit=' + searchLimit;
 
-var bpmSlider = document.getElementById("bpmSlider");
+var litModeSwitch = document.getElementById("modeSwitch");
+var litMode;
 
 var salsaButton = document.getElementById("salsaButton");
 var tangoButton = document.getElementById("tangoButton");
@@ -17,6 +18,9 @@ var breakdanceButton = document.getElementById("breakdanceButton");
 var danceSearch = document.getElementById("danceSearch");
 var danceDisplay = document.getElementById("danceDisplay");
 var videoBackground = document.getElementById("gif-container");
+var popupGridWrapper = document.getElementById("popupGridWrapper");
+
+var emptyPopupGrid = '<div id="popupGif-1" class="popup-gif"></div><div id="popupGif-2" class="popup-gif"></div><div id="popupGif-3" class="popup-gif"></div><div id="popupGif-4" class="popup-gif"></div><div id="popupGif-5" class="popup-gif"></div><div id="popupGif-6" class="popup-gif"></div><div id="popupGif-7" class="popup-gif"></div><div id="popupGif-8" class="popup-gif"></div><div id="popupGif-9" class="popup-gif"></div><div id="popupGif-10" class="popup-gif"></div><div id="popupGif-14" class="popup-gif"></div><div id="popupGif-15" class="popup-gif"></div><div id="popupGif-16" class="popup-gif"></div>';
 
 window.onload = function() {
   GetGifs(onloadSearch);
@@ -54,14 +58,46 @@ function ShowGif() {
 	numResults = Object.keys(dancegifs.data).length;
 
 	var randomNum = Math.floor((Math.random() * (numResults-1)) + 1);
+	
+
 	setTimeout(function () {
       	var dancegif = dancegifs.data[randomNum].images.original_mp4.mp4;
+      	
       	videoBackground.innerHTML = '<video autoplay loop id="video-background" muted><source src="' + dancegif + '"></video>';
 
+      	litMode = $(litModeSwitch).is(':checked');
+
+      	if (litMode) {
+      		var randomNum2 = Math.floor((Math.random() * (numResults-1)) + 1);
+      		var randomCell = Math.floor((Math.random() * 16) + 1);
+      		var randomPopup = document.getElementById('popupGif-' + randomCell);
+      		var randomDepth = Math.floor((Math.random() * 5) + 1);
+      		var dancegifPopup = dancegifs.data[randomNum2].images.original_mp4.mp4;
+
+      		var i = 0;
+
+	      	if (randomPopup){
+	      		randomPopup.innerHTML = '<video autoplay loop id="video-background" class="z-depth-' + randomDepth +'" muted><source src="' + dancegifPopup + '"></video>';
+	      	}
+
+      	} else if (popupGridWrapper.innerHTML != emptyPopupGrid) {
+      		popupGridWrapper.innerHTML = emptyPopupGrid;
+      	}
+      	
       	ShowGif();
 
    	}, 1500)
 }
+
+function ClearGifsByInterval () {
+	setTimeout(function () {
+      	popupGridWrapper.innerHTML = emptyPopupGrid;    	
+      	ClearGifsByInterval();
+
+   	}, 10000)
+}
+
+ClearGifsByInterval();
 
 function ShowGifMobile() {
 	numResults = Object.keys(dancegifs.data).length;
@@ -97,8 +133,8 @@ $(danceSearch).focus(function() {
 	$(this).val("");
 });
 
-$(salsaButton).click(function() {
-  	GetGifs("salsa dancing");
+$(twerkButton).click(function() {
+  	GetGifs("twerking");
   	$(this).toggleClass("active-dance");
   	$(this).siblings().removeClass("active-dance");
 });
