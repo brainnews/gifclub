@@ -7,7 +7,7 @@ var numResults;
 var onloadSearch = "dance";
 
 var searchUrlPre = 'https://api.giphy.com/v1/gifs/search?q=';
-var searchUrlPost = '&api_key=79994bd6eeb14f4d8df417c81a1bd217&limit=' + searchLimit;
+var searchUrlPost = '&api_key=' + config + '&limit=' + searchLimit;
 
 var litModeSwitch = document.getElementById("modeSwitch");
 var litMode;
