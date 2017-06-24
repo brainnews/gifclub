@@ -5,11 +5,9 @@
 
 # Roadmap
 Some planned features
-- Load a specific Soundcloud stream
-- Variable transition timing
+- Load a specific Soundcloud stream and show the artist/title
 - GIF layering
-- User controlled beat matching
-- Specific dance styles (salsa, tango, etc)
+- ~~Specific dance styles (salsa, tango, etc)~~
 
 
 <img src="https://media.giphy.com/media/3o7abxtmPxanzaESGY/giphy.gif">
