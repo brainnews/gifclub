@@ -1,6 +1,6 @@
 body {
 	background-color: #222;
-	color: #fff;
+	/*color: #fff;*/
 	margin: 0 auto;
 }
 
@@ -11,13 +11,22 @@ body {
   	height: 100vh;
 }
 
+.lit-mode-bg {
+	background: url(https://media.giphy.com/media/3o6ozh46EbuWRYAcSY/giphy.gif) no-repeat center center !important; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #222;
+}
+
 .track-control {
 	grid-column-start: 1;
 	grid-column-end: span 6;
   	grid-row-start: 1;
 	background-color: transparent;
 	text-align: right;
-	z-index: 1;
+	z-index: 99;
 	padding: 30px 30px;
 }
 
@@ -86,6 +95,29 @@ body {
 	overflow-y: hidden;
 }
 
+.fullscreen {
+	grid-column-start: 1;
+  	grid-column-end: span 6;
+  	grid-row-start: 1;
+  	grid-row-end: span 6;
+	z-index: 0;
+	display: grid;
+	grid-template-columns: 1fr);
+  	grid-template-rows: 1fr);
+	overflow-y: hidden;
+	justify-content: all;
+	color: #fff;
+	text-align: center;
+}
+
+.fullscreen h4 {
+	align-self: flex-end;
+}
+
+.fullscreen p {
+	align-self: flex-start;
+}
+
 #video-background {
   	grid-column-start: 1;
   	grid-row-start: 1;
@@ -113,7 +145,7 @@ body {
   	grid-column-end: span 6;
   	grid-row-start: 6;
 	background-color: transparent;
-	z-index: 1;
+	z-index: 99;
 	text-align: center;
 }
 
@@ -164,12 +196,32 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 }
 
 .switch label input[type=checkbox]:checked+.lever {
-    background-color: #fbff00;
+    background-color: #222;
 }
 
 .switch label input[type=checkbox]:checked+.lever:after {
-    background-color: #0037ff;
+    animation: switch 1s alternate infinite;
 }
+
+@-webkit-keyframes switch {
+   from  { background-color: rgb(201,174,78)}
+     to  { background-color: #222;}
+}
+
+.info-btn {
+	float: right;
+    margin-right: 43px;
+}
+
+.heavy {
+	font-weight: 800;
+}
+
+.modal {
+	width: 350px;
+}
+
+
 
 /* POPUP GRID */
 .popup-grid-wrapper {
@@ -180,12 +232,20 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
   	grid-row-end: span 6;
   	grid-column-gap: 15px;
   	grid-row-gap: 15px;
-	z-index: 0;
+	z-index: 1;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
   	grid-template-rows: repeat(4, 1fr);
 	overflow-y: hidden;
 	align-items: center;
+}
+
+.br-4 {
+	border-radius: 4px;
+}
+
+.br-2 {
+	border-radius: 2px;
 }
 
 #popupGif-1 {

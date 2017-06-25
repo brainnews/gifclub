@@ -18,9 +18,14 @@ widget = SC.Widget(widgetIframe);
 	}); 
 }); 
 
-$(videoBackground).click(function(){
+$(popupGridWrapper).click(function(){
 	$('.collapsible').collapsible('close', 0);
 })
+
+$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+});
 
 function LoadTrack () {
 	var q = musicSearch.value;

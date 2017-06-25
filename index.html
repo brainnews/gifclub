@@ -7,13 +7,14 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel = "stylesheet" type = "text/css" href = "css/styles.css" />
 		<link rel = "stylesheet" type = "text/css" href = "css/animate.css" />
+		<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
 	</head>
 	<body>
 		<div id="wrapper" class="wrapper">
-			<!-- <h3 id="danceDisplay" class="dance-display"></h3> -->
 			<div class="static"></div>
 			<div class="track-control see-through">
-				<ul class="collapsible" data-collapsible="accordion">
+				<ul class="collapsible white-text" data-collapsible="accordion">
 				    <li>
 				      <div class="collapsible-header">
 				      	<span id="trackTitle">Loading track...</span><i class="material-icons">queue_music</i>
@@ -25,6 +26,7 @@
 				  </ul>
 			</div>
 			<div class="footer">
+				<span class="info-btn"><a href="#about_modal"><i class="tiny material-icons white-text heavy">info_outline</i></a></span>
 				<div class="fixed-action-btn toolbar">
 				    <a class="btn-floating btn-large green see-through">
 				      <i class="large material-icons">settings</i>
@@ -39,7 +41,7 @@
 				      	<li id="breakdanceButton" class="waves-effect waves-light">
 				      		<a>Breakdance</a>
 				      	</li>
-				      	<li>
+				      	<li id="litModeContainer" class="white-text">
 				      		<div class="switch">
 				      			Lit mode: 
 							    <label>
@@ -53,8 +55,6 @@
 		        	   	</li>
 				    </ul>
 			  </div>
-			</div>
-			<div id="gif-container" class="main">
 			</div>
 			<div id="popupGridWrapper" class="popup-grid-wrapper">
 				<div id="popupGif-1" class="popup-gif"></div>
@@ -71,9 +71,21 @@
 				<div id="popupGif-15" class="popup-gif"></div>
 				<div id="popupGif-16" class="popup-gif"></div>
 			</div>
-
+			<div id="gif-container" class="main">
+			</div>
 			<div class="soundcloud-player">
-				<iframe id="sc-widget" width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/327539704&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_artwork=false&amp;show_playcount=false&amp;buying=false&amp;show_user=false&amp;show_reposts=false&amp;liking=false&amp;download=false&amp;visual=false"></iframe>
+				<iframe id="sc-widget" width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_artwork=false&amp;show_playcount=false&amp;buying=false&amp;show_user=false&amp;show_reposts=false&amp;liking=false&amp;download=false&amp;visual=false"></iframe>
+			</div>
+			<div id="about_modal" class="modal">
+			    <div class="modal-content">
+			      <h4>the gif club?</h4>
+			      <p>the gif club was created by <a href="http://www.twitter.com/_brainnews" target="_blank">miles gilbert</a>.<br/>try it at your next party and let me know how it goes ☺️</p>
+			      <p><strong>coming soon:</strong> create visual playlists to go along with your soundcloud playlists  👀</p>
+			      <p><strong>p.s.</strong> if it freezes on a gif, just hit a new channel. i can't figure out how to fix that yet 🙃</p>
+			    </div>
+			    <div class="modal-footer">
+			      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">back to the club</a>
+			    </div>
 			</div>
 		</div>
 		<script src="js/jquery-1.11.1.min.js"></script>
