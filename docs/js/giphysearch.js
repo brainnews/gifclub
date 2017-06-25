@@ -32,7 +32,6 @@ function GetGifs(q) {
 	  url: searchUrlPre + q + searchUrlPost,
 	  type: 'GET',
 	  success: function(data) {
-	  	console.log(data);
 		dancegifs = data;
 		ShowGif();
 	  }

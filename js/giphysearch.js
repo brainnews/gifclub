@@ -32,7 +32,6 @@ function GetGifs(q) {
 	  url: searchUrlPre + q + searchUrlPost,
 	  type: 'GET',
 	  success: function(data) {
-	  	console.log(data);
 		dancegifs = data;
 		ShowGif();
 	  }
@@ -127,14 +126,6 @@ function ShowGifMobile() {
 function BlurSearch(){
 	$(danceSearch).blur();
 }
-
-// function DanceDisplay(danceType){
-// 	$(danceDisplay).text(danceType);
-//   	$(danceDisplay).toggleClass('animated zoomInDown');
-//   	$(danceDisplay).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-//   	$(danceDisplay).text("");
-//   });
-// }
 
 $(danceSearch).focus(function() {
 	$(this).val("");
