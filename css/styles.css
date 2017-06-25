@@ -111,11 +111,7 @@ body {
 }
 
 .fullscreen h4 {
-	align-self: flex-end;
-}
-
-.fullscreen p {
-	align-self: flex-start;
+	align-self: center;
 }
 
 #video-background {
