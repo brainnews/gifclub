@@ -1,4 +1,4 @@
-var dancegifs;
+var channelgifs;
 var preHTML = '<img src="';
 var postHTML = '" />';
 var gifIndex = 0;
@@ -12,11 +12,10 @@ var searchUrlPost = '&api_key=' + config + '&limit=';
 var litModeSwitch = document.getElementById("modeSwitch");
 var litMode;
 
-var salsaButton = document.getElementById("salsaButton");
-var tangoButton = document.getElementById("tangoButton");
-var breakdanceButton = document.getElementById("breakdanceButton");
-var danceSearch = document.getElementById("danceSearch");
-var danceDisplay = document.getElementById("danceDisplay");
+var channel1 = document.getElementById("channel1");
+var channel2 = document.getElementById("channel2");
+var channel3 = document.getElementById("channel3");
+var giphySearch = document.getElementById("giphySearch");
 var videoBackground = document.getElementById("gif-container");
 var popupGridWrapper = document.getElementById("popupGridWrapper");
 var litModeContainer = document.getElementById("litModeContainer");
@@ -32,7 +31,7 @@ function GetGifs(q, limit) {
 	  url: searchUrlPre + q + searchUrlPost + limit,
 	  type: 'GET',
 	  success: function(data) {
-		dancegifs = data;
+		channelgifs = data;
 		ShowGif();
 	  }
 	});
@@ -40,32 +39,32 @@ function GetGifs(q, limit) {
 
 function keywordSearch() {
 	$.ajax({
-	  url: searchUrlPre + danceSearch.value + searchUrlPost,
+	  url: searchUrlPre + giphySearch.value + searchUrlPost + 500,
 	  type: 'GET',
 	  success: function(data) {
 	  	console.log(data);
-		dancegifs = data;
+		channelgifs = data;
 		ShowGif();
 		BlurSearch();
-		$(salsaButton).removeClass("active-dance");
-		$(danceButton).removeClass("active-dance");
-		$(breakdanceButton).removeClass("active-dance");
+		$(channel1).removeClass("active-channel");
+		$(channel2).removeClass("active-channel");
+		$(channel3).removeClass("active-channel");
 	  }
 	});
 }
 
 function ShowGif() {
-	numResults = Object.keys(dancegifs.data).length;
+	numResults = Object.keys(channelgifs.data).length;
 
 	var randomNum = Math.floor((Math.random() * (numResults-1)));
 	
 
 	setTimeout(function () {
-		if(dancegifs.data[randomNum].images.original_mp4.mp4 != undefined) {
-      		var dancegif = dancegifs.data[randomNum].images.original_mp4.mp4;
+		if(channelgifs.data[randomNum].images.original_mp4.mp4 != undefined) {
+      		var channelgif = channelgifs.data[randomNum].images.original_mp4.mp4;
      	}
       	
-      	videoBackground.innerHTML = '<video autoplay loop id="video-background" muted><source src="' + dancegif + '"></video>';
+      	videoBackground.innerHTML = '<video autoplay loop id="video-background" muted><source src="' + channelgif + '"></video>';
 
       	litMode = $(litModeSwitch).is(':checked');
 
@@ -75,14 +74,14 @@ function ShowGif() {
       		var randomCell = Math.floor((Math.random() * 16) + 1);
       		var randomPopup = document.getElementById('popupGif-' + randomCell);
       		var randomDepth = Math.floor((Math.random() * 5) + 1);
-      		if (dancegifs.data[randomNum2].images.original_mp4.mp4 != undefined) {
-      			var dancegifPopup = dancegifs.data[randomNum2].images.original_mp4.mp4;
+      		if (channelgifs.data[randomNum2].images.original_mp4.mp4 != undefined) {
+      			var channelgifPopup = channelgifs.data[randomNum2].images.original_mp4.mp4;
       		}
 
       		var i = 0;
 
 	      	if (randomPopup){
-	      		randomPopup.innerHTML = '<video autoplay loop id="video-background" class="br-2 z-depth-' + randomDepth +'" muted><source src="' + dancegifPopup + '"></video>';
+	      		randomPopup.innerHTML = '<video autoplay loop id="video-background" class="br-2 z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
 	      	}
 
       	} else if (popupGridWrapper.innerHTML != emptyPopupGrid) {
@@ -106,14 +105,14 @@ function ClearGifsByInterval () {
 ClearGifsByInterval();
 
 function ShowGifMobile() {
-	numResults = Object.keys(dancegifs.data).length;
+	numResults = Object.keys(channelgifs.data).length;
 
 	var randomNum = Math.floor((Math.random() * (numResults-1)) + 1);
 	setTimeout(function () {
 		videoBackground.innerHTML = "";
-      	var dancegif = dancegifs.data[randomNum].images.downsized.url;
+      	var channelgif = channelgifs.data[randomNum].images.downsized.url;
       	$(videoBackground).css({
-			"background": "url(" + dancegif + ") no-repeat center center fixed",
+			"background": "url(" + channelgif + ") no-repeat center center fixed",
 			"background-size": "cover"
 		});
 
@@ -124,30 +123,30 @@ function ShowGifMobile() {
 }
 
 function BlurSearch(){
-	$(danceSearch).blur();
+	$(giphySearch).blur();
 }
 
-$(danceSearch).focus(function() {
+$(giphySearch).focus(function() {
 	$(this).val("");
 });
 
 $(channel1).click(function() {
   	GetGifs("dance", 500);
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club");
-  	$(this).toggleClass("active-dance");
-  	$(this).siblings().removeClass("active-dance");
+  	$(this).toggleClass("active-channel");
+  	$(this).siblings().removeClass("active-channel");
 });
 
 $(channel2).click(function() {
   	GetGifs("explosions", 50);
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club");
-  	$(this).toggleClass("active-dance");
-  	$(this).siblings().removeClass("active-dance");
+  	$(this).toggleClass("active-channel");
+  	$(this).siblings().removeClass("active-channel");
 });
 
 $(channel3).click(function() {
-  	GetGifs("cute", 50);
+  	GetGifs("love cute", 50);
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club");
-  	$(this).toggleClass("active-dance");
-  	$(this).siblings().removeClass("active-dance");
+  	$(this).toggleClass("active-channel");
+  	$(this).siblings().removeClass("active-channel");
 });

@@ -28,6 +28,12 @@ widget.bind(SC.Widget.Events.READY, function() {
 	}); 
 }); 
 
+widget.bind(SC.Widget.Events.READY, function() { 
+	widget.bind(SC.Widget.Events.FINISH, function() {
+		console.log("Track finished.");
+	});
+});
+
 $(popupGridWrapper).click(function(){
 	$('.collapsible').collapsible('close', 0);
 })

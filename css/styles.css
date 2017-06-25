@@ -178,10 +178,15 @@ a {
 }
 
 .soundcloud-player {
-	display: none;
+	grid-column-start: 1;
+	grid-column-end: span 6;
+  	grid-row-start: 1;
+  	grid-row-end: span 6;
+	background-color: transparent;
+	z-index: -999;
 }
 
-.active-dance {
+.active-channel {
 	font-weight: bold;
 	background-color: #00d0ff;
 }
