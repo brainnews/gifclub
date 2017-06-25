@@ -223,11 +223,51 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 
 .toolbar-search {
 	padding: 10px 0;
-	background-color: #6200ff;
+	background-color: #f8f8f8;
+	flex: 2.3 !important;
+	border-left: 3px solid aqua;
+	border-right: 3px solid aqua;
+	border-bottom: 6px solid aqua;
+	border-top: 6px solid aqua;
+}
+
+.toolbar a {
+	border-bottom: 0px;
+}
+
+.channel-button {
+    background-color: #ff3535;
+    border-bottom: 6px solid #a92121;
+    margin-left: 3px !important;
+}
+
+.channel-button-active {
+    background-color: #e42222;
+    border-bottom: 4px solid #a92121;
+    border-top: 3px solid aqua;
+}
+
+.limit-button {
+	flex: 0.4 !important;
+    background-color: #3e6cec;
+    border-bottom: 6px solid #30007b;
+    margin-left: 3px !important;
+}
+
+.limit-button-active {
+    background-color: #6200ff;
+    border-bottom: 4px solid #30007b;
+    border-top: 3px solid aqua;
+}
+
+.lit-mode-container {
+	background-color: #222222;
+	border-bottom: 4px solid #000;
+	margin: 0 3px !important;
 }
 
 .green {
-	background-color: #00ffd0 !important;
+	background-color: aqua !important;
 }
 
 .see-through {
@@ -397,4 +437,14 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
     width: 60px;
     margin-top: -10px;
     margin-left: 10px;
+}
+
+.fixed-action-btn.toolbar ul li {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1.2;
+    display: inline-block;
+    margin: 0;
+    height: 100%;
+    transition: none;
 }

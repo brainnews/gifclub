@@ -2,7 +2,7 @@ var channelgifs;
 var preHTML = '<img src="';
 var postHTML = '" />';
 var gifIndex = 0;
-var searchLimit = 500;
+var searchLimit = 50;
 var numResults;
 var onloadSearch = "dance";
 
@@ -16,6 +16,9 @@ var channel1 = document.getElementById("channel1");
 var channel2 = document.getElementById("channel2");
 var channel3 = document.getElementById("channel3");
 var giphySearch = document.getElementById("giphySearch");
+var limitButton5 = document.getElementById("limitButton5");
+var limitButton50 = document.getElementById("limitButton50");
+var limitButton500 = document.getElementById("limitButton500");
 var videoBackground = document.getElementById("gif-container");
 var popupGridWrapper = document.getElementById("popupGridWrapper");
 var litModeContainer = document.getElementById("litModeContainer");
@@ -26,9 +29,9 @@ window.onload = function() {
   GetGifs(onloadSearch);
 };
 
-function GetGifs(q, limit) {
+function GetGifs(q) {
 	$.ajax({
-	  url: searchUrlPre + q + searchUrlPost + limit,
+	  url: searchUrlPre + q + searchUrlPost + searchLimit,
 	  type: 'GET',
 	  success: function(data) {
 		channelgifs = data;
@@ -39,7 +42,7 @@ function GetGifs(q, limit) {
 
 function keywordSearch() {
 	$.ajax({
-	  url: searchUrlPre + giphySearch.value + searchUrlPost + 500,
+	  url: searchUrlPre + giphySearch.value + searchUrlPost + searchLimit,
 	  type: 'GET',
 	  success: function(data) {
 	  	console.log(data);
@@ -131,22 +134,43 @@ $(giphySearch).focus(function() {
 });
 
 $(channel1).click(function() {
-  	GetGifs("dance", 500);
+	searchLimit = 500;
+  	GetGifs("dance");
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club");
-  	$(this).toggleClass("active-channel");
-  	$(this).siblings().removeClass("active-channel");
+  	$(this).toggleClass("channel-button-active");
+  	$(this).siblings().removeClass("channel-button-active");
 });
 
 $(channel2).click(function() {
-  	GetGifs("explosions", 50);
+	searchLimit = 50;
+  	GetGifs("explosions");
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club");
-  	$(this).toggleClass("active-channel");
-  	$(this).siblings().removeClass("active-channel");
+  	$(this).toggleClass("channel-button-active");
+  	$(this).siblings().removeClass("channel-button-active");
 });
 
 $(channel3).click(function() {
-  	GetGifs("love cute", 50);
+	searchLimit = 50;
+  	GetGifs("love cute");
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club");
-  	$(this).toggleClass("active-channel");
-  	$(this).siblings().removeClass("active-channel");
+  	$(this).toggleClass("channel-button-active");
+  	$(this).siblings().removeClass("channel-button-active");
+});
+
+$(limitButton5).click(function() {
+  	searchLimit = 5;
+  	$(this).toggleClass("limit-button-active");
+  	$(this).siblings().removeClass("limit-button-active");
+});
+
+$(limitButton50).click(function() {
+  	searchLimit = 50;
+  	$(this).toggleClass("limit-button-active");
+  	$(this).siblings().removeClass("limit-button-active");
+});
+
+$(limitButton500).click(function() {
+  	searchLimit = 500;
+  	$(this).toggleClass("limit-button-active");
+  	$(this).siblings().removeClass("limit-button-active");
 });
