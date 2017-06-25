@@ -2,12 +2,12 @@ var dancegifs;
 var preHTML = '<img src="';
 var postHTML = '" />';
 var gifIndex = 0;
-var searchLimit = 50;
+var searchLimit = 500;
 var numResults;
 var onloadSearch = "dance";
 
 var searchUrlPre = 'https://api.giphy.com/v1/gifs/search?q=';
-var searchUrlPost = '&api_key=' + config + '&limit=' + searchLimit;
+var searchUrlPost = '&api_key=' + config + '&limit=';
 
 var litModeSwitch = document.getElementById("modeSwitch");
 var litMode;
@@ -27,9 +27,9 @@ window.onload = function() {
   GetGifs(onloadSearch);
 };
 
-function GetGifs(q) {
+function GetGifs(q, limit) {
 	$.ajax({
-	  url: searchUrlPre + q + searchUrlPost,
+	  url: searchUrlPre + q + searchUrlPost + limit,
 	  type: 'GET',
 	  success: function(data) {
 		dancegifs = data;
@@ -132,21 +132,21 @@ $(danceSearch).focus(function() {
 });
 
 $(channel1).click(function() {
-  	GetGifs("dance");
+  	GetGifs("dance", 500);
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club");
   	$(this).toggleClass("active-dance");
   	$(this).siblings().removeClass("active-dance");
 });
 
 $(channel2).click(function() {
-  	GetGifs("explosions");
+  	GetGifs("explosions", 50);
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club");
   	$(this).toggleClass("active-dance");
   	$(this).siblings().removeClass("active-dance");
 });
 
 $(channel3).click(function() {
-  	GetGifs("cute");
+  	GetGifs("cute", 50);
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club");
   	$(this).toggleClass("active-dance");
   	$(this).siblings().removeClass("active-dance");

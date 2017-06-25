@@ -261,7 +261,13 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 }
 
 .modal {
-	width: 350px;
+	width: 550px;
+}
+
+.poweredby-logos {
+	float: right;
+    padding-bottom: 20px;
+    padding-right: 20px;
 }
 
 #trackUrlContainer {
