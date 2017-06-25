@@ -2,7 +2,7 @@ var dancegifs;
 var preHTML = '<img src="';
 var postHTML = '" />';
 var gifIndex = 0;
-var searchLimit = 500;
+var searchLimit = 50;
 var numResults;
 var onloadSearch = "dance";
 
@@ -131,20 +131,23 @@ $(danceSearch).focus(function() {
 	$(this).val("");
 });
 
-$(twerkButton).click(function() {
-  	GetGifs("twerking");
-  	$(this).toggleClass("active-dance");
-  	$(this).siblings().removeClass("active-dance");
-});
-
-$(danceButton).click(function() {
+$(channel1).click(function() {
   	GetGifs("dance");
+  	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club");
   	$(this).toggleClass("active-dance");
   	$(this).siblings().removeClass("active-dance");
 });
 
-$(breakdanceButton).click(function() {
-  	GetGifs("breakdancing");
+$(channel2).click(function() {
+  	GetGifs("explosions");
+  	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club");
+  	$(this).toggleClass("active-dance");
+  	$(this).siblings().removeClass("active-dance");
+});
+
+$(channel3).click(function() {
+  	GetGifs("cute");
+  	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club");
   	$(this).toggleClass("active-dance");
   	$(this).siblings().removeClass("active-dance");
 });

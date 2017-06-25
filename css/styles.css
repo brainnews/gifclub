@@ -4,6 +4,12 @@ body {
 	margin: 0 auto;
 }
 
+a {
+	color: #00ffd0;
+	font-weight: 800;
+	border-bottom: 2px solid #00ffd0;
+}
+
 .wrapper {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
@@ -24,10 +30,28 @@ body {
 	grid-column-start: 1;
 	grid-column-end: span 6;
   	grid-row-start: 1;
+  	grid-row-end: span 2;
 	background-color: transparent;
 	text-align: right;
 	z-index: 99;
 	padding: 30px 30px;
+}
+
+.giphy-badge {
+	grid-column-start: 1;
+	grid-column-end: 2;
+  	grid-row-start: 6;
+  	grid-row-end: 6;
+	background-color: transparent;
+	z-index: 90;
+	margin-left: 6px;
+    opacity: 0.2;
+    align-self: flex-end;
+    margin-bottom: 3px;
+}
+
+.giphy-badge:hover {
+	opacity: 1;
 }
 
 .track-control i {
@@ -55,6 +79,14 @@ body {
 
 .collapsible-body input {
 	text-align: right;
+}
+
+#musicSearch {
+	border: 2px solid #00ffd0;
+    width: 400px;
+    padding: 12px;
+    text-align: left;
+    border-radius: 2px;
 }
 
 .fixed-action-btn-top {
@@ -170,6 +202,20 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 	box-shadow: none;
 }
 
+.sound-controls {
+	display: inline-flex;
+	margin-bottom: 10px;
+}
+
+.sound-controls li {
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+.sound-controls li:last-child {
+	margin-right: 0px;
+}
+
 .toolbar-search {
 	padding: 10px 0;
 	background-color: #6200ff;
@@ -204,9 +250,10 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
      to  { background-color: #222;}
 }
 
-.info-btn {
+.info-btn a {
 	float: right;
     margin-right: 43px;
+    border-bottom: none;
 }
 
 .heavy {
@@ -217,6 +264,10 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 	width: 350px;
 }
 
+#trackUrlContainer {
+	margin-top: -10px;
+    margin-bottom: 20px;
+}
 
 
 /* POPUP GRID */
@@ -322,4 +373,17 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 #popupGif-16 {
 	grid-column-start: 4;
   	grid-row-start: 4;
+}
+
+/* HELPERS */
+
+.mb-10 {
+	margin-bottom: 10px;
+}
+
+.soundcloud-logo {
+	float: right;
+    width: 60px;
+    margin-top: -10px;
+    margin-left: 10px;
 }

@@ -5,6 +5,7 @@
 		<title>It's GifClub :)</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel = "stylesheet" type = "text/css" href = "css/styles.css" />
 		<link rel = "stylesheet" type = "text/css" href = "css/animate.css" />
 		<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
@@ -20,7 +21,27 @@
 				      	<span id="trackTitle">Loading track...</span><i class="material-icons">queue_music</i>
 				      </div>
 				      <div class="collapsible-body">
-				      	<input type="text" id="musicSearch" placeholder="Enter any Soundcloud URL (track, artist, or playlist)" onkeydown="if (event.keyCode == 13) { LoadTrack()}">
+					      <div class="mb-10">
+					      	<ul class="sound-controls">
+					      		<li id="prevTrackButton">
+					      			<i class="fa fa-backward" aria-hidden="true"></i>
+					      		</li>
+					      		<li id="pauseTrackButton">
+					      			<i class="fa fa-pause" aria-hidden="true"></i>
+					      		</li>
+					      		<li id="nextTrackButton">
+					      			<i class="fa fa-forward" aria-hidden="true"></i>
+					      		</li>
+					      		<li>
+					      			<span id="trackUrlContainer"></span>
+					      		</li>
+					      	</ul>
+					      </div>
+					      	<div>
+					      	<img class="soundcloud-logo" src="images/powered_by_large_white-9c2af6a93ad2b1c541f423d9e9045980.png">
+					      		<input type="text" id="musicSearch" placeholder="Enter any SoundCloud URL (track, artist, or playlist)">
+					      		
+					      	</div>
 				      </div>
 				    </li>
 				  </ul>
@@ -32,14 +53,14 @@
 				      <i class="large material-icons">settings</i>
 				    </a>
 				    <ul>
-				    	<li id="danceButton" class="waves-effect waves-light active-dance">
-				      		<a>Just dance</a>
+				    	<li id="channel1" class="waves-effect waves-light active-dance">
+				      		<a>Channel 1</a>
 				      	</li>
-					    <li id="twerkButton" class="waves-effect waves-light">
-					    	<a>Twerk it (NSFW)</a>
+					    <li id="channel2" class="waves-effect waves-light">
+					    	<a>HYPE THO</a>
 					    </li>
-				      	<li id="breakdanceButton" class="waves-effect waves-light">
-				      		<a>Breakdance</a>
+				      	<li id="channel3" class="waves-effect waves-light">
+				      		<a>cute <i class="fa fa-heart" aria-hidden="true"></i></a>
 				      	</li>
 				      	<li id="litModeContainer" class="white-text">
 				      		<div class="switch">
@@ -73,6 +94,7 @@
 			</div>
 			<div id="gif-container" class="main">
 			</div>
+			<div class="giphy-badge"><img src="images/Poweredby_100px-Black_VertLogo.png"></div>
 			<div class="soundcloud-player">
 				<iframe id="sc-widget" width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_artwork=false&amp;show_playcount=false&amp;buying=false&amp;show_user=false&amp;show_reposts=false&amp;liking=false&amp;download=false&amp;visual=false"></iframe>
 			</div>
