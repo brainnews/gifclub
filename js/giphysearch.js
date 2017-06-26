@@ -40,21 +40,39 @@ function GetGifs(q) {
 	});
 }
 
-function keywordSearch() {
-	$.ajax({
-	  url: searchUrlPre + giphySearch.value + searchUrlPost + searchLimit,
-	  type: 'GET',
-	  success: function(data) {
+// function keywordSearch() {
+// 	$.ajax({
+// 	  url: searchUrlPre + giphySearch.value + searchUrlPost + searchLimit,
+// 	  type: 'GET',
+// 	  success: function(data) {
+// 	  	console.log(data);
+// 		channelgifs = data;
+// 		ShowGif();
+// 		BlurSearch();
+// 		$(channel1).removeClass("channel-button-active");
+// 		$(channel2).removeClass("channel-button-active");
+// 		$(channel3).removeClass("channel-button-active");
+// 	  }
+// 	});
+// }
+
+$(giphySearch).keydown(function( event ) {
+	if ( event.which == 13 ) {
+		$.ajax({
+	  	url: searchUrlPre + giphySearch.value + searchUrlPost + searchLimit,
+	  	type: 'GET',
+	  	success: function(data) {
 	  	console.log(data);
 		channelgifs = data;
 		ShowGif();
 		BlurSearch();
-		$(channel1).removeClass("active-channel");
-		$(channel2).removeClass("active-channel");
-		$(channel3).removeClass("active-channel");
+		$(channel1).removeClass("channel-button-active");
+		$(channel2).removeClass("channel-button-active");
+		$(channel3).removeClass("channel-button-active");
 	  }
 	});
-}
+	}
+});
 
 function ShowGif() {
 	numResults = Object.keys(channelgifs.data).length;
@@ -151,7 +169,7 @@ $(channel2).click(function() {
 
 $(channel3).click(function() {
 	searchLimit = 50;
-  	GetGifs("love cute");
+  	GetGifs("cute");
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club");
   	$(this).toggleClass("channel-button-active");
   	$(this).siblings().removeClass("channel-button-active");
