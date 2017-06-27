@@ -30,8 +30,8 @@ $(startCustomPlaylistButton).click(function(){
 
 function CreateCustomChannel(){	
 	for (var i = 1; i <= customTrackCount; i++) {
-		var track = $('customTrackUrl' + i).val();
-		var visual = $('customGiphySearch' + i).val();
+		var track = $('customTrackUrl' + i).get(0);
+		var visual = $('customGiphySearch' + i).get(0);
 		if (track != '') {
 			console.log(track);
 			customTracksArray.push(track);
