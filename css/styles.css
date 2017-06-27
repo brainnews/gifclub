@@ -223,7 +223,7 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 
 .toolbar-search {
 	background-color: #6200ff;
-	flex: 2.3 !important;
+	flex: 1.2 !important;
 }
 
 .toolbar a {
@@ -244,18 +244,17 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 .limit-button {
 	flex: 0.4 !important;
     background-color: #3e6cec;
-    border-bottom: 6px solid #30007b;
+    border-bottom: 6px solid #00047b;
 }
 
 .limit-button-active {
-    background-color: #6200ff;
-    border-bottom: 4px solid #30007b;
+    background-color: #2149b9;
+    border-bottom: 4px solid #00047b;
     border-top: 3px solid #222;
 }
 
 .lit-mode-container {
 	background-color: #222222;
-	border-bottom: 4px solid #000;
 }
 
 .green {
@@ -439,4 +438,18 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
     margin: 0;
     height: 100%;
     transition: none;
+}
+
+.track-delete-btn {
+	color: #ff5757;
+	border-bottom: none;
+	cursor: pointer;
+}
+
+.mb-20 {
+	margin-bottom: 20px;
+}
+
+.mb-40 {
+	margin-bottom: 40px;
 }

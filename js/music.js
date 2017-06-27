@@ -19,7 +19,6 @@ widget.bind(SC.Widget.Events.READY, function() {
 	widget.bind(SC.Widget.Events.PLAY, function() { 
 		// get information about currently playing sound 
 		widget.getCurrentSound(function(currentSound) {
-			console.log(currentSound); 
 			trackTitle = currentSound.title;
 			trackArtist = currentSound.user.username;
 			trackUrl = currentSound.permalink_url;
@@ -31,7 +30,6 @@ widget.bind(SC.Widget.Events.READY, function() {
 
 widget.bind(SC.Widget.Events.READY, function() { 
 	widget.bind(SC.Widget.Events.FINISH, function() {
-		console.log("Track finished.");
 		trackCount++;
 		GetGifs(activeVisualsArray[trackCount]);
 	});

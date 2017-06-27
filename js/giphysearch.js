@@ -5,7 +5,7 @@ var gifIndex = 0;
 var searchLimit = 50;
 var numResults;
 var onloadSearch = "dance";
-var channel1VisualsArray = ["dance", "brazilian dance", "mom dance", "bottle service", "oprah"];
+var channel1VisualsArray = ["dance", "soccer dance", "mom dance", "oprah"];
 var channel2VisualsArray = ["explosions", "squad goals", "zombies", "like a boss"];
 var channel3VisualsArray = ["love cute", "cute", "rainbows", "space"];
 var activeVisualsArray;
@@ -164,6 +164,7 @@ $(giphySearch).focus(function() {
 });
 
 $(channel1).click(function() {
+	trackCount = 0;
 	searchLimit = 500;
 	activeVisualsArray = channel1VisualsArray;
   	GetGifs(activeVisualsArray[trackCount]);
@@ -173,6 +174,7 @@ $(channel1).click(function() {
 });
 
 $(channel2).click(function() {
+	trackCount = 0;
 	searchLimit = 50;
 	activeVisualsArray = channel2VisualsArray;
   	GetGifs(activeVisualsArray[trackCount]);
@@ -182,6 +184,7 @@ $(channel2).click(function() {
 });
 
 $(channel3).click(function() {
+	trackCount = 0;
 	searchLimit = 50;
 	activeVisualsArray = channel3VisualsArray;
   	GetGifs(activeVisualsArray[trackCount]);
