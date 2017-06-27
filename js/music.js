@@ -2,8 +2,9 @@ var trackTitle;
 var trackArtist;
 var trackUrl;
 var paused = false;
-var trackUrlContainer = document.getElementById("trackUrlContainer");
+var trackCount = 0;
 
+var trackUrlContainer = document.getElementById("trackUrlContainer");
 var trackInfoContainer = document.getElementById("trackTitle");
 var musicSearch = document.getElementById("musicSearch");
 var prevTrackButton = document.getElementById("prevTrackButton");
@@ -31,6 +32,8 @@ widget.bind(SC.Widget.Events.READY, function() {
 widget.bind(SC.Widget.Events.READY, function() { 
 	widget.bind(SC.Widget.Events.FINISH, function() {
 		console.log("Track finished.");
+		trackCount++;
+		GetGifs(activeVisualsArray[trackCount]);
 	});
 });
 
@@ -67,10 +70,16 @@ function LoadTrack (q) {
 }
 
 $(prevTrackButton).click(function(){
+	if (trackCount > 0) {
+		trackCount--;
+		GetGifs(activeVisualsArray[trackCount]);
+	}
 	widget.prev();
 });
 
 $(nextTrackButton).click(function(){
+	trackCount++;
+	GetGifs(activeVisualsArray[trackCount]);
 	widget.next();
 });
 
