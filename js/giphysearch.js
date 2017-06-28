@@ -38,7 +38,7 @@ if (getOS() != "iOS") {
 	  	GetGifs(activeVisualsArray[0]);
 	};
 } else {
-	videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android';
+	videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android.';
 	soundcloudContainer.innerHTML = '';
 }
 
@@ -98,7 +98,7 @@ function ShowGif() {
       		var channelgif = channelgifs.data[randomNum].images.original_mp4.mp4;
      	}
       	
-      	videoBackground.innerHTML = '<video autoplay loop id="video-background" muted><source src="' + channelgif + '"></video>';
+      	videoBackground.innerHTML = '<video autoplay loop playsinline id="video-background" muted><source src="' + channelgif + '"></video>';
 
       	litMode = $(litModeSwitch).is(':checked');
 
@@ -115,7 +115,7 @@ function ShowGif() {
       		var i = 0;
 
 	      	if (randomPopup){
-	      		randomPopup.innerHTML = '<video autoplay loop id="video-background" class="br-2 z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
+	      		randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="br-2 z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
 	      	}
 
       	} else if (popupGridWrapper.innerHTML != emptyPopupGrid) {

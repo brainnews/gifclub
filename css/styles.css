@@ -300,6 +300,15 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 	width: 550px;
 }
 
+.modal.bottom-sheet {
+	max-height: 90%;
+	border-top: 10px solid #4b00ff;
+}
+
+thead {
+    border-bottom: 2px solid #E91E63;
+}
+
 .poweredby-logos {
 	float: right;
     padding-bottom: 20px;
@@ -449,8 +458,13 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 	background-color: #000;
 }
 
+.custom-playlist-input {
+    border-bottom: 1px solid #222;
+    padding: 10px 0;
+}
+
 .track-delete-btn {
-	color: #ff5757;
+	color: #4b00ff;
 	border-bottom: none;
 	cursor: pointer;
 }

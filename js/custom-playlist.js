@@ -28,6 +28,7 @@ $(startCustomPlaylistButton).click(function(){
 });
 
 function CreateCustomChannel(){
+	//track/visual numbers will not update if the user deletes one. Need to grab the track/visual numbers AFTER user hits Start Channel. Do this by getting the children of customPlaylistTable, adding them to an array, and iterating over them
 	customTrackCount = $(customPlaylistTable).children().length;
 	for (var i = 0; i < customTrackCount; i++) {
 		var track = document.getElementById('customTrackUrl' + i).value;
@@ -39,8 +40,6 @@ function CreateCustomChannel(){
 			customVisualsArray.push(visual);
 		}
 	}
-	console.log(customTracksArray);
-	console.log(customVisualsArray);
 	StartCustomChannel();
 }
 
