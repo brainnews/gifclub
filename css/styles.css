@@ -440,6 +440,15 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
     transition: none;
 }
 
+.modal-content {
+	background-color: #111;
+    color: #fff;
+}
+
+.modal .modal-footer {
+	background-color: #000;
+}
+
 .track-delete-btn {
 	color: #ff5757;
 	border-bottom: none;

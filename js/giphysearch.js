@@ -19,6 +19,7 @@ var litMode;
 var channel1 = document.getElementById("channel1");
 var channel2 = document.getElementById("channel2");
 var channel3 = document.getElementById("channel3");
+var customChannelButton = document.getElementById("customChannelButton");
 var giphySearch = document.getElementById("giphySearch");
 var limitButton5 = document.getElementById("limitButton5");
 var limitButton50 = document.getElementById("limitButton50");
@@ -189,6 +190,11 @@ $(channel3).click(function() {
 	activeVisualsArray = channel3VisualsArray;
   	GetGifs(activeVisualsArray[trackCount]);
   	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club");
+  	$(this).toggleClass("channel-button-active");
+  	$(this).siblings().removeClass("channel-button-active");
+});
+
+$(customChannelButton).click(function() {
   	$(this).toggleClass("channel-button-active");
   	$(this).siblings().removeClass("channel-button-active");
 });

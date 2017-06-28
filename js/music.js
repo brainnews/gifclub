@@ -31,6 +31,9 @@ widget.bind(SC.Widget.Events.READY, function() {
 widget.bind(SC.Widget.Events.READY, function() { 
 	widget.bind(SC.Widget.Events.FINISH, function() {
 		trackCount++;
+		if (customChannel) {
+			LoadTrack(customTracksArray[trackCount]);
+		}
 		GetGifs(activeVisualsArray[trackCount]);
 	});
 });
@@ -70,15 +73,23 @@ function LoadTrack (q) {
 $(prevTrackButton).click(function(){
 	if (trackCount > 0) {
 		trackCount--;
+		if (customChannel) {
+			LoadTrack(customTracksArray[trackCount]);
+			} else {
+			widget.next();
+		}
 		GetGifs(activeVisualsArray[trackCount]);
 	}
-	widget.prev();
 });
 
 $(nextTrackButton).click(function(){
 	trackCount++;
+	if (customChannel) {
+		LoadTrack(customTracksArray[trackCount]);
+	} else {
+		widget.next();
+	}
 	GetGifs(activeVisualsArray[trackCount]);
-	widget.next();
 });
 
 $(pauseTrackButton).click(function(){
