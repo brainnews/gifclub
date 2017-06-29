@@ -5,8 +5,6 @@ var startCustomPlaylistButton = document.getElementById("startCustomPlaylistButt
 var customTrackCount;
 var newTrackHTML = '<tr><td id="songInput"><input id="customTrackUrl" placeholder="SoundCloud URL" type="text"></td><td id="visualInput"><input id="customGiphySearch" placeholder="GIPHY Search" type="text"></td><td class="track-delete-btn"><i class="material-icons">delete</i></td></tr>';
 var customChannel = {};
-var customTracksArray = [];
-var customVisualsArray  = [];
 var customChannelActive = false;
 
 $(addTrackButton).click(function(){
@@ -46,7 +44,7 @@ function ClearPlaylist () {
 
 function StartCustomChannel () {
 	customChannelActive = true;
-	LoadTrack(customChannel.playlist[0]);
-	activeVisualsArray = customChannel.visuals;
-	GetGifs(activeVisualsArray[0]);
+	activeChannel = customChannel;
+	LoadTrack(activeChannel.playlist[0]);
+	GetGifs(activeChannel.visuals[0]);
 }

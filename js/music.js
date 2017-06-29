@@ -3,6 +3,7 @@ var trackArtist;
 var trackUrl;
 var paused = false;
 var trackCount = 0;
+var activeChannel;
 
 var trackUrlContainer = document.getElementById("trackUrlContainer");
 var trackInfoContainer = document.getElementById("trackTitle");
@@ -19,6 +20,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 	widget.bind(SC.Widget.Events.PLAY, function() { 
 		// get information about currently playing sound 
 		widget.getCurrentSound(function(currentSound) {
+			console.log(currentSound);
 			trackTitle = currentSound.title;
 			trackArtist = currentSound.user.username;
 			trackUrl = currentSound.permalink_url;
@@ -31,8 +33,11 @@ widget.bind(SC.Widget.Events.READY, function() {
 widget.bind(SC.Widget.Events.READY, function() { 
 	widget.bind(SC.Widget.Events.FINISH, function() {
 		trackCount++;
-		if (customChannel) {
-			LoadTrack(customChannel.playlist[trackCount]);
+		if (trackCount == activeChannel.playlist.length + 1) {
+			trackCount = 0;
+			LoadTrack(activeChannel.playlist[trackCount]);
+		} else {
+			LoadTrack(activeChannel.playlist[trackCount]);
 		}
 		GetGifs(activeVisualsArray[trackCount]);
 	});
@@ -71,25 +76,25 @@ function LoadTrack (q) {
 }
 
 $(prevTrackButton).click(function(){
-	if (trackCount > 0) {
-		trackCount--;
-		if (customChannel) {
-			LoadTrack(customChannel.playlist[trackCount]);
-			} else {
-			widget.next();
-		}
-		GetGifs(activeVisualsArray[trackCount]);
+	trackCount--;
+	if (trackCount < 0) {
+		trackCount = 0;
+		LoadTrack(activeChannel.playlist[trackCount]);
+	} else {
+		LoadTrack(activeChannel.playlist[trackCount]);
 	}
+	GetGifs(activeChannel.visuals[trackCount]);
 });
 
 $(nextTrackButton).click(function(){
 	trackCount++;
-	if (customChannel) {
-		LoadTrack(customChannel.playlist[trackCount]);
+	if (trackCount == activeChannel.playlist.length) {
+		trackCount = 0;
+		LoadTrack(activeChannel.playlist[trackCount]);
 	} else {
-		widget.next();
+		LoadTrack(activeChannel.playlist[trackCount]);
 	}
-	GetGifs(activeVisualsArray[trackCount]);
+	GetGifs(activeChannel.visuals[trackCount]);
 });
 
 $(pauseTrackButton).click(function(){

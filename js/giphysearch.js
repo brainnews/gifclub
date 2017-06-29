@@ -46,9 +46,9 @@ var emptyPopupGrid = '<div id="popupGif-1" class="popup-gif"></div><div id="popu
 
 if (getOS() != "iOS") {
 	window.onload = function() {
-		activeVisualsArray = channel1.visuals;
-	  	GetGifs(activeVisualsArray[0]);
-	  	LoadTrack(channel1.playlist);
+		activeChannel = channel1;
+	  	GetGifs(activeChannel.visuals[0]);
+	  	LoadTrack(activeChannel.playlist[0]);
 	};
 } else {
 	videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android.';
