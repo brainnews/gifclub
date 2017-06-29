@@ -4,11 +4,23 @@ var postHTML = '" />';
 var gifIndex = 0;
 var searchLimit = 50;
 var numResults;
-var onloadSearch = "dance";
-var channel1VisualsArray = ["dance", "soccer dance", "mom dance", "oprah"];
-var channel2VisualsArray = ["explosions", "squad goals", "zombies", "like a boss"];
-var channel3VisualsArray = ["love cute", "cute", "rainbows", "space"];
 var activeVisualsArray;
+
+var channel1 = {
+	"name": "Channel 1",
+	"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club"],
+	"visuals": 	["dance", "soccer dance", "mom dance", "oprah"]
+}
+var channel2 = {
+	"name": "HYPE THO",
+	"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club"],
+	"visuals": 	["explosions", "squad goals", "zombies", "like a boss"]
+}
+var channel3 = {
+	"name": "Cute 💚",
+	"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club"],
+	"visuals": 	["love cute", "cute", "rainbows", "space"]
+}
 
 var searchUrlPre = 'https://api.giphy.com/v1/gifs/search?q=';
 var searchUrlPost = '&api_key=' + config + '&limit=';
@@ -16,9 +28,9 @@ var searchUrlPost = '&api_key=' + config + '&limit=';
 var litModeSwitch = document.getElementById("modeSwitch");
 var litMode;
 
-var channel1 = document.getElementById("channel1");
-var channel2 = document.getElementById("channel2");
-var channel3 = document.getElementById("channel3");
+var channel1Button = document.getElementById("channel1Button");
+var channel2Button = document.getElementById("channel2Button");
+var channel3Button = document.getElementById("channel3Button");
 var customChannelButton = document.getElementById("customChannelButton");
 var giphySearch = document.getElementById("giphySearch");
 var limitButton5 = document.getElementById("limitButton5");
@@ -34,8 +46,9 @@ var emptyPopupGrid = '<div id="popupGif-1" class="popup-gif"></div><div id="popu
 
 if (getOS() != "iOS") {
 	window.onload = function() {
-		activeVisualsArray = channel1VisualsArray;
+		activeVisualsArray = channel1.visuals;
 	  	GetGifs(activeVisualsArray[0]);
+	  	LoadTrack(channel1.playlist);
 	};
 } else {
 	videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android.';
@@ -52,22 +65,6 @@ function GetGifs(q) {
 	  }
 	});
 }
-
-// function keywordSearch() {
-// 	$.ajax({
-// 	  url: searchUrlPre + giphySearch.value + searchUrlPost + searchLimit,
-// 	  type: 'GET',
-// 	  success: function(data) {
-// 	  	console.log(data);
-// 		channelgifs = data;
-// 		ShowGif();
-// 		BlurSearch();
-// 		$(channel1).removeClass("channel-button-active");
-// 		$(channel2).removeClass("channel-button-active");
-// 		$(channel3).removeClass("channel-button-active");
-// 	  }
-// 	});
-// }
 
 $(giphySearch).keydown(function( event ) {
 	if ( event.which == 13 ) {
@@ -160,38 +157,36 @@ function BlurSearch(){
 	$(giphySearch).blur();
 }
 
+function ChangeChannel(channel, limit, button) {
+	trackCount = 0;
+	activeVisualsArray = channel.visuals;
+	searchLimit = limit;
+	GetGifs(activeVisualsArray[trackCount]);
+	LoadTrack(channel.playlist[trackCount]);
+	$(button).toggleClass("channel-button-active");
+  	$(button).siblings().removeClass("channel-button-active");
+}
+
+function SetSearchLimit(limit, button) {
+	searchLimit = limit;
+  	$(button).toggleClass("limit-button-active");
+  	$(button).siblings().removeClass("limit-button-active");
+}
+
 $(giphySearch).focus(function() {
 	$(this).val("");
 });
 
-$(channel1).click(function() {
-	trackCount = 0;
-	searchLimit = 500;
-	activeVisualsArray = channel1VisualsArray;
-  	GetGifs(activeVisualsArray[trackCount]);
-  	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club");
-  	$(this).toggleClass("channel-button-active");
-  	$(this).siblings().removeClass("channel-button-active");
+$(channel1Button).click(function() {
+  	ChangeChannel(channel1, 500, channel1Button);
 });
 
-$(channel2).click(function() {
-	trackCount = 0;
-	searchLimit = 50;
-	activeVisualsArray = channel2VisualsArray;
-  	GetGifs(activeVisualsArray[trackCount]);
-  	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club");
-  	$(this).toggleClass("channel-button-active");
-  	$(this).siblings().removeClass("channel-button-active");
+$(channel2Button).click(function() {
+ 	ChangeChannel(channel2, 50, channel2Button);
 });
 
-$(channel3).click(function() {
-	trackCount = 0;
-	searchLimit = 50;
-	activeVisualsArray = channel3VisualsArray;
-  	GetGifs(activeVisualsArray[trackCount]);
-  	LoadTrack("https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club");
-  	$(this).toggleClass("channel-button-active");
-  	$(this).siblings().removeClass("channel-button-active");
+$(channel3Button).click(function() {
+  	ChangeChannel(channel3, 50, channel3Button);
 });
 
 $(customChannelButton).click(function() {
@@ -200,19 +195,13 @@ $(customChannelButton).click(function() {
 });
 
 $(limitButton5).click(function() {
-  	searchLimit = 5;
-  	$(this).toggleClass("limit-button-active");
-  	$(this).siblings().removeClass("limit-button-active");
+  	SetSearchLimit(5, limitButton5);
 });
 
 $(limitButton50).click(function() {
-  	searchLimit = 50;
-  	$(this).toggleClass("limit-button-active");
-  	$(this).siblings().removeClass("limit-button-active");
+  	SetSearchLimit(50, limitButton50);
 });
 
 $(limitButton500).click(function() {
-  	searchLimit = 500;
-  	$(this).toggleClass("limit-button-active");
-  	$(this).siblings().removeClass("limit-button-active");
+  	SetSearchLimit(500, limitButton500);
 });

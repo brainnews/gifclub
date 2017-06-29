@@ -3,15 +3,14 @@ var customPlaylistTable = document.getElementById("customPlaylistTable");
 var clearCustomPlaylistButton = document.getElementById("clearCustomPlaylistButton");
 var startCustomPlaylistButton = document.getElementById("startCustomPlaylistButton");
 var customTrackCount;
-var newTrackHTML;
-var clearTracksHTML = '<tr><td><input placeholder="SoundCloud URL" id="customTrackUrl0" type="text"></td><td><input placeholder="GIPHY Search" id="customGiphySearch0" type="text"></td><td class="track-delete-btn"><i class="material-icons">delete</i></td></tr>';
+var newTrackHTML = '<tr><td id="songInput"><input id="customTrackUrl" placeholder="SoundCloud URL" type="text"></td><td id="visualInput"><input id="customGiphySearch" placeholder="GIPHY Search" type="text"></td><td class="track-delete-btn"><i class="material-icons">delete</i></td></tr>';
+var customChannel = {};
 var customTracksArray = [];
 var customVisualsArray  = [];
-var customChannel = false;
+var customChannelActive = false;
 
 $(addTrackButton).click(function(){
-	customTrackCount = $(customPlaylistTable).children().length;
-	newTrackHTML = '<tr><td><input placeholder="SoundCloud URL" id="customTrackUrl' + customTrackCount + '" type="text"></td><td><input placeholder="GIPHY Search" id="customGiphySearch' + customTrackCount + '" type="text"></td><td class="track-delete-btn"><i class="material-icons">delete</i></td></tr>';
+	var playlistLength = $(customPlaylistTable).children().length;
 	$(customPlaylistTable).append(newTrackHTML);
 });
 
@@ -28,30 +27,26 @@ $(startCustomPlaylistButton).click(function(){
 });
 
 function CreateCustomChannel(){
-	//track/visual numbers will not update if the user deletes one. Need to grab the track/visual numbers AFTER user hits Start Channel. Do this by getting the children of customPlaylistTable, adding them to an array, and iterating over them
-	customTrackCount = $(customPlaylistTable).children().length;
-	for (var i = 0; i < customTrackCount; i++) {
-		var track = document.getElementById('customTrackUrl' + i).value;
-		var visual = document.getElementById('customGiphySearch' + i).value;
-		if (track != '') {
-			customTracksArray.push(track);
-		}
-		if (visual != '') {
-			customVisualsArray.push(visual);
-		}
+	var playlist = $(customPlaylistTable).children();
+	var playlistLength = $(customPlaylistTable).children().length;
+	var songArray = [];
+	var gifArray = [];
+	for (var i = 0; i < playlistLength; i++) {
+		songArray.push(playlist[i].children.songInput.children.customTrackUrl.value);
+		gifArray.push(playlist[i].children.visualInput.children.customGiphySearch.value);
 	}
+	customChannel["playlist"] = songArray;
+	customChannel["visuals"] = gifArray;
 	StartCustomChannel();
 }
 
 function ClearPlaylist () {
-	$(customPlaylistTable).html(clearTracksHTML);
-	var customTracksArray = [];
-	var customVisualsArray  = [];
+	$(customPlaylistTable).html(newTrackHTML);
 }
 
 function StartCustomChannel () {
-	customChannel = true;
-	LoadTrack(customTracksArray[0]);
-	activeVisualsArray = customVisualsArray;
+	customChannelActive = true;
+	LoadTrack(customChannel.playlist[0]);
+	activeVisualsArray = customChannel.visuals;
 	GetGifs(activeVisualsArray[0]);
 }

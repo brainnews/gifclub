@@ -32,7 +32,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 	widget.bind(SC.Widget.Events.FINISH, function() {
 		trackCount++;
 		if (customChannel) {
-			LoadTrack(customTracksArray[trackCount]);
+			LoadTrack(customChannel.playlist[trackCount]);
 		}
 		GetGifs(activeVisualsArray[trackCount]);
 	});
@@ -74,7 +74,7 @@ $(prevTrackButton).click(function(){
 	if (trackCount > 0) {
 		trackCount--;
 		if (customChannel) {
-			LoadTrack(customTracksArray[trackCount]);
+			LoadTrack(customChannel.playlist[trackCount]);
 			} else {
 			widget.next();
 		}
@@ -85,7 +85,7 @@ $(prevTrackButton).click(function(){
 $(nextTrackButton).click(function(){
 	trackCount++;
 	if (customChannel) {
-		LoadTrack(customTracksArray[trackCount]);
+		LoadTrack(customChannel.playlist[trackCount]);
 	} else {
 		widget.next();
 	}
