@@ -3,10 +3,7 @@ var trackArtist;
 var trackUrl;
 var paused = false;
 var trackCount = 0;
-<<<<<<< HEAD
-=======
 var playlistLength;
->>>>>>> 0b137df49cb72e4874d0912094d4d44f3d182d58
 
 var trackUrlContainer = document.getElementById("trackUrlContainer");
 var trackInfoContainer = document.getElementById("trackTitle");

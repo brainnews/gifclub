@@ -113,6 +113,9 @@ $(limitButton500).click(function() {
 
 function BlurSearch(){
     $(giphySearch).blur();
+    $(channel1).removeClass("channel-button-active");
+    $(channel2).removeClass("channel-button-active");
+    $(channel3).removeClass("channel-button-active");
 }
 
 $('.modal').modal({
