@@ -3,6 +3,10 @@ var trackArtist;
 var trackUrl;
 var paused = false;
 var trackCount = 0;
+<<<<<<< HEAD
+=======
+var playlistLength;
+>>>>>>> 0b137df49cb72e4874d0912094d4d44f3d182d58
 
 var trackUrlContainer = document.getElementById("trackUrlContainer");
 var trackInfoContainer = document.getElementById("trackTitle");
@@ -18,27 +22,29 @@ widget.bind(SC.Widget.Events.READY, function() {
 	widget.bind(SC.Widget.Events.PLAY, function() { 
 		// get information about currently playing sound 
 		widget.getCurrentSound(function(currentSound) {
-			console.log(currentSound);
 			trackTitle = currentSound.title;
 			trackArtist = currentSound.user.username;
 			trackUrl = currentSound.permalink_url;
 			trackInfoContainer.innerHTML = '<strong>' + trackTitle + '</strong> by ' + trackArtist;
 			trackUrlContainer.innerHTML = '<a href="' + trackUrl + '" target="_blank">View track on SoundCloud</a>';
-		}); 
-	}); 
-}); 
+		});
+		widget.getSounds(function(sounds) {
+			playlistLength = sounds.length;
 
-widget.bind(SC.Widget.Events.READY, function() { 
+			if (playlistLength > 1) {
+				console.log("Playlist loaded.");
+			} else {
+				console.log("Single track loaded.");
+			}
+		});
+	});
 	widget.bind(SC.Widget.Events.FINISH, function() {
 		trackCount++;
-		if (trackCount == activeChannel.playlist.length + 1) {
-			trackCount = 0;
-			LoadTrack(activeChannel.playlist[trackCount]);
-		} else {
-			LoadTrack(activeChannel.playlist[trackCount]);
+		if (customChannelActive) {
+			LoadTrack(customChannel.playlist[trackCount]);
 		}
 		GetGifs(activeVisualsArray[trackCount]);
-	});
+	}); 
 });
 
 $(musicSearch).keydown(function( event ) {
@@ -65,25 +71,30 @@ function LoadTrack (q) {
 }
 
 $(prevTrackButton).click(function(){
-	trackCount--;
-	if (trackCount < 0) {
-		trackCount = 0;
-		LoadTrack(activeChannel.playlist[trackCount]);
-	} else {
-		LoadTrack(activeChannel.playlist[trackCount]);
+	if (trackCount > 0) {
+		trackCount--;
+		if (customChannelActive) {
+			LoadTrack(customChannel.playlist[trackCount]);
+			} else {
+			widget.next();
+		}
+		GetGifs(activeVisualsArray[trackCount]);
 	}
-	GetGifs(activeChannel.visuals[trackCount]);
 });
 
 $(nextTrackButton).click(function(){
 	trackCount++;
-	if (trackCount == activeChannel.playlist.length) {
+	if (customChannelActive && trackCount < playlist.length) {
+		LoadTrack(activeChannel.playlist[trackCount]);
+		GetGifs(activeChannel.visuals[trackCount]);
+	}
+	if (trackCount == playlistLength) {
 		trackCount = 0;
+		GetGifs(activeChannel.visuals[trackCount]);
 		LoadTrack(activeChannel.playlist[trackCount]);
 	} else {
-		LoadTrack(activeChannel.playlist[trackCount]);
+		widget.next();
 	}
-	GetGifs(activeChannel.visuals[trackCount]);
 });
 
 $(pauseTrackButton).click(function(){

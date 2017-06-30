@@ -4,11 +4,56 @@ var postHTML = '" />';
 var gifIndex = 0;
 var searchLimit = 50;
 var numResults;
+<<<<<<< HEAD
+=======
+var activeVisualsArray;
+
+var channel1 = {
+	"name": "Channel 1",
+	"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club"],
+	"visuals": 	["dance", "soccer dance", "mom dance"]
+}
+var channel2 = {
+	"name": "HYPE THO",
+	"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club"],
+	"visuals": 	["explosions", "squad goals", "zombies", "like a boss"]
+}
+var channel3 = {
+	"name": "Cute 💚",
+	"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club"],
+	"visuals": 	["love cute", "cute", "rainbows", "space", "pizza love"]
+}
+>>>>>>> 0b137df49cb72e4874d0912094d4d44f3d182d58
 
 var searchUrlPre = 'https://api.giphy.com/v1/gifs/search?q=';
 var searchUrlPost = '&api_key=' + config + '&limit=';
 
 var giphySearch = document.getElementById("giphySearch");
+<<<<<<< HEAD
+=======
+var limitButton5 = document.getElementById("limitButton5");
+var limitButton50 = document.getElementById("limitButton50");
+var limitButton500 = document.getElementById("limitButton500");
+var videoBackground = document.getElementById("gif-container");
+var popupGridWrapper = document.getElementById("popupGridWrapper");
+var litModeContainer = document.getElementById("litModeContainer");
+var soundcloudContainer = document.getElementById("soundcloudContainer");
+
+var emptyPopupGrid = '<div id="popupGif-1" class="popup-gif"></div><div id="popupGif-2" class="popup-gif"></div><div id="popupGif-3" class="popup-gif"></div><div id="popupGif-4" class="popup-gif"></div><div id="popupGif-5" class="popup-gif"></div><div id="popupGif-6" class="popup-gif"></div><div id="popupGif-7" class="popup-gif"></div><div id="popupGif-8" class="popup-gif"></div><div id="popupGif-9" class="popup-gif"></div><div id="popupGif-10" class="popup-gif"></div><div id="popupGif-14" class="popup-gif"></div><div id="popupGif-15" class="popup-gif"></div><div id="popupGif-16" class="popup-gif"></div>';
+
+
+if (getOS() != "iOS") {
+	window.onload = function() {
+		activeVisualsArray = channel1.visuals;
+	  	GetGifs(activeVisualsArray[0]);
+	  	LoadTrack(channel1.playlist);
+	  	activeChannel = channel1;
+	};
+} else {
+	videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android.';
+	soundcloudContainer.innerHTML = '';
+}
+>>>>>>> 0b137df49cb72e4874d0912094d4d44f3d182d58
 
 function GetGifs(q) {
 	$.ajax({
@@ -46,7 +91,7 @@ function ShowGif() {
 	
 
 	setTimeout(function () {
-		if(channelgifs.data[randomNum].images.original_mp4.mp4 != undefined) {
+		if(channelgifs.data[randomNum].images.original_mp4.mp4 != 'undefined') {
       		var channelgif = channelgifs.data[randomNum].images.original_mp4.mp4;
      	}
       	
@@ -60,7 +105,7 @@ function ShowGif() {
       		var randomCell = Math.floor((Math.random() * 16) + 1);
       		var randomPopup = document.getElementById('popupGif-' + randomCell);
       		var randomDepth = Math.floor((Math.random() * 5) + 1);
-      		if (channelgifs.data[randomNum2].images.original_mp4.mp4 != undefined) {
+      		if (channelgifs.data[randomNum2].images.original_mp4.mp4 != 'undefined') {
       			var channelgifPopup = channelgifs.data[randomNum2].images.original_mp4.mp4;
       		}
 
@@ -106,4 +151,62 @@ function ShowGifMobile() {
       	ShowGif();
 
    	}, 1500)
+<<<<<<< HEAD
 }
+=======
+}
+
+function BlurSearch(){
+	$(giphySearch).blur();
+}
+
+function ChangeChannel(channel, limit, button) {
+	activeChannel = channel;
+	trackCount = 0;
+	activeVisualsArray = channel.visuals;
+	searchLimit = limit;
+	GetGifs(activeVisualsArray[trackCount]);
+	LoadTrack(activeChannel.playlist[trackCount]);
+	$(button).toggleClass("channel-button-active");
+  	$(button).siblings().removeClass("channel-button-active");
+}
+
+function SetSearchLimit(limit, button) {
+	searchLimit = limit;
+  	$(button).toggleClass("limit-button-active");
+  	$(button).siblings().removeClass("limit-button-active");
+}
+
+$(giphySearch).focus(function() {
+	$(this).val("");
+});
+
+$(channel1Button).click(function() {
+  	ChangeChannel(channel1, 500, channel1Button);
+});
+
+$(channel2Button).click(function() {
+ 	ChangeChannel(channel2, 50, channel2Button);
+});
+
+$(channel3Button).click(function() {
+  	ChangeChannel(channel3, 50, channel3Button);
+});
+
+$(customChannelButton).click(function() {
+  	$(this).toggleClass("channel-button-active");
+  	$(this).siblings().removeClass("channel-button-active");
+});
+
+$(limitButton5).click(function() {
+  	SetSearchLimit(5, limitButton5);
+});
+
+$(limitButton50).click(function() {
+  	SetSearchLimit(50, limitButton50);
+});
+
+$(limitButton500).click(function() {
+  	SetSearchLimit(500, limitButton500);
+});
+>>>>>>> 0b137df49cb72e4874d0912094d4d44f3d182d58
