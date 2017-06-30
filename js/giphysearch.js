@@ -9,7 +9,7 @@ var activeVisualsArray;
 var channel1 = {
 	"name": "Channel 1",
 	"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club"],
-	"visuals": 	["dance", "soccer dance", "mom dance", "oprah"]
+	"visuals": 	["dance", "soccer dance", "mom dance"]
 }
 var channel2 = {
 	"name": "HYPE THO",
@@ -19,7 +19,7 @@ var channel2 = {
 var channel3 = {
 	"name": "Cute 💚",
 	"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club"],
-	"visuals": 	["love cute", "cute", "rainbows", "space"]
+	"visuals": 	["love cute", "cute", "rainbows", "space", "pizza love"]
 }
 
 var searchUrlPre = 'https://api.giphy.com/v1/gifs/search?q=';
@@ -46,9 +46,10 @@ var emptyPopupGrid = '<div id="popupGif-1" class="popup-gif"></div><div id="popu
 
 if (getOS() != "iOS") {
 	window.onload = function() {
-		activeChannel = channel1;
-	  	GetGifs(activeChannel.visuals[0]);
-	  	LoadTrack(activeChannel.playlist[0]);
+		activeVisualsArray = channel1.visuals;
+	  	GetGifs(activeVisualsArray[0]);
+	  	LoadTrack(channel1.playlist);
+	  	activeChannel = channel1;
 	};
 } else {
 	videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android.';
@@ -91,7 +92,7 @@ function ShowGif() {
 	
 
 	setTimeout(function () {
-		if(channelgifs.data[randomNum].images.original_mp4.mp4 != undefined) {
+		if(channelgifs.data[randomNum].images.original_mp4.mp4 != 'undefined') {
       		var channelgif = channelgifs.data[randomNum].images.original_mp4.mp4;
      	}
       	
@@ -105,7 +106,7 @@ function ShowGif() {
       		var randomCell = Math.floor((Math.random() * 16) + 1);
       		var randomPopup = document.getElementById('popupGif-' + randomCell);
       		var randomDepth = Math.floor((Math.random() * 5) + 1);
-      		if (channelgifs.data[randomNum2].images.original_mp4.mp4 != undefined) {
+      		if (channelgifs.data[randomNum2].images.original_mp4.mp4 != 'undefined') {
       			var channelgifPopup = channelgifs.data[randomNum2].images.original_mp4.mp4;
       		}
 
@@ -158,11 +159,12 @@ function BlurSearch(){
 }
 
 function ChangeChannel(channel, limit, button) {
+	activeChannel = channel;
 	trackCount = 0;
 	activeVisualsArray = channel.visuals;
 	searchLimit = limit;
 	GetGifs(activeVisualsArray[trackCount]);
-	LoadTrack(channel.playlist[trackCount]);
+	LoadTrack(activeChannel.playlist[trackCount]);
 	$(button).toggleClass("channel-button-active");
   	$(button).siblings().removeClass("channel-button-active");
 }
