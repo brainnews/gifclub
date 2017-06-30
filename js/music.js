@@ -3,7 +3,6 @@ var trackArtist;
 var trackUrl;
 var paused = false;
 var trackCount = 0;
-var activeChannel;
 
 var trackUrlContainer = document.getElementById("trackUrlContainer");
 var trackInfoContainer = document.getElementById("trackTitle");
@@ -11,7 +10,6 @@ var musicSearch = document.getElementById("musicSearch");
 var prevTrackButton = document.getElementById("prevTrackButton");
 var nextTrackButton = document.getElementById("nextTrackButton");
 var pauseTrackButton = document.getElementById("pauseTrackButton");
-
 
 var widgetIframe = document.getElementById('sc-widget'), 
 widget = SC.Widget(widgetIframe); 
@@ -41,15 +39,6 @@ widget.bind(SC.Widget.Events.READY, function() {
 		}
 		GetGifs(activeVisualsArray[trackCount]);
 	});
-});
-
-$(popupGridWrapper).click(function(){
-	$('.collapsible').collapsible('close', 0);
-})
-
-$(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
 });
 
 $(musicSearch).keydown(function( event ) {
