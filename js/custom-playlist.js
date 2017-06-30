@@ -9,11 +9,6 @@ var customTracksArray = [];
 var customVisualsArray  = [];
 var customChannelActive = false;
 
-$(addTrackButton).click(function(){
-	var playlistLength = $(customPlaylistTable).children().length;
-	$(customPlaylistTable).append(newTrackHTML);
-});
-
 $(document).on('click', '.track-delete-btn', function() {
     $(this).parent().remove();
 });
@@ -28,6 +23,7 @@ $(startCustomPlaylistButton).click(function(){
 
 function CreateCustomChannel(){
 	var playlist = $(customPlaylistTable).children();
+	console.log(playlist);
 	var playlistLength = $(customPlaylistTable).children().length;
 	var songArray = [];
 	var gifArray = [];
@@ -35,19 +31,20 @@ function CreateCustomChannel(){
 		songArray.push(playlist[i].children.songInput.children.customTrackUrl.value);
 		gifArray.push(playlist[i].children.visualInput.children.customGiphySearch.value);
 	}
-	activeChannel["name"] = "Custom playlist"
-	activeChannel["playlist"] = songArray;
-	activeChannel["visuals"] = gifArray;
-	StartCustomChannel();
+	customChannel["name"] = "Custom playlist"
+	customChannel["songs"] = songArray;
+	customChannel["visuals"] = gifArray;
+	StartCustomChannel(customChannel, 50);
 }
 
 function ClearPlaylist () {
 	$(customPlaylistTable).html(newTrackHTML);
 }
 
-function StartCustomChannel () {
+function StartCustomChannel (channel, limit) {
 	customChannelActive = true;
-	LoadTrack(activeChannel.playlist[0]);
-	activeVisualsArray = activeChannel.visuals;
-	GetGifs(activeVisualsArray[0]);
+	trackCount = 0;
+    activeChannel = channel;
+    searchLimit = limit;
+    LoadSoundObject(channel);
 }

@@ -27,7 +27,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 		});
 		widget.getSounds(function(sounds) {
 			playlistLength = sounds.length;
-
+			console.log(playlistLength + " tracks.")
 			if (playlistLength > 1) {
 				console.log("Playlist loaded.");
 			} else {
@@ -51,7 +51,6 @@ $(musicSearch).keydown(function( event ) {
 });
 
 function LoadTrack (q) {
-	// var q = musicSearch.value;
 	widget.load(q, {
 		"auto_play": "true",
 		"buying": "false",
@@ -68,29 +67,50 @@ function LoadTrack (q) {
 }
 
 $(prevTrackButton).click(function(){
-	if (trackCount > 0) {
+	if (isPlaylist) {
 		trackCount--;
-		if (customChannelActive) {
-			LoadTrack(customChannel.playlist[trackCount]);
-			} else {
+		if (trackCount == 0) {
+			trackCount = playlistLength;
+			LoadTrack(activeChannel.playlist[trackCount]);
+			GetGifs(activeChannel.visuals[trackCount]);
+		} else {
 			widget.next();
+			GetGifs(activeChannel.visuals[trackCount]);
 		}
-		GetGifs(activeVisualsArray[trackCount]);
+	} else if (!isPlaylist) {
+		trackCount--;
+		if (trackCount == 0) {
+			trackCount = activeChannel.songs.length;
+			LoadTrack(activeChannel.songs[trackCount]);
+			GetGifs(activeChannel.visuals[trackCount]);
+		} else {
+			LoadTrack(activeChannel.songs[trackCount]);
+			GetGifs(activeChannel.visuals[trackCount]);
+		}
 	}
 });
 
 $(nextTrackButton).click(function(){
-	trackCount++;
-	if (customChannelActive && trackCount < playlist.length) {
-		LoadTrack(activeChannel.playlist[trackCount]);
-		GetGifs(activeChannel.visuals[trackCount]);
-	}
-	if (trackCount == playlistLength) {
-		trackCount = 0;
-		GetGifs(activeChannel.visuals[trackCount]);
-		LoadTrack(activeChannel.playlist[trackCount]);
-	} else {
-		widget.next();
+	if (isPlaylist) {
+		trackCount++;
+		if (trackCount == playlistLength) {
+			trackCount = 0;
+			LoadTrack(activeChannel.playlist[trackCount]);
+			GetGifs(activeChannel.visuals[trackCount]);
+		} else {
+			widget.next();
+			GetGifs(activeChannel.visuals[trackCount]);
+		}
+	} else if (!isPlaylist) {
+		trackCount++;
+		if (trackCount == activeChannel.songs.length) {
+			trackCount = 0;
+			LoadTrack(activeChannel.songs[trackCount]);
+			GetGifs(activeChannel.visuals[trackCount]);
+		} else {
+			LoadTrack(activeChannel.songs[trackCount]);
+			GetGifs(activeChannel.visuals[trackCount]);
+		}
 	}
 });
 

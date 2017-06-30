@@ -7,7 +7,7 @@ var channel1 = {
 }
 var channel2 = {
     "name": "HYPE THO",
-    "playlist": ["https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club"],
+    "songs": ["https://soundcloud.com/essential_music/baewolf-lost-boys-edm-com", "https://soundcloud.com/flosstradamus/flosstradamus-troyboi-soundclash", "https://soundcloud.com/splitbreed/splitbreed-walkers-free-dl-for-the-first-2000", "https://soundcloud.com/leaf-jones/meek-mill-im-a-boss-feat-rick"],
     "visuals":  ["explosions", "squad goals", "zombies", "like a boss"]
 }
 var channel3 = {
@@ -42,14 +42,13 @@ var customTrackCount;
 var newTrackHTML = '<tr><td id="songInput"><input id="customTrackUrl" placeholder="SoundCloud URL" type="text"></td><td id="visualInput"><input id="customGiphySearch" placeholder="GIPHY Search" type="text"></td><td class="track-delete-btn"><i class="material-icons">delete</i></td></tr>';
 var customChannel = {};
 var customChannelActive = false;
+var isPlaylist;
 
 // PLATFORM CHECK
 
 if (getOS() != "iOS") {
     window.onload = function() {
-        activeChannel = channel1;
-        GetGifs(activeChannel.visuals[0]);
-        LoadTrack(activeChannel.playlist[0]);
+        LoadSoundObject(channel1);
     };
 } else {
     videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android.';
@@ -58,12 +57,26 @@ if (getOS() != "iOS") {
 
 // CHANNEL FUNCTIONS
 
+function LoadSoundObject(channel) {
+    trackCount = 0;
+    activeChannel = channel;
+    if (activeChannel.hasOwnProperty("playlist")) {
+        LoadTrack(channel.playlist[trackCount]);
+        GetGifs(channel.visuals[trackCount]);
+        console.log(activeChannel);
+        isPlaylist = true;
+    } else if (activeChannel.hasOwnProperty("songs")) {
+        LoadTrack(channel.songs[trackCount]);
+        GetGifs(channel.visuals[trackCount]);
+        isPlaylist = false;
+    }
+}
+
 function ChangeChannel(channel, limit, button) {
     trackCount = 0;
-    activeVisualsArray = channel.visuals;
+    activeChannel = channel;
     searchLimit = limit;
-    GetGifs(activeVisualsArray[trackCount]);
-    LoadTrack(channel.playlist[trackCount]);
+    LoadSoundObject(channel);
     $(button).toggleClass("channel-button-active");
     $(button).siblings().removeClass("channel-button-active");
 }
@@ -109,14 +122,14 @@ $(limitButton500).click(function() {
     SetSearchLimit(500, limitButton500);
 });
 
-// MISC FUNCTIONS
-
 function BlurSearch(){
     $(giphySearch).blur();
-    $(channel1).removeClass("channel-button-active");
-    $(channel2).removeClass("channel-button-active");
-    $(channel3).removeClass("channel-button-active");
+    $(channel1Button).removeClass("channel-button-active");
+    $(channel2Button).removeClass("channel-button-active");
+    $(channel3Button).removeClass("channel-button-active");
 }
+
+// MISC FUNCTIONS
 
 $('.modal').modal({
     dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -170,18 +183,18 @@ function CreateCustomChannel(){
         songArray.push(playlist[i].children.songInput.children.customTrackUrl.value);
         gifArray.push(playlist[i].children.visualInput.children.customGiphySearch.value);
     }
-    customChannel["playlist"] = songArray;
+    customChannel["name"] = "Custom playlist"
+    customChannel["songs"] = songArray;
     customChannel["visuals"] = gifArray;
-    StartCustomChannel();
+    StartCustomChannel(customChannel, 50);
 }
 
 function ClearPlaylist () {
     $(customPlaylistTable).html(newTrackHTML);
 }
 
-function StartCustomChannel () {
+function StartCustomChannel (channel, limit) {
     customChannelActive = true;
-    activeChannel = customChannel;
-    LoadTrack(activeChannel.playlist[0]);
-    GetGifs(activeChannel.visuals[0]);
+    searchLimit = limit;
+    LoadSoundObject(channel);
 }
