@@ -21,7 +21,7 @@ var channel3 = {
 var activeVisualsArray;
 var activeChannel;
 var litModeSwitch = document.getElementById("modeSwitch");
-var litMode = true;
+var litMode;
 var channel1Button = document.getElementById("channel1Button");
 var channel2Button = document.getElementById("channel2Button");
 var channel3Button = document.getElementById("channel3Button");
@@ -47,14 +47,12 @@ var isPlaylist;
 var fullscreenSearchButton = document.getElementById("fullscreenSearchButton");
 var fullscreenSearch = document.getElementById("fullscreenSearch");
 
-var giphySearch = document.getElementById("giphySearch");
-
 
 // PLATFORM CHECK
 
 if (getOS() != "iOS") {
     window.onload = function() {
-        GetGifs("dance");
+        LoadSoundObject(channel1);
     };
 } else {
     videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android.';
@@ -63,6 +61,44 @@ if (getOS() != "iOS") {
 
 // CHANNEL FUNCTIONS
 
+function LoadSoundObject(channel) {
+    trackCount = 0;
+    activeChannel = channel;
+    if (activeChannel.hasOwnProperty("playlist")) {
+        GetGifs(channel.visuals[trackCount]);
+        console.log(activeChannel);
+        isPlaylist = true;
+    } else if (activeChannel.hasOwnProperty("songs")) {
+        GetGifs(channel.visuals[trackCount]);
+        isPlaylist = false;
+    }
+}
+
+function ChangeChannel(channel, limit, button) {
+    trackCount = 0;
+    activeChannel = channel;
+    searchLimit = limit;
+    LoadSoundObject(channel);
+    $(button).toggleClass("channel-button-active");
+    $(button).siblings().removeClass("channel-button-active");
+}
+
+$(channel1Button).click(function() {
+    ChangeChannel(channel1, 500, channel1Button);
+});
+
+$(channel2Button).click(function() {
+    ChangeChannel(channel2, 50, channel2Button);
+});
+
+$(channel3Button).click(function() {
+    ChangeChannel(channel3, 50, channel3Button);
+});
+
+$(customChannelButton).click(function() {
+    $(this).toggleClass("channel-button-active");
+    $(this).siblings().removeClass("channel-button-active");
+});
 
 // SEARCH FUNCTIONS
 
@@ -86,19 +122,9 @@ $(limitButton500).click(function() {
 
 function BlurSearch(){
     $(giphySearch).blur();
-}
-
-function HideSearch() {
-    $(giphySearch).blur();
-    $(giphySearch).hide();
-}
-
-function ShowSearch() {
-    $(giphySearch).show();
-}
-
-function ToggleSearch() {
-    $(giphySearch).toggle();
+    $(channel1Button).removeClass("channel-button-active");
+    $(channel2Button).removeClass("channel-button-active");
+    $(channel3Button).removeClass("channel-button-active");
 }
 
 // MISC FUNCTIONS
@@ -124,5 +150,53 @@ $(document).ready(function(){
 });
 
 $(popupGridWrapper).click(function(){
-    ToggleSearch();
+    $('.collapsible').collapsible('close', 0);
 })
+
+// CUSTOM CHANNEL FUNCTIONS
+
+$(addTrackButton).click(function(){
+    var playlistLength = $(customPlaylistTable).children().length;
+    $(customPlaylistTable).append(newTrackHTML);
+});
+
+$(document).on('click', '.track-delete-btn', function() {
+    $(this).parent().remove();
+});
+
+$(clearCustomPlaylistButton).click(function(){
+    ClearPlaylist();
+});
+
+$(startCustomPlaylistButton).click(function(){
+    CreateCustomChannel();
+});
+
+function CreateCustomChannel(){
+    var playlist = $(customPlaylistTable).children();
+    var playlistLength = $(customPlaylistTable).children().length;
+    var songArray = [];
+    var gifArray = [];
+    for (var i = 0; i < playlistLength; i++) {
+        songArray.push(playlist[i].children.songInput.children.customTrackUrl.value);
+        gifArray.push(playlist[i].children.visualInput.children.customGiphySearch.value);
+    }
+    customChannel["name"] = "Custom playlist"
+    customChannel["songs"] = songArray;
+    customChannel["visuals"] = gifArray;
+    StartCustomChannel(customChannel, 50);
+}
+
+function ClearPlaylist () {
+    $(customPlaylistTable).html(newTrackHTML);
+}
+
+function StartCustomChannel (channel, limit) {
+    customChannelActive = true;
+    searchLimit = limit;
+    LoadSoundObject(channel);
+}
+
+$(fullscreenSearchButton).click(function(){
+    $(fullscreenSearch).removeClass("hide");
+});

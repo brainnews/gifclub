@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>It's GifClub :)</title>
+		<title>GifClub</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -13,82 +13,8 @@
 	</head>
 	<body>
 		<div id="wrapper" class="wrapper">
+			<input class="fullscreen-search-input" type="text" id="giphySearch" placeholder="Tap to search">
 			<div class="static"></div>
-			<div class="track-control see-through">
-				<ul class="collapsible white-text" data-collapsible="accordion">
-				    <li>
-				      <div class="collapsible-header">
-				      	<span id="trackTitle">Loading track...</span><i class="material-icons">queue_music</i>
-				      </div>
-				      <div class="collapsible-body">
-					      <div class="mb-10">
-					      	<ul class="sound-controls">
-					      		<li id="prevTrackButton">
-					      			<i class="fa fa-backward" aria-hidden="true"></i>
-					      		</li>
-					      		<li id="pauseTrackButton">
-					      			<i class="fa fa-pause" aria-hidden="true"></i>
-					      		</li>
-					      		<li id="nextTrackButton">
-					      			<i class="fa fa-forward" aria-hidden="true"></i>
-					      		</li>
-					      		<li>
-					      			<span id="trackUrlContainer"></span>
-					      		</li>
-					      	</ul>
-					      </div>
-					      	<div>
-					      	<a href="http://www.soundcloud.com" target="_blank"><img class="soundcloud-logo" src="images/powered_by_large_white-9c2af6a93ad2b1c541f423d9e9045980.png"></a>
-					      		<input type="text" id="musicSearch" placeholder="Enter any SoundCloud URL (track, artist, or playlist)">
-					      		
-					      	</div>
-				      </div>
-				    </li>
-				  </ul>
-			</div>
-			<div class="footer">
-				<span class="info-btn"><a href="#about_modal"><i class="tiny material-icons white-text heavy">info_outline</i></a></span>
-				<div class="fixed-action-btn toolbar">
-				    <a class="btn-floating btn-large green see-through pulse">
-				      <i class="large material-icons">settings</i>
-				    </a>
-				    <ul>
-				    	<li id="channel1Button" class="waves-effect waves-light channel-button channel-button-active">
-				      		<a>Channel 1</a>
-				      	</li>
-					    <li id="channel2Button" class="waves-effect waves-light channel-button">
-					    	<a>HYPE THO</a>
-					    </li>
-				      	<li id="channel3Button" class="waves-effect waves-light channel-button">
-				      		<a>cute <i class="fa fa-heart" aria-hidden="true"></i></a>
-				      	</li>
-				      	<li id="customChannelButton" class="waves-effect waves-light channel-button">
-				      		<a href="#customPlaylistModal">Custom Channel <i class="fa fa-paint-brush" aria-hidden="true"></i></a>
-				      	</li>
-				      	<li id="litModeContainer" class="lit-mode-container white-text">
-				      		<div class="switch">
-				      			Lit mode: 
-							    <label>
-							      <input id="modeSwitch" type="checkbox">
-							      <span class="lever"></span>
-							    </label>
-							</div>
-				      	</li>
-				      	<li class="toolbar-search">
-				        	<input type="text" id="giphySearch" placeholder="Search GIPHY">
-		        	   	</li>
-		        	   	<li id="limitButton5" class="waves-effect waves-light limit-button">
-				      		<a>5</a>
-				      	</li>
-				      	<li id="limitButton50" class="waves-effect waves-light limit-button limit-button-active">
-				      		<a>50</a>
-				      	</li>
-				      	<li id="limitButton500" class="waves-effect waves-light limit-button">
-				      		<a>500</a>
-				      	</li>
-				    </ul>
-			  </div>
-			</div>
 			<div id="popupGridWrapper" class="popup-grid-wrapper">
 				<div id="popupGif-1" class="popup-gif"></div>
 				<div id="popupGif-2" class="popup-gif"></div>
@@ -108,51 +34,6 @@
 				<h4 style="margin-left: 80px; margin-top: 80px;"><strong>Connecting to GIPHY...</strong></h4>
 			</div>
 			<div class="giphy-badge"><a style="border-bottom: none;" href="http://www.giphy.com" target="_blank"><img src="images/Poweredby_100px-Black_VertLogo.png"></a></div>
-			<div id="soundcloudContainer" class="soundcloud-player">
-				<iframe id="sc-widget" width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/miles-gilbert-2/sets/visuals-thegif-club&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_artwork=false&amp;show_playcount=false&amp;buying=false&amp;show_user=false&amp;show_reposts=false&amp;liking=false&amp;download=false&amp;visual=false"></iframe>
-			</div>
-			<div id="about_modal" class="modal">
-			    <div class="modal-content">
-			      <h4>the gif club</h4>
-			      <p>The internet's hottest new club. Try it at your next party and let me know how it goes ☺️</p>
-			      <p><strong>coming soon:</strong> create visual playlists to go along with your soundcloud playlists.</p>
-			      <p><strong>p.s.</strong> if it freezes on a gif, just hit a new channel. I can't figure out how to fix that yet 🙃</p>
-			      <p>Created by Miles Gilbert. Find me on <a href="http://www.twitter.com/_brainnews" target="_blank">Twitter</a> or <a href="https://soundcloud.com/miles-gilbert-2" target="_blank">SoundCloud</a>.</p>
-			    </div>
-			    <div class="modal-footer">
-			    	<span class="poweredby-logos">
-			    		<a style="border-bottom: none; margin-right: 20px;" href="http://www.giphy.com" target="_blank"><img src="images/PoweredBy_200_Horizontal_Light-Backgrounds_With_Logo.gif"></a>
-			      		<a style="border-bottom: none;" href="http://www.soundcloud.com" target="_blank"><img src="images/powered_by_large_black-64fec369eec44b7ee75119f288c6d010.png"></a>
-			      	</span>
-			    </div>
-			</div>
-
-		  <!-- Custom Playlist Modal -->
-		  <div id="customPlaylistModal" class="modal bottom-sheet">
-		    <div class="modal-content">
-		      	<h4>Custom playlist</h4>
-		      	<table class="mb-40">
-			        <thead>
-			          <tr>
-			              <th>Song</th>
-			              <th>Visuals</th>
-			          </tr>
-			        </thead>
-
-			        <tbody class="custom-playlist-table" id="customPlaylistTable">
-			          <tr>
-			            <td id="songInput"><input placeholder="SoundCloud URL" id="customTrackUrl" type="text"></td>
-			            <td id="visualInput"><input placeholder="GIPHY Search" id="customGiphySearch" type="text"></td>
-			            <td class="track-delete-btn"><i class="material-icons">delete</i></td>
-			          </tr>
-			        </tbody>
-			    </table>
-			    <a id="addTrackButton" class="waves-effect waves-light btn"><i class="material-icons left">queue</i>Add track</a>
-		    </div>
-		    <div class="modal-footer">
-		    	<a id="clearCustomPlaylistButton" href="#!" class="waves-effect waves-green btn-flat">Clear</a>
-		      	<a id="startCustomPlaylistButton" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Start Channel</a>
-		    </div>
 		  </div>
 		</div>
 		<script src="js/platform-detection.js"></script>
@@ -161,8 +42,6 @@
 		<script src="js/config.js"></script>
 		<script src="js/gifclub.js"></script>
 		<script src="js/giphysearch.js"></script>
-		<script src="js/sc-api.js"></script>
-		<script src="js/music.js"></script>
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -8,6 +8,8 @@ var numResults;
 var searchUrlPre = 'https://api.giphy.com/v1/gifs/search?q=';
 var searchUrlPost = '&api_key=' + config + '&limit=';
 
+var giphySearch = document.getElementById("giphySearch");
+
 function GetGifs(q) {
 	$.ajax({
 	  url: searchUrlPre + q + searchUrlPost + searchLimit,
@@ -25,9 +27,10 @@ $(giphySearch).keydown(function( event ) {
 	  	url: searchUrlPre + giphySearch.value + searchUrlPost + searchLimit,
 	  	type: 'GET',
 	  	success: function(data) {
+	  	console.log(data);
 		channelgifs = data;
 		ShowGif();
-		ToggleSearch();
+		BlurSearch();
 	  }
 	});
 	}
@@ -46,7 +49,7 @@ function ShowGif() {
       	
       	videoBackground.innerHTML = '<video autoplay loop playsinline id="video-background" muted><source src="' + channelgif + '"></video>';
 
-      	//litMode = $(litModeSwitch).is(':checked');
+      	litMode = $(litModeSwitch).is(':checked');
 
       	if (litMode) {
       		$(litModeContainer).addClass('lit-mode-bg');

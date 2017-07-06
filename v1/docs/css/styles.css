@@ -4,12 +4,6 @@ body {
 	margin: 0 auto;
 }
 
-a {
-	color: #00ffd0;
-	font-weight: 800;
-	border-bottom: 2px solid #00ffd0;
-}
-
 .wrapper {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
@@ -30,28 +24,10 @@ a {
 	grid-column-start: 1;
 	grid-column-end: span 6;
   	grid-row-start: 1;
-  	grid-row-end: span 2;
 	background-color: transparent;
 	text-align: right;
 	z-index: 99;
 	padding: 30px 30px;
-}
-
-.giphy-badge {
-	grid-column-start: 1;
-	grid-column-end: 2;
-  	grid-row-start: 6;
-  	grid-row-end: 6;
-	background-color: transparent;
-	z-index: 90;
-	margin-left: 6px;
-    opacity: 0.2;
-    align-self: flex-end;
-    margin-bottom: 3px;
-}
-
-.giphy-badge:hover {
-	opacity: 1;
 }
 
 .track-control i {
@@ -81,14 +57,6 @@ a {
 	text-align: right;
 }
 
-#musicSearch {
-	border: 2px solid #00ffd0;
-    width: 400px;
-    padding: 12px;
-    text-align: left;
-    border-radius: 2px;
-}
-
 .fixed-action-btn-top {
 	top: 23px;
 }
@@ -113,15 +81,6 @@ a {
   	grid-row-start: 1;
   	grid-row-end: span 6;
 	z-index: -1;
-}
-
-.search-close-button {
-	cursor: pointer;
-	grid-column-start: 6;
-  	grid-column-end: span 6;
-  	grid-row-start: 1;
-  	grid-row-end: 1;
-  	z-index: 999;
 }
 
 .main {
@@ -183,26 +142,14 @@ a {
   	grid-row-start: 6;
 	background-color: transparent;
 	z-index: 99;
-	text-align: left;
-	color: #fff;
-	padding-left: 3px;
-	opacity: 0.8;
-}
-
-.footer:hover {
-	opacity: 1;
+	text-align: center;
 }
 
 .soundcloud-player {
-	grid-column-start: 1;
-	grid-column-end: span 6;
-  	grid-row-start: 1;
-  	grid-row-end: span 6;
-	background-color: transparent;
-	z-index: -999;
+	display: none;
 }
 
-.active-channel {
+.active-dance {
 	font-weight: bold;
 	background-color: #00d0ff;
 }
@@ -211,10 +158,11 @@ input[type=text]:not(.browser-default) {
 	border-bottom: none;
     border-radius: 0px;
     outline: none;
+    height: 100%;
+    width: 80%; 
     font-size: 1rem;
     margin: 0 0 0 0;
     box-sizing: border-box;
-    height: 200px;
 }
 
 input[type=text]:not(.browser-default):focus:not([readonly]) {
@@ -222,69 +170,13 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 	box-shadow: none;
 }
 
-.fullscreen-search-input {
-	text-align: center;
-    font-size: 4rem !important;
-    grid-column-start: 1;
-  	grid-column-end: span 6;
-  	grid-row-start: 1;
-  	grid-row-end: span 6;
-  	z-index: 999;
-  	align-self: center;
-}
-
-.sound-controls {
-	display: inline-flex;
-	margin-bottom: 10px;
-}
-
-.sound-controls li {
-	margin-right: 20px;
-	cursor: pointer;
-}
-
-.sound-controls li:last-child {
-	margin-right: 0px;
-}
-
 .toolbar-search {
+	padding: 10px 0;
 	background-color: #6200ff;
-	flex: 1.2 !important;
-}
-
-.toolbar a {
-	border-bottom: 0px;
-}
-
-.channel-button {
-    background-color: #ff3535;
-    border-bottom: 6px solid #a92121;
-}
-
-.channel-button-active {
-    background-color: #e42222;
-    border-bottom: 4px solid #a92121;
-    border-top: 3px solid #222;
-}
-
-.limit-button {
-	flex: 0.4 !important;
-    background-color: #3e6cec;
-    border-bottom: 6px solid #00047b;
-}
-
-.limit-button-active {
-    background-color: #2149b9;
-    border-bottom: 4px solid #00047b;
-    border-top: 3px solid #222;
-}
-
-.lit-mode-container {
-	background-color: #222222;
 }
 
 .green {
-	background-color: #222 !important;
+	background-color: #00ffd0 !important;
 }
 
 .see-through {
@@ -312,10 +204,9 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
      to  { background-color: #222;}
 }
 
-.info-btn a {
+.info-btn {
 	float: right;
     margin-right: 43px;
-    border-bottom: none;
 }
 
 .heavy {
@@ -323,28 +214,9 @@ input[type=text]:not(.browser-default):focus:not([readonly]) {
 }
 
 .modal {
-	width: 550px;
+	width: 350px;
 }
 
-.modal.bottom-sheet {
-	max-height: 90%;
-	border-top: 10px solid #4b00ff;
-}
-
-thead {
-    border-bottom: 2px solid #E91E63;
-}
-
-.poweredby-logos {
-	float: right;
-    padding-bottom: 20px;
-    padding-right: 20px;
-}
-
-#trackUrlContainer {
-	margin-top: -10px;
-    margin-bottom: 20px;
-}
 
 
 /* POPUP GRID */
@@ -450,55 +322,4 @@ thead {
 #popupGif-16 {
 	grid-column-start: 4;
   	grid-row-start: 4;
-}
-
-/* HELPERS */
-
-.mb-10 {
-	margin-bottom: 10px;
-}
-
-.soundcloud-logo {
-	float: right;
-    width: 60px;
-    margin-top: -10px;
-    margin-left: 10px;
-}
-
-.fixed-action-btn.toolbar ul li {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1.2;
-    display: inline-block;
-    margin: 0;
-    height: 100%;
-    transition: none;
-}
-
-.modal-content {
-	background-color: #111;
-    color: #fff;
-}
-
-.modal .modal-footer {
-	background-color: #000;
-}
-
-.custom-playlist-input {
-    border-bottom: 1px solid #222;
-    padding: 10px 0;
-}
-
-.track-delete-btn {
-	color: #4b00ff;
-	border-bottom: none;
-	cursor: pointer;
-}
-
-.mb-20 {
-	margin-bottom: 20px;
-}
-
-.mb-40 {
-	margin-bottom: 40px;
 }
