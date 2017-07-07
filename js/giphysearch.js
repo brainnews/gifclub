@@ -40,7 +40,7 @@ function ShowGif() {
 	
 
 	setTimeout(function () {
-		if(channelgifs.data[randomNum].images.original_mp4.mp4 != 'undefined') {
+		if(channelgifs.data[randomNum].images.original_mp4.mp4 != undefined) {
       		var channelgif = channelgifs.data[randomNum].images.original_mp4.mp4;
      	}
       	
@@ -54,7 +54,7 @@ function ShowGif() {
       		var randomCell = Math.floor((Math.random() * 16) + 1);
       		var randomPopup = document.getElementById('popupGif-' + randomCell);
       		var randomDepth = Math.floor((Math.random() * 5) + 1);
-      		if (channelgifs.data[randomNum2].images.original_mp4.mp4 != 'undefined') {
+      		if (channelgifs.data[randomNum2].images.original_mp4.mp4 != undefined) {
       			var channelgifPopup = channelgifs.data[randomNum2].images.original_mp4.mp4;
       		}
 

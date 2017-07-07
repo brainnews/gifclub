@@ -55,6 +55,7 @@ var giphySearch = document.getElementById("giphySearch");
 if (getOS() != "iOS") {
     window.onload = function() {
         GetGifs("dance");
+        $(giphySearch).focus();
     };
 } else {
     videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android.';
@@ -88,17 +89,9 @@ function BlurSearch(){
     $(giphySearch).blur();
 }
 
-function HideSearch() {
-    $(giphySearch).blur();
-    $(giphySearch).hide();
-}
-
-function ShowSearch() {
-    $(giphySearch).show();
-}
-
 function ToggleSearch() {
     $(giphySearch).toggle();
+    $(giphySearch).focus();
 }
 
 // MISC FUNCTIONS

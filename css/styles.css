@@ -103,7 +103,7 @@ a {
 }
 
 .static {
-	background: url(https://media.giphy.com/media/PIbPrnuEpGEla/giphy.gif) no-repeat center center fixed; 
+	background: url(../images/static.gif) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -220,6 +220,7 @@ input[type=text]:not(.browser-default) {
 input[type=text]:not(.browser-default):focus:not([readonly]) {
 	border-bottom: none;
 	box-shadow: none;
+	color: yellow;
 }
 
 .fullscreen-search-input {
