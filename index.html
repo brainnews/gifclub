@@ -6,39 +6,59 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel = "stylesheet" type = "text/css" href = "css/magic.min.css" />
 		<link rel = "stylesheet" type = "text/css" href = "css/styles.css" />
-		<link rel = "stylesheet" type = "text/css" href = "css/animate.css" />
 		<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
 		<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
 	</head>
 	<body>
 		<div id="wrapper" class="wrapper">
-			<input class="fullscreen-search-input" type="text" id="giphySearch" placeholder="Tap to search">
-			<div class="static"></div>
+			<div id="uiContainer" class="ui-container">
+				<div class="row">
+			      <div class="col s12">
+			      	<input type="text" id="giphySearch" placeholder="Tap to search" name="giphysearch" class="ui-el">
+			      	<a id="searchButton" class="btn-standard z-depth-5">Go</a>
+			      </div>
+			    </div>
+			    <div class="row">
+			      <div class="col s12">
+			      	<h5>MOODS</h5>
+			      	<ul class="list-inline moods-container" id="moodsContainer">
+			      		<a class="z-depth-5"><li class="mood-channel" data-query="space stars trippy">outer limits</li></a>
+			      		<a class="z-depth-5"><li class="mood-channel" data-query="explosions fire destruction">hype tho</li></a>
+			      		<a class="z-depth-5"><li class="mood-channel" data-query="90s">Summer '95</li></a>
+			      		<a class="z-depth-5"><li class="mood-channel" data-query="hypnotic mesmerizing">lose urself</li></a>
+			      		<a class="z-depth-5"><li class="mood-channel" data-query="pixel rainbows">roy g. biv</li></a>
+			      	</ul>
+			      </div>
+			    </div>
+			</div>
 			<div id="popupGridWrapper" class="popup-grid-wrapper">
-				<div id="popupGif-1" class="popup-gif"></div>
-				<div id="popupGif-2" class="popup-gif"></div>
-				<div id="popupGif-3" class="popup-gif"></div>
-				<div id="popupGif-4" class="popup-gif"></div>
-				<div id="popupGif-5" class="popup-gif"></div>
-				<div id="popupGif-6" class="popup-gif"></div>
-				<div id="popupGif-7" class="popup-gif"></div>
-				<div id="popupGif-8" class="popup-gif"></div>
-				<div id="popupGif-9" class="popup-gif"></div>
-				<div id="popupGif-10" class="popup-gif"></div>
-				<div id="popupGif-14" class="popup-gif"></div>
-				<div id="popupGif-15" class="popup-gif"></div>
-				<div id="popupGif-16" class="popup-gif"></div>
+				<div id="popupGif-1" class="popup-gif magictime"></div>
+				<div id="popupGif-2" class="popup-gif magictime"></div>
+				<div id="popupGif-3" class="popup-gif magictime"></div>
+				<div id="popupGif-4" class="popup-gif magictime"></div>
+				<div id="popupGif-5" class="popup-gif magictime"></div>
+				<div id="popupGif-6" class="popup-gif magictime"></div>
+				<div id="popupGif-7" class="popup-gif magictime"></div>
+				<div id="popupGif-8" class="popup-gif magictime"></div>
+				<div id="popupGif-9" class="popup-gif magictime"></div>
+				<div id="popupGif-10" class="popup-gif magictime"></div>
+				<div id="popupGif-14" class="popup-gif magictime"></div>
+				<div id="popupGif-15" class="popup-gif magictime"></div>
+				<div id="popupGif-16" class="popup-gif magictime"></div>
 			</div>
 			<div id="gif-container" class="main">
 				<h4 style="margin-left: 80px; margin-top: 80px;"><strong>Connecting to GIPHY...</strong></h4>
 			</div>
 			<div class="giphy-badge"><a style="border-bottom: none;" href="http://www.giphy.com" target="_blank"><img src="images/Poweredby_100px-Black_VertLogo.png"></a></div>
+			<div class="static"></div>
 		  </div>
 		</div>
 		<script src="js/platform-detection.js"></script>
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
 		<script src="js/config.js"></script>
 		<script src="js/gifclub.js"></script>
 		<script src="js/giphysearch.js"></script>
