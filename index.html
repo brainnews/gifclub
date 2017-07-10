@@ -13,6 +13,11 @@
 	</head>
 	<body>
 		<div id="wrapper" class="wrapper">
+			<div id="stopRecordingButton" class="fixed-action-btn click-to-toggle record-mode">
+			    <a class="btn-floating btn-large red-dust-bg">
+			      	<i class="material-icons">stop</i>
+			    </a>
+			</div>
 			<div id="uiContainer" class="ui-container">
 				<div class="row">
 			      <div class="col s12">
@@ -33,11 +38,16 @@
 			      	</ul>
 			      </div>
 			    </div>
-<!-- 			    <div class="row">
-			    	<div class="col s12">
-			    		<a href="http://thegif.club" class="btn-restart z-depth-5">restart</a>
-			    	</div>
-			    </div> -->
+			    <div class="fixed-action-btn click-to-toggle">
+				    <a class="btn-floating btn-large">
+				      	<i class="material-icons">voicemail</i>
+				    </a>
+				    <ul>
+				      	<li><a id="deleteTapeButton" class="btn-floating"><i class="material-icons">delete</i></a></li>
+				      	<li><a id="playTapeButton" class="btn-floating"><i class="material-icons">play_arrow</i></a></li>
+				      	<li><a id="recordTapeButton" class="btn-floating"><i class="material-icons btn-record">album</i></a></li>
+				    </ul>
+				</div>
 			</div>
 			<div id="popupGridWrapper" class="popup-grid-wrapper">
 				<div id="popupGif-1" class="popup-gif magictime"></div>

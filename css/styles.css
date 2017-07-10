@@ -62,7 +62,7 @@ a {
   bottom: 0;
   color: #fff;
   position: absolute;
-  margin: 30px 230px;
+  margin: 30px 120px;
   text-align: center;
   line-height: 1.3rem;
   letter-spacing: .05em;
@@ -83,6 +83,28 @@ a {
 
 .ui-container a {
 	cursor: pointer;
+}
+
+.btn-floating {
+  border-radius: 2px;
+  background: url(../images/dark_green_dust.png) repeat center center fixed;
+  background-color: #0c0c0c;
+}
+
+.fixed-action-btn a {
+  border-bottom: none;
+}
+
+.btn-record {
+  color: #ff2700 !important;
+}
+
+.record-mode {
+  display: none;
+}
+
+.red-dust-bg {
+  background: url(../images/bright_red_dust.png) repeat center center fixed;
 }
 
 h5 {

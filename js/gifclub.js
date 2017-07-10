@@ -16,18 +16,24 @@ var staticContainer = document.getElementById("staticContainer");
 var searchButton = document.getElementById("searchButton");
 var trendingButton = document.getElementById("trendingButton");
 var statusContainer = document.getElementById("statusContainer");
+var stopRecordingButton = document.getElementById("stopRecordingButton");
+var playTapeButton = document.getElementById("playTapeButton");
+var deleteTapeButton = document.getElementById("deleteTapeButton");
+var recordTapeButton = document.getElementById("recordTapeButton");
+
 var animationFrequency = 10;
 var animations = ['slideUpReturn', 'slideDownReturn','slideRightReturn','slideLeftReturn', 'puffIn'];
 var hasStarted = false;
 var isAndroid = false;
 var isIOS = false;
+var recording = false;
 
 window.onload = function() {
     // PLATFORM CHECK
     if(window.innerHeight > window.innerWidth){
         $(statusContainer).html("⚠︎ Please rotate device");
     } else {
-        $(statusContainer).html("✔︎ Ready");
+        $(statusContainer).html("GifClub Visual System, Version 1.1");
     }
     var os = getOS();
 
@@ -35,19 +41,22 @@ window.onload = function() {
         isAndroid = true;
     } else if ( os == 'iOS') {
         isIOS == true;
+        $(statusContainer).html("⚠︎ iPhone not recommended");
     }
     GetStatic();
     //GetTrending();
-    $(giphySearch).focus();
+    //$(giphySearch).focus();
 };
 
-$(window).on("orientationchange",function(){
-    if (window.orientation == 0) {
-        $(statusContainer).html("⚠︎ Please rotate device");
-    } else {
-        $(statusContainer).html("✔︎ Ready");
-    }
-});
+if (!isIOS) {
+    $(window).on("orientationchange",function(){
+        if(window.innerHeight > window.innerWidth){
+            $(statusContainer).html("⚠︎ Please rotate device");
+        } else {
+            $(statusContainer).html("GifClub Visual System, Version 1.1");
+        }
+    });
+}
 
 // SEARCH FUNCTIONS
 
@@ -74,9 +83,11 @@ function BlurSearch(){
 }
 
 function ToggleUI() {
-    $(uiContainer).fadeToggle(300);
-    $(giphySearch).focus();
-    $(giphySearch).select();
+    if (!recording) {
+        $(uiContainer).fadeToggle(300);
+        $(giphySearch).focus();
+        $(giphySearch).select();
+    }
 }
 
 $('.mood-channel').click(function() {
@@ -98,4 +109,16 @@ $(document).ready(function(){
         var color = randomColor({ luminosity: 'bright'});
         $(this).css("color", color);
     });
+});
+
+$(recordTapeButton).click(function() {
+    ToggleUI();
+    $(stopRecordingButton).fadeToggle(100);
+    recording = true;
+});
+
+$(stopRecordingButton).click(function(){
+    recording = false;
+    $(stopRecordingButton).fadeToggle(100);
+    ToggleUI();
 });
