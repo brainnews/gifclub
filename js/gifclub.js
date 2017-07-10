@@ -20,6 +20,7 @@ var stopRecordingButton = document.getElementById("stopRecordingButton");
 var playTapeButton = document.getElementById("playTapeButton");
 var deleteTapeButton = document.getElementById("deleteTapeButton");
 var recordTapeButton = document.getElementById("recordTapeButton");
+var recordTapeArray = [];
 
 var animationFrequency = 10;
 var animations = ['slideUpReturn', 'slideDownReturn','slideRightReturn','slideLeftReturn', 'puffIn'];
@@ -121,4 +122,8 @@ $(stopRecordingButton).click(function(){
     recording = false;
     $(stopRecordingButton).fadeToggle(100);
     ToggleUI();
+});
+
+$('.recordable').click(function() {
+    console.log("GIF clicked!");
 });
