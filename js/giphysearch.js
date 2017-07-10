@@ -15,7 +15,6 @@ function GetGifs(q) {
 	  type: 'GET',
 	  success: function(data) {
 		channelgifs = data;
-		console.log(channelgifs);
 		ShowGif();
 	  }
 	});
@@ -89,7 +88,7 @@ function ShowGif() {
   		var randomCell = Math.floor((Math.random() * 16) + 1);
   		var randomPopup = document.getElementById('popupGif-' + randomCell);
   		var randomDepth = Math.floor((Math.random() * 5) + 1);
-  		if (Math.floor(Math.random() * 2) == 1) {
+  		if (Math.floor(Math.random() * 10) < animationFrequency) {
   			var randomAnimation = animations[Math.floor((Math.random() * animations.length) + 1)];
   			$(randomPopup).addClass(randomAnimation);
   		}
@@ -113,7 +112,7 @@ function ClearGifsByInterval () {
       	popupGridWrapper.innerHTML = emptyPopupGrid;    	
       	ClearGifsByInterval();
 
-   	}, 10000)
+   	}, 5000)
 }
 
 ClearGifsByInterval();

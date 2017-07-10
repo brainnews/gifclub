@@ -13,6 +13,7 @@ var giphySearch = document.getElementById("giphySearch");
 var uiContainer = document.getElementById("uiContainer");
 var moodsContainer = document.getElementById("moodsContainer");
 var searchButton = document.getElementById("searchButton");
+var animationFrequency = 10;
 var animations = ['slideUpReturn', 'slideDownReturn','slideRightReturn','slideLeftReturn', 'puffIn'];
 
 
