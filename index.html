@@ -16,6 +16,7 @@
 			<div id="uiContainer" class="ui-container">
 				<div class="row">
 			      <div class="col s12">
+			      	<h6 id="statusContainer" class="gifclub-version blue-text text-lighten-5 center-align"></h6>
 			      	<input type="text" id="giphySearch" placeholder="Tap to search" name="giphysearch" class="ui-el">
 			      	<a id="searchButton" class="btn-standard z-depth-5">Go</a>
 			      </div>
@@ -24,14 +25,19 @@
 			      <div class="col s12">
 			      	<h5>MOODS</h5>
 			      	<ul class="list-inline moods-container" id="moodsContainer">
+			      		<a class="z-depth-5"><li id="trendingButton">trendy</li></a>
 			      		<a class="z-depth-5"><li class="mood-channel" data-query="space stars trippy">outer limits</li></a>
-			      		<a class="z-depth-5"><li class="mood-channel" data-query="explosions fire destruction">hype tho</li></a>
 			      		<a class="z-depth-5"><li class="mood-channel" data-query="90s">Summer '95</li></a>
 			      		<a class="z-depth-5"><li class="mood-channel" data-query="hypnotic mesmerizing">lose urself</li></a>
 			      		<a class="z-depth-5"><li class="mood-channel" data-query="pixel rainbows">roy g. biv</li></a>
 			      	</ul>
 			      </div>
 			    </div>
+<!-- 			    <div class="row">
+			    	<div class="col s12">
+			    		<a href="http://thegif.club" class="btn-restart z-depth-5">restart</a>
+			    	</div>
+			    </div> -->
 			</div>
 			<div id="popupGridWrapper" class="popup-grid-wrapper">
 				<div id="popupGif-1" class="popup-gif magictime"></div>
@@ -49,10 +55,10 @@
 				<div id="popupGif-16" class="popup-gif magictime"></div>
 			</div>
 			<div id="gif-container" class="main">
-				<h4 style="margin-left: 80px; margin-top: 80px;"><strong>Connecting to GIPHY...</strong></h4>
+				<h6 class="warning-text"><strong>Photosensitive seizure warning. A very small percentage of people may experience a seizure when exposed to certain visual images, including flashing lights or patterns that may appear while viewing the GifClub Visual System.</strong></h6>
 			</div>
 			<div class="giphy-badge"><a style="border-bottom: none;" href="http://www.giphy.com" target="_blank"><img src="images/Poweredby_100px-Black_VertLogo.png"></a></div>
-			<div class="static"></div>
+			<div class="static" id="staticContainer"></div>
 		  </div>
 		</div>
 		<script src="js/platform-detection.js"></script>

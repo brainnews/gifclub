@@ -1,5 +1,5 @@
 body {
-	background-color: #222;
+	background-color: #0c0c0c;
 	/*color: #fff;*/
 	margin: 0 auto;
 	letter-spacing: 0.1em;
@@ -11,31 +11,18 @@ a {
 	border-bottom: 2px solid #00ffd0;
 }
 
+.gifclub-version {
+      padding-bottom: 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 .wrapper {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
   	grid-template-rows: repeat(6, 1fr);
   	height: 100vh;
-}
-
-.lit-mode-bg {
-	background: url(https://media.giphy.com/media/3o6ozh46EbuWRYAcSY/giphy.gif) no-repeat center center !important; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  color: #222;
-}
-
-.track-control {
-	grid-column-start: 1;
-	grid-column-end: span 6;
-  	grid-row-start: 1;
-  	grid-row-end: span 2;
-	background-color: transparent;
-	text-align: right;
-	z-index: 99;
-	padding: 30px 30px;
 }
 
 .giphy-badge {
@@ -56,7 +43,9 @@ a {
 }
 
 .static {
-	background: url(../images/static.gif) no-repeat center center fixed; 
+	background-repeat: no-repeat
+  background-position: center center;
+  background-attachment: fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -66,13 +55,27 @@ a {
   	grid-row-start: 1;
   	grid-row-end: span 6;
 	z-index: -1;
+  opacity: 0.3;
+}
+
+.warning-text {
+  bottom: 0;
+  color: #fff;
+  position: absolute;
+  margin: 30px 230px;
+  text-align: center;
+  line-height: 1.3rem;
+  letter-spacing: .05em;
+  padding: 20px 10px;
+  background-color: transparent;
+  border-radius: 2px;
 }
 
 .ui-container {
   	grid-column-start: 1;
   	grid-column-end: span 6;
-  	grid-row-start: 4;
-  	grid-row-end: 4;
+  	grid-row-start: 3;
+  	grid-row-end: 3;
 	z-index: 5;
 	text-align: center;
 	margin: 0 auto;
@@ -154,6 +157,19 @@ h5 {
     color: #fff;
     border-radius: 2px;
     background: url(../images/bright_blue_dust.png) repeat center center fixed;
+}
+
+.btn-restart {
+  border-bottom: none;
+    background-color: #0c0c0c;
+    height: 100%;
+    font-size: 22px;
+    padding: 20px;
+    color: #fff;
+    border-radius: 2px;
+    margin: 0 4px;
+    text-transform: uppercase;
+    background: url(../images/bright_red_dust.png) repeat center center fixed;
 }
 
 .main {

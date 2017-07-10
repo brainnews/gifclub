@@ -12,27 +12,42 @@ var emptyPopupGrid = '<div id="popupGif-1" class="popup-gif magictime"></div><di
 var giphySearch = document.getElementById("giphySearch");
 var uiContainer = document.getElementById("uiContainer");
 var moodsContainer = document.getElementById("moodsContainer");
+var staticContainer = document.getElementById("staticContainer");
 var searchButton = document.getElementById("searchButton");
+var trendingButton = document.getElementById("trendingButton");
+var statusContainer = document.getElementById("statusContainer");
 var animationFrequency = 10;
 var animations = ['slideUpReturn', 'slideDownReturn','slideRightReturn','slideLeftReturn', 'puffIn'];
-
-
-// PLATFORM CHECK
-
-// if (getOS() != "iOS") {
-//     window.onload = function() {
-//         GetGifs("dance");
-//         $(giphySearch).focus();
-//     };
-// } else {
-//     videoBackground.innerHTML = '<h4 class="white-text" style="padding: 80px;">Sorry, iOS does not allow for autoplay of videos and gifclub is all about that. Please visit us on desktop or Android.';
-//     soundcloudContainer.innerHTML = '';
-// }
+var hasStarted = false;
+var isAndroid = false;
+var isIOS = false;
 
 window.onload = function() {
-    GetTrending();
+    // PLATFORM CHECK
+    if(window.innerHeight > window.innerWidth){
+        $(statusContainer).html("⚠︎ Please rotate device");
+    } else {
+        $(statusContainer).html("✔︎ Ready");
+    }
+    var os = getOS();
+
+    if (os == "Android") {
+        isAndroid = true;
+    } else if ( os == 'iOS') {
+        isIOS == true;
+    }
+    GetStatic();
+    //GetTrending();
     $(giphySearch).focus();
 };
+
+$(window).on("orientationchange",function(){
+    if (window.orientation == 0) {
+        $(statusContainer).html("⚠︎ Please rotate device");
+    } else {
+        $(statusContainer).html("✔︎ Ready");
+    }
+});
 
 // SEARCH FUNCTIONS
 
@@ -68,6 +83,11 @@ $('.mood-channel').click(function() {
     var q = $(this).data("query");
     MoodSearch(q);
 });
+
+$(trendingButton).click(function() {
+    GetTrending();
+    ToggleUI();
+})
 
 $(popupGridWrapper).click(function() {
     ToggleUI();

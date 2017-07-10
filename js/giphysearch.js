@@ -4,6 +4,8 @@ var postHTML = '" />';
 var gifIndex = 0;
 var searchLimit = 100;
 var numResults;
+var staticGifs;
+var staticSearchLimit = 30;
 
 var searchUrlPre = 'https://api.giphy.com/v1/gifs/search?q=';
 var trendingUrl = 'https://api.giphy.com/v1/gifs/trending?api_key=' + config + '&limit=50';
@@ -18,6 +20,9 @@ function GetGifs(q) {
 		ShowGif();
 	  }
 	});
+	if (!hasStarted) {
+        $(staticContainer).css('background-image', 'url(images/static.gif)');
+    }
 }
 
 function GetTrending() {
@@ -26,9 +31,13 @@ function GetTrending() {
 	  type: 'GET',
 	  success: function(data) {
 		channelgifs = data;
+		console.log(channelgifs);
 		ShowGif();
 	  }
 	});
+	if (!hasStarted) {
+        $(staticContainer).css('background-image', 'url(images/static.gif)');
+    }
 }
 
 $(giphySearch).keydown(function( event ) {
@@ -55,6 +64,9 @@ function CustomSearch() {
 		ToggleUI();
 	  }
 	});
+	if (!hasStarted) {
+        $(staticContainer).css('background-image', 'url(images/static.gif)');
+    }
 }
 
 function MoodSearch(q) {
@@ -67,6 +79,26 @@ function MoodSearch(q) {
 		ToggleUI();
 	  }
 	});
+	if (!hasStarted) {
+        $(staticContainer).css('background-image', 'url(images/static.gif)');
+    }
+}
+
+function GetStatic(){
+	$.ajax({
+	  url: searchUrlPre + 'static' + searchUrlPost + staticSearchLimit,
+	  type: 'GET',
+	  success: function(data) {
+		staticGifs = data;
+		ShowStatic();
+	  }
+	});
+}
+
+function ShowStatic() {
+	var randomNum = Math.floor((Math.random() * (staticSearchLimit - 1)));
+	var staticGif = staticGifs.data[randomNum].images.original.url;
+	$(staticContainer).css('background-image', 'url(' + staticGif + ')');
 }
 
 function ShowGif() {
@@ -76,11 +108,18 @@ function ShowGif() {
 	
 
 	setTimeout(function () {
-		if(channelgifs.data[randomNum].images.original_mp4.mp4) {
-      		var channelgif = channelgifs.data[randomNum].images.original_mp4.mp4;
-     	}
-      	
-      	videoBackground.innerHTML = '<video autoplay loop playsinline id="video-background" muted><source src="' + channelgif + '"></video>';
+		var channelgif;
+		var channelgifPopup;
+
+		if (isAndroid) {
+			channelgif = channelgifs.data[randomNum].images.preview_webp.url;
+			videoBackground.innerHTML = '<img id="video-background" src="' + channelgif + '" width="100%" />';
+		} else if (isIOS) {
+			//iPhone solution
+		} else {
+			channelgif = channelgifs.data[randomNum].images.original_mp4.mp4;
+			videoBackground.innerHTML = '<video autoplay loop playsinline id="video-background" muted><source src="' + channelgif + '"></video>';
+		}
 
   		$(litModeContainer).addClass('lit-mode-bg');
 
@@ -92,14 +131,17 @@ function ShowGif() {
   			var randomAnimation = animations[Math.floor((Math.random() * animations.length) + 1)];
   			$(randomPopup).addClass(randomAnimation);
   		}
-  		if (channelgifs.data[randomNum2].images.preview.mp4 != undefined) {
-  			var channelgifPopup = channelgifs.data[randomNum2].images.preview.mp4;
-  		}
-
-  		var i = 0;
 
       	if (randomPopup){
-      		randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="br-2 z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
+      		if (isAndroid) {
+      			channelgifPopup = channelgifs.data[randomNum2].images.preview_webp.url;
+      			randomPopup.innerHTML = '<img class="br-2 z-depth-' + randomDepth +'" src="' + channelgifPopup + '" width="100%" />';
+      		} else if (isIOS) {
+      			//iPhone solution
+      		} else {
+      			channelgifPopup = channelgifs.data[randomNum2].images.preview.mp4;
+      			randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="br-2 z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
+      		}
       	}
       	
       	ShowGif();
