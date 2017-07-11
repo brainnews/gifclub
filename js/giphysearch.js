@@ -135,12 +135,12 @@ function ShowGif() {
       	if (randomPopup){
       		if (isAndroid) {
       			channelgifPopup = channelgifs.data[randomNum2].images.preview_webp.url;
-      			randomPopup.innerHTML = '<img class="recordable br-2 z-depth-' + randomDepth +'" src="' + channelgifPopup + '" width="100%" />';
+      			randomPopup.innerHTML = '<img class="z-depth-' + randomDepth +'" src="' + channelgifPopup + '" width="100%" />';
       		} else if (isIOS) {
       			//iPhone solution
       		} else {
       			channelgifPopup = channelgifs.data[randomNum2].images.preview.mp4;
-      			randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="recordable br-2 z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
+      			randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
       		}
       	}
       	

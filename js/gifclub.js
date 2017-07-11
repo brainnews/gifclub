@@ -84,11 +84,9 @@ function BlurSearch(){
 }
 
 function ToggleUI() {
-    if (!recording) {
         $(uiContainer).fadeToggle(300);
         $(giphySearch).focus();
         $(giphySearch).select();
-    }
 }
 
 $('.mood-channel').click(function() {
@@ -102,7 +100,9 @@ $(trendingButton).click(function() {
 })
 
 $(popupGridWrapper).click(function() {
-    ToggleUI();
+    if (!recording) {
+        ToggleUI();
+    }
 });
 
 $(document).ready(function(){
@@ -124,6 +124,8 @@ $(stopRecordingButton).click(function(){
     ToggleUI();
 });
 
-$('.recordable').click(function() {
-    console.log("GIF clicked!");
+$(popupGridWrapper).on('click', '> *', function() {
+    if (recording) {
+        console.log("GIF clicked!");
+    }
 });
