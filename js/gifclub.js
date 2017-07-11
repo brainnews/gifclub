@@ -124,8 +124,17 @@ $(stopRecordingButton).click(function(){
     ToggleUI();
 });
 
-$(popupGridWrapper).on('click', '> *', function() {
+$(popupGridWrapper).on('click', '> *', function(event) {
     if (recording) {
-        console.log("GIF clicked!");
+        console.log("GIF clicked: " + event.target.firstChild.src);
+        recordTapeArray.push(event.target.firstChild.src);
     }
 });
+
+$(deleteTapeButton).click(function(){
+    recordTapeArray = [];
+})
+
+$(playTapeButton).click(function(){
+    //playback tape
+})
