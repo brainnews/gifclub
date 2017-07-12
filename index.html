@@ -30,16 +30,16 @@
 			      <div class="col s12">
 			      	<h5>MOODS</h5>
 			      	<ul class="list-inline moods-container" id="moodsContainer">
-			      		<a class="z-depth-5"><li id="trendingButton">trendy</li></a>
-			      		<a class="z-depth-5"><li class="mood-channel" data-query="space stars trippy">outer limits</li></a>
-			      		<a class="z-depth-5"><li class="mood-channel" data-query="90s tv fashion">Summer '95</li></a>
-			      		<a class="z-depth-5"><li class="mood-channel" data-query="hypnotic mesmerizing">lose urself</li></a>
-			      		<a class="z-depth-5"><li class="mood-channel" data-query="rainbow pixel">roy g. biv</li></a>
+			      		<a class="z-depth-5 mood-channel" id="trendingButton"><li>trendy</li></a>
+			      		<a class="z-depth-5 mood-channel" data-query="space stars trippy"><li>outer limits</li></a>
+			      		<a class="z-depth-5 mood-channel" data-query="90s tv fashion"><li>Summer '95</li></a>
+			      		<a class="z-depth-5 mood-channel"  data-query="hypnotic mesmerizing"><li>lose urself</li></a>
+			      		<a class="z-depth-5 mood-channel" data-query="rainbow pixel"><li>roy g. biv</li></a>
 			      	</ul>
 			      </div>
 			    </div>
 			    <div class="fixed-action-btn click-to-toggle">
-				    <a class="btn-floating btn-large">
+				    <a id="recordingMenuButton" class="btn-floating btn-large">
 				      	<i class="material-icons">voicemail</i>
 				    </a>
 				    <ul>
@@ -69,6 +69,13 @@
 			</div>
 			<div class="giphy-badge"><a style="border-bottom: none;" href="http://www.giphy.com" target="_blank"><img src="images/Poweredby_100px-Black_VertLogo.png"></a></div>
 			<div class="static" id="staticContainer"></div>
+		  </div>
+		  <!-- Tap Target Structure -->
+		  <div class="tap-target" data-activates="recordingMenuButton">
+		    <div class="tap-target-content">
+		      <h5>Record GIFs</h5>
+		      <p>Use these tools to record gifs to a tape and play them back.</p>
+		    </div>
 		  </div>
 		</div>
 		<script src="js/platform-detection.js"></script>

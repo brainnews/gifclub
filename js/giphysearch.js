@@ -196,12 +196,12 @@ function PlayTape() {
 
       	if (randomPopup){
       		if (isAndroid) {
-      			channelgifPopup = recordTapeArray[randomNum];
+      			channelgifPopup = recordTapeArray[randomNum2];
       			randomPopup.innerHTML = '<img class="z-depth-' + randomDepth +'" src="' + channelgifPopup + '" width="100%" />';
       		} else if (isIOS) {
       			//iPhone solution
       		} else {
-      			channelgifPopup = recordTapeArray[randomNum];
+      			channelgifPopup = recordTapeArray[randomNum2];
       			randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
       		}
       	}

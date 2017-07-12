@@ -32,6 +32,7 @@ var playback = false;
 var playbackView = false;
 
 window.onload = function() {
+    //$('.tap-target').tapTarget('open');
     // PLATFORM CHECK
     if(window.innerHeight > window.innerWidth){
         $(statusContainer).html("⚠︎ Please rotate device");

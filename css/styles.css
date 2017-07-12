@@ -87,7 +87,7 @@ a {
 
 .btn-floating {
   border-radius: 2px;
-  background: url(../images/dark_green_dust.png) repeat center center fixed;
+  background: url(../images/dark_green_dust.jpg) repeat center center fixed;
   background-color: #0c0c0c;
   overflow: visible;
 }
@@ -113,11 +113,11 @@ a {
 }
 
 .red-dust-bg {
-  background: url(../images/bright_red_dust.png) repeat center center fixed;
+  background: url(../images/bright_red_dust.jpg) repeat center center fixed;
 }
 
 .white-dust-bg {
-  background: url(../images/white_dust.png) repeat center center fixed;
+  background: url(../images/white_dust.jpg) repeat center center fixed;
 }
 
 h5 {
@@ -139,23 +139,23 @@ h5 {
 }
 
 .moods-container a:nth-child(1) {
-    background: url(../images/pink_dust.png) repeat center center fixed;
+    background: url(../images/pink_dust.jpg) repeat center center fixed;
 }
 
 .moods-container a:nth-child(2) {
-    background: url(../images/blue_dust.png) repeat center center fixed;
+    background: url(../images/blue_dust.jpg) repeat center center fixed;
 }
 
 .moods-container a:nth-child(3) {
-    background: url(../images/orange_dust.png) repeat center center fixed;
+    background: url(../images/orange_dust.jpg) repeat center center fixed;
 }
 
 .moods-container a:nth-child(4) {
-    background: url(../images/purple_dust.png) repeat center center fixed;
+    background: url(../images/purple_dust.jpg) repeat center center fixed;
 }
 
 .moods-container a:nth-child(5) {
-    background: url(../images/green_dust.png) repeat center center fixed;
+    background: url(../images/green_dust.jpg) repeat center center fixed;
 }
 
 
@@ -191,7 +191,7 @@ h5 {
     padding: 20px;
     color: #fff;
     border-radius: 2px;
-    background: url(../images/bright_blue_dust.png) repeat center center fixed;
+    background: url(../images/bright_blue_dust.jpg) repeat center center fixed;
 }
 
 .btn-restart {
@@ -204,7 +204,7 @@ h5 {
     border-radius: 2px;
     margin: 0 4px;
     text-transform: uppercase;
-    background: url(../images/bright_red_dust.png) repeat center center fixed;
+    background: url(../images/bright_red_dust.jpg) repeat center center fixed;
 }
 
 .main {
@@ -254,14 +254,14 @@ input[type=text]:not(.browser-default) {
     padding: 20px;
     box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
     color: #f8f8f8;
-    background: url(../images/dark_green_dust.png) repeat center center fixed;
+    background: url(../images/dark_green_dust.jpg) repeat center center fixed;
 }
 
 input[type=text]:not(.browser-default):focus:not([readonly]) {
 	border-bottom: none;
 	color: #f8f8f8;
 	box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
-  background: url(../images/dark_green_dust.png) repeat center center fixed;
+  background: url(../images/dark_green_dust.jpg) repeat center center fixed;
 }
 
 input[type=text]:not(.browser-default):focus:not([readonly])::selection {
