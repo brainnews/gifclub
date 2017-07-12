@@ -28,6 +28,8 @@ var hasStarted = false;
 var isAndroid = false;
 var isIOS = false;
 var recording = false;
+var playback = false;
+var playbackView = false;
 
 window.onload = function() {
     // PLATFORM CHECK
@@ -116,6 +118,9 @@ $(recordTapeButton).click(function() {
     ToggleUI();
     $(stopRecordingButton).fadeToggle(100);
     recording = true;
+    if (playback) {
+        $(playTapeButton).children().html('play_arrow');
+    }
 });
 
 $(stopRecordingButton).click(function(){
@@ -125,16 +130,33 @@ $(stopRecordingButton).click(function(){
 });
 
 $(popupGridWrapper).on('click', '> *', function(event) {
+    var gif = event.target;
     if (recording) {
-        console.log("GIF clicked: " + event.target.firstChild.src);
-        recordTapeArray.push(event.target.firstChild.src);
+        recordTapeArray.push(gif.firstChild.src);
+        $(gif).addClass('magictime swashOut');
     }
 });
 
 $(deleteTapeButton).click(function(){
-    recordTapeArray = [];
-})
+    if (!playback) {
+        recordTapeArray = [];
+    } else {
+        playback = false;
+        //might need to set a timeout here
+        recordTapeArray = [];
+    }
+});
 
 $(playTapeButton).click(function(){
-    //playback tape
-})
+    if (recordTapeArray.length != 0 && playback == false) {
+        playback = true;
+        PlayTape();
+        $(this).children().html('stop');
+        $(this).removeClass('tape-empty');
+    } else if (recordTapeArray.length != 0 && playback == true) {
+        $(this).children().html('play_arrow');
+        playback = false;
+    } else {
+        $(this).addClass('tape-empty');
+    }
+});

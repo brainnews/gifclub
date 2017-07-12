@@ -89,6 +89,7 @@ a {
   border-radius: 2px;
   background: url(../images/dark_green_dust.png) repeat center center fixed;
   background-color: #0c0c0c;
+  overflow: visible;
 }
 
 .fixed-action-btn a {
@@ -99,12 +100,24 @@ a {
   color: #ff2700 !important;
 }
 
+.btn-play {
+  color: #04e048 !important;
+}
+
+.btn-delete {
+  color: #ffb100 !important;
+}
+
 .record-mode {
   display: none;
 }
 
 .red-dust-bg {
   background: url(../images/bright_red_dust.png) repeat center center fixed;
+}
+
+.white-dust-bg {
+  background: url(../images/white_dust.png) repeat center center fixed;
 }
 
 h5 {
@@ -391,3 +404,28 @@ input[type=text]:not(.browser-default):focus:not([readonly])::selection {
 }
 
 /* CLICK EFFECTS */
+@keyframes swashOut {
+  0% {
+    opacity: 1;
+    transform-origin: 50% 50%;
+    transform: scale(1, 1);
+    border: 0px solid #ff2700;
+  }
+
+  100% {
+    opacity: 1;
+    transform-origin: 50% 50%;
+    transform: scale(0.9, 0.9);
+    border: 10px solid #ff2700;
+  }
+}
+
+.tape-empty::before {
+    content: 'Tape empty';
+    margin-left: -94px;
+    position: absolute;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #ddff8f;
+    opacity: 1;
+}

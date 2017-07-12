@@ -31,12 +31,16 @@ function GetTrending() {
 	  type: 'GET',
 	  success: function(data) {
 		channelgifs = data;
-		console.log(channelgifs);
+		//console.log(channelgifs);
 		ShowGif();
 	  }
 	});
 	if (!hasStarted) {
         $(staticContainer).css('background-image', 'url(images/static.gif)');
+    }
+    if (playback) {
+    	playback = false;
+    	$(playTapeButton).children().html('play_arrow');
     }
 }
 
@@ -67,6 +71,10 @@ function CustomSearch() {
 	if (!hasStarted) {
         $(staticContainer).css('background-image', 'url(images/static.gif)');
     }
+    if (playback) {
+    	playback = false;
+    	$(playTapeButton).children().html('play_arrow');
+    }
 }
 
 function MoodSearch(q) {
@@ -81,6 +89,10 @@ function MoodSearch(q) {
 	});
 	if (!hasStarted) {
         $(staticContainer).css('background-image', 'url(images/static.gif)');
+    }
+    if (playback) {
+    	playback = false;
+    	$(playTapeButton).children().html('play_arrow');
     }
 }
 
@@ -144,7 +156,60 @@ function ShowGif() {
       		}
       	}
       	
-      	ShowGif();
+      	if (!playback) {
+      		ShowGif();
+      	}
+
+   	}, 1500)
+}
+
+function PlayTape() {
+	numResults = recordTapeArray.length;
+
+	var randomNum = Math.floor((Math.random() * numResults));
+	
+
+	setTimeout(function () {
+		var channelgif;
+		var channelgifPopup;
+
+		if (isAndroid) {
+			channelgif = recordTapeArray[randomNum];
+			videoBackground.innerHTML = '<img id="video-background" src="' + channelgif + '" width="100%" />';
+		} else if (isIOS) {
+			//iPhone solution
+		} else {
+			channelgif = recordTapeArray[randomNum];
+			videoBackground.innerHTML = '<video autoplay loop playsinline id="video-background" muted><source src="' + channelgif + '"></video>';
+		}
+
+  		$(litModeContainer).addClass('lit-mode-bg');
+
+  		var randomNum2 = Math.floor((Math.random() * numResults));
+  		var randomCell = Math.floor((Math.random() * 16) + 1);
+  		var randomPopup = document.getElementById('popupGif-' + randomCell);
+  		var randomDepth = Math.floor((Math.random() * 5) + 1);
+  		if (Math.floor(Math.random() * 10) < animationFrequency) {
+  			var randomAnimation = animations[Math.floor((Math.random() * animations.length) + 1)];
+  			$(randomPopup).addClass(randomAnimation);
+  		}
+
+      	if (randomPopup){
+      		if (isAndroid) {
+      			channelgifPopup = recordTapeArray[randomNum];
+      			randomPopup.innerHTML = '<img class="z-depth-' + randomDepth +'" src="' + channelgifPopup + '" width="100%" />';
+      		} else if (isIOS) {
+      			//iPhone solution
+      		} else {
+      			channelgifPopup = recordTapeArray[randomNum];
+      			randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
+      		}
+      	}
+      	
+      	if (playback) {
+      		PlayTape();
+      		//need to figure out a way to go back to searching while also playing back the tape
+      	}
 
    	}, 1500)
 }
