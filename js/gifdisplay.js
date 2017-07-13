@@ -9,12 +9,9 @@ var clearRate = 8000;
 var numResults;
 
 function StartGifStream() {
-	var displayGifs = setInterval(function(){
+	setTimeout(function(){
 		ShowGif();
 	}, gpm);
-	var clearGifs = setInterval(function(){
-		ClearGifsByInterval();
-	}, clearRate);
 }
 
 function CheckPlaybackStatus() {
@@ -28,8 +25,13 @@ function CheckPlaybackStatus() {
 }
 
 function ClearGifsByInterval () {
-    popupGridWrapper.innerHTML = emptyPopupGrid;    	
+	setTimeout(function(){
+    	popupGridWrapper.innerHTML = emptyPopupGrid;
+    	ClearGifsByInterval();
+    }, clearRate);
 }
+
+ClearGifsByInterval();
 
 function ShowStatic() {
 	var randomNum = Math.floor((Math.random() * staticSearchLimit) + 1);
@@ -62,7 +64,9 @@ function ShowGif() {
 			channelgif = channelgifs.data[randomNum].images.original_mp4.mp4;
 			channelgifPopup = channelgifs.data[randomNum2].images.preview.mp4;
 			videoBackground.innerHTML = '<video autoplay loop playsinline id="video-background" muted><source src="' + channelgif + '"></video>';
-			randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
+			if (randomPopup) {
+				randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
+			}
 		}
 
 	} else {
@@ -87,4 +91,5 @@ function ShowGif() {
 		var randomAnimation = animations[Math.floor((Math.random() * animations.length) + 1)];
 		$(randomPopup).addClass(randomAnimation);
 	}
+	StartGifStream();
 }

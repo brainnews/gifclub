@@ -19,12 +19,14 @@ var stopRecordingButton = document.getElementById("stopRecordingButton");
 var playTapeButton = document.getElementById("playTapeButton");
 var deleteTapeButton = document.getElementById("deleteTapeButton");
 var recordTapeButton = document.getElementById("recordTapeButton");
+var gpmRange = document.getElementById("gpmRange");
 var recordTapeArray = [];
 var playback = false;
 
 window.onload = function() {
     //$('.tap-target').tapTarget('open');
     // PLATFORM CHECK
+    //to do special ui button for iphone
     var os = getOS();
 
     if (os == 'Android') {
@@ -74,7 +76,6 @@ $('.mood-channel').click(function() {
 
 $(trendingButton).click(function() {
     GetTrending();
-    ToggleUI();
 })
 
 $(popupGridWrapper).click(function() {
@@ -135,3 +136,9 @@ $(playTapeButton).click(function(){
         $(this).addClass('tape-empty');
     }
 });
+
+gpmRange.value = 1400;
+
+$(gpmRange).change(function(){
+    gpm = gpmRange.value;
+})

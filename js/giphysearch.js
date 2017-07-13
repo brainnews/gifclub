@@ -57,6 +57,8 @@ $(searchButton).click(function(){
 	}
 })
 
+
+//todo let users set a limit
 function CustomSearch() {
 	$.ajax({
 	  	url: searchUrlPre + giphySearch.value + searchUrlPost + searchLimit,

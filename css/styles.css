@@ -403,6 +403,33 @@ input[type=text]:not(.browser-default):focus:not([readonly])::selection {
 	margin-bottom: 40px;
 }
 
+/*GPM SLIDER*/
+input[type=range]+.thumb.active {
+    border-radius: 2px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+    border: none;
+    background-color: #fff !important; 
+}
+
+input[type=range]+.thumb {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    border: none;
+    height: 0;
+    width: 0;
+    background-color: #0089ec;
+    margin-left: 7px;
+     transform: none; 
+}
+
+input[type='range']::-webkit-slider-thumb {
+  background-color: #0089ec;
+}
+
 /* CLICK EFFECTS */
 @keyframes swashOut {
   0% {
