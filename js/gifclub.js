@@ -19,26 +19,35 @@ var stopRecordingButton = document.getElementById("stopRecordingButton");
 var playTapeButton = document.getElementById("playTapeButton");
 var deleteTapeButton = document.getElementById("deleteTapeButton");
 var recordTapeButton = document.getElementById("recordTapeButton");
+var iphoneUiButton = document.getElementById("iphoneUiButton");
 var gpmRange = document.getElementById("gpmRange");
 var gpmContainer = document.getElementById("gpmContainer");
 var recordTapeArray = [];
 var playback = false;
+var isMobile = false;
+
+//to do
+// cookies for feature discovery
+// firebase to save tapes
+// switch to turn off lit mode
 
 window.onload = function() {
-    //$('.tap-target').tapTarget('open');
     // PLATFORM CHECK
-    //to do special ui button for iphone
     var os = getOS();
 
     if (os == 'Android') {
         isMobile = true;
     } else if ( os == 'iOS') {
         isMobile == true;
-        $(statusContainer).html("⚠︎ iPhone not recommended");
+        $(iphoneUiButton).removeClass('hide');
     }
 
     GetStatic();
 };
+
+$(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
 
 // SEARCH FUNCTIONS
 
@@ -66,13 +75,12 @@ function BlurSearch(){
 
 function ToggleUI() {
         $(uiContainer).fadeToggle(300);
-        $(giphySearch).focus();
-        $(giphySearch).select();
 }
 
 $('.mood-channel').click(function() {
     var q = $(this).data("query");
-    MoodSearch(q);
+    var l = $(this).data("limit");
+    MoodSearch(q, l);
 });
 
 $(trendingButton).click(function() {
@@ -80,6 +88,12 @@ $(trendingButton).click(function() {
 })
 
 $(popupGridWrapper).click(function() {
+    if (!recording) {
+        ToggleUI();
+    }
+});
+
+$(iphoneUiButton).click(function() {
     if (!recording) {
         ToggleUI();
     }

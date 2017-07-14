@@ -21,7 +21,6 @@
 			<div id="uiContainer" class="ui-container">
 				<div class="row">
 			      <div class="col s12">
-			      	<h6 id="statusContainer" class="gifclub-version blue-text text-lighten-5 center-align"></h6>
 			      	<input type="text" id="giphySearch" placeholder="Tap to search" name="giphysearch" class="ui-el">
 			      	<a id="searchButton" class="btn-standard z-depth-5">Go</a>
 			      	<p class="white-text" style="opacity: 0.3; letter-spacing: 1px;"><strong>Pro-tip:</strong> include <strong>#40</strong> at the end or your search to limit your results to 40 gifs.<br/>Like this: <em>cute puppies #40</em></strong></p>
@@ -29,12 +28,11 @@
 			    </div>
 			    <div class="row">
 			      <div class="col s12">
-			      	<h5>MOODS</h5>
 			      	<ul class="list-inline moods-container" id="moodsContainer">
 			      		<a class="z-depth-5 mood-channel" id="trendingButton"><li>trendy</li></a>
-			      		<a class="z-depth-5 mood-channel" data-query="space stars trippy"><li>outer limits</li></a>
-			      		<a class="z-depth-5 mood-channel" data-query="90s tv fashion"><li>Summer '95</li></a>
-			      		<a class="z-depth-5 mood-channel" data-query="rainbow pixel"><li>roy g. biv</li></a>
+			      		<a class="z-depth-5 mood-channel" data-query="space stars trippy" data-limit="100"><li>outer limits</li></a>
+			      		<a class="z-depth-5 mood-channel" data-query="90s tv fashion"  data-limit="100"><li>Summer '95</li></a>
+			      		<a class="z-depth-5 mood-channel" data-query="rainbows pixel" data-limit="300"><li>roy g. biv</li></a>
 			      	</ul>
 			      </div>
 			    </div>
@@ -46,7 +44,7 @@
 				    </p>
 			      </div>
 			    </div>
-			    <div class="fixed-action-btn click-to-toggle">
+			    <div class="fixed-action-btn click-to-toggle hide-on-med-and-down">
 				    <a id="recordingMenuButton" class="btn-floating btn-large">
 				      	<i class="material-icons">voicemail</i>
 				    </a>
@@ -73,16 +71,22 @@
 				<div id="popupGif-16" class="popup-gif magictime"></div>
 			</div>
 			<div id="gif-container" class="main">
-				<h6 class="warning-text"><strong>Photosensitive seizure warning. A very small percentage of people may experience a seizure when exposed to certain visual images, including flashing lights or patterns that may appear while viewing the GifClub Visual System.</strong></h6>
+				<h6 class="warning-text">Photosensitive seizure warning. A very small percentage of people may experience a seizure when exposed to certain visual images, including flashing lights or patterns that may appear while viewing the GifClub Visual System.</h6>
 			</div>
 			<div class="giphy-badge"><a style="border-bottom: none;" href="http://www.giphy.com" target="_blank"><img src="images/Poweredby_100px-Black_VertLogo.png"></a></div>
 			<div class="static" id="staticContainer"></div>
 		  </div>
+		  <div class="fixed-action-btn hide-on-large-only hide" id="iphoneUiButton">
+			    <a class="btn-floating btn-large red">
+			      <i class="large material-icons">settings</i>
+			    </a>
+			</div>
 		  <!-- Tap Target Structure -->
 		  <div class="tap-target" data-activates="recordingMenuButton">
 		    <div class="tap-target-content">
-		      <h5>Record GIFs</h5>
-		      <p>Use these tools to record gifs to a tape and play them back.</p>
+		      <h5>Record and Playback GIFs</h5>
+		      <p>This is the GifClub Sampler. It lets you record GIFs and play them back like a music sampler. Just click somes GIFs when they appear to record them and hit play.</p>
+		      <a id="dismissCookieButton" href="#!">Don't show again</a>
 		    </div>
 		  </div>
 		</div>
@@ -99,10 +103,11 @@
 		  };
 		  firebase.initializeApp(config);
 		</script>
-		<script src="js/platform-detection.js"></script>
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/platform-detection.js"></script>
 		<script src="js/jquery.timer.js"></script>
 		<script src="js/config.js"></script>
 		<script src="js/gifclub.js"></script>

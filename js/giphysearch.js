@@ -58,6 +58,10 @@ $(searchButton).click(function(){
 })
 
 function CustomSearch() {
+	if (!isMobile) {
+		CheckCookie();
+	}
+	
 	var query = giphySearch.value;
 	var customSearchLimit;
 
@@ -93,9 +97,9 @@ function CustomSearch() {
     }
 }
 
-function MoodSearch(q) {
+function MoodSearch(q, limit) {
 	$.ajax({
-	  	url: searchUrlPre + q + searchUrlPost + searchLimit,
+	  	url: searchUrlPre + q + searchUrlPost + limit,
 	  	type: 'GET',
 	  	success: function(data) {
 		channelgifs = data;

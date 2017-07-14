@@ -32,10 +32,10 @@ a {
   	grid-row-end: 6;
 	background-color: transparent;
 	z-index: 90;
-	margin-left: 6px;
+	margin-left: 15px;
     opacity: 0.2;
     align-self: flex-end;
-    margin-bottom: 3px;
+    margin-bottom: 15px;
 }
 
 .giphy-badge:hover {
@@ -62,12 +62,11 @@ a {
   bottom: 0;
   color: #fff;
   position: absolute;
-  margin: 30px 120px;
+  margin: 0 15%;
   text-align: center;
   line-height: 1.3rem;
   letter-spacing: .05em;
   padding: 20px 10px;
-  background-color: transparent;
   border-radius: 2px;
 }
 
@@ -120,10 +119,17 @@ a {
   background: url(../images/white_dust.jpg) repeat center center fixed;
 }
 
-h5 {
-	margin-bottom: 30px;
-    color: #fff;
-    text-shadow: 0px 0px 10px #000000;
+.ui-container h5 {
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0px 0px 10px #000000;
+  opacity: 0.3;
+  font-size: 12px;
+}
+
+ul:not(.browser-default) {
+    padding-left: 12px;
+    list-style-type: none;
 }
 
 .moods-container a {
@@ -387,6 +393,18 @@ input[type=text]:not(.browser-default):focus:not([readonly])::selection {
 #popupGif-16 {
 	grid-column-start: 4;
   	grid-row-start: 4;
+}
+
+.tap-target {
+  background-color: #0c0c0c;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.tap-target-wave::before, .tap-target-wave::after {
+    border-radius: 6px 0px 0px 0px;
+    background-color: #0c0c0c;
+    border: 2px solid #fff;
 }
 
 /* HELPERS */
