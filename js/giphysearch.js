@@ -57,18 +57,33 @@ $(searchButton).click(function(){
 	}
 })
 
-
-//todo let users set a limit
 function CustomSearch() {
-	$.ajax({
-	  	url: searchUrlPre + giphySearch.value + searchUrlPost + searchLimit,
-	  	type: 'GET',
-	  	success: function(data) {
-		channelgifs = data;
-		StartGifStream();
-		ToggleUI();
-	  }
-	});
+	var query = giphySearch.value;
+	var customSearchLimit;
+
+	if (query.includes('#')) {
+		var queryWithLimit = query.split('#');
+		$.ajax({
+		  	url: searchUrlPre + queryWithLimit[0] + searchUrlPost + queryWithLimit[1],
+		  	type: 'GET',
+		  	success: function(data) {
+				channelgifs = data;
+				StartGifStream();
+				ToggleUI();
+		  	}
+		});
+	} else {
+		$.ajax({
+		  	url: searchUrlPre + giphySearch.value + searchUrlPost + searchLimit,
+		  	type: 'GET',
+		  	success: function(data) {
+				channelgifs = data;
+				StartGifStream();
+				ToggleUI();
+		  	}
+		});
+	}
+
 	if (!hasStarted) {
         $(staticContainer).css('background-image', 'url(images/static.gif)');
     }

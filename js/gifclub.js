@@ -20,6 +20,7 @@ var playTapeButton = document.getElementById("playTapeButton");
 var deleteTapeButton = document.getElementById("deleteTapeButton");
 var recordTapeButton = document.getElementById("recordTapeButton");
 var gpmRange = document.getElementById("gpmRange");
+var gpmContainer = document.getElementById("gpmContainer");
 var recordTapeArray = [];
 var playback = false;
 
@@ -141,4 +142,8 @@ gpmRange.value = 1400;
 
 $(gpmRange).change(function(){
     gpm = gpmRange.value;
+})
+
+$(gpmRange).change(function () {
+    $(gpmContainer).html(gpmRange.value);
 })

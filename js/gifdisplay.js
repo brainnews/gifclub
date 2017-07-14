@@ -83,7 +83,9 @@ function ShowGif() {
 			channelgif = recordTapeArray[randomNum];
 			channelgifPopup = recordTapeArray[randomNum2];
 			videoBackground.innerHTML = '<video autoplay loop playsinline id="video-background" muted><source src="' + channelgif + '"></video>';
-			randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
+			if (randomPopup) {
+				randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
+			}
 		}
 	}
 
