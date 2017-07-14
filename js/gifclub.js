@@ -158,7 +158,7 @@ $(gpmRange).change(function(){
     gpm = gpmRange.value;
 })
 
-$(gpmRange).change(function () {
+$(gpmRange).on('input', function () {
     var currentGpmRange = gpmRange.value;
 
     if (currentGpmRange == 300) {
