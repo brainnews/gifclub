@@ -159,5 +159,21 @@ $(gpmRange).change(function(){
 })
 
 $(gpmRange).change(function () {
-    $(gpmContainer).html(gpmRange.value);
-})
+    var currentGpmRange = gpmRange.value;
+
+    if (currentGpmRange == 300) {
+        $(gpmContainer).html('💀💀💀');
+    } else if (currentGpmRange <= 600) {
+        $(gpmContainer).html('😰😰😰');
+    } else if (currentGpmRange <= 1000) {
+        $(gpmContainer).html('😮😮😮');
+    } else if (currentGpmRange <= 2000) {
+        $(gpmContainer).html('🔥🔥🔥');
+    } else if (currentGpmRange <= 2500) {
+        $(gpmContainer).html('🏝🏝🏝');
+    } else if (currentGpmRange <= 3000) {
+        $(gpmContainer).html('😴😴😴');
+    } else {
+        $(gpmContainer).html('Error');
+    }
+});

@@ -422,6 +422,10 @@ input[type=text]:not(.browser-default):focus:not([readonly])::selection {
 }
 
 /*GPM SLIDER*/
+.range-field .thumb {
+  visibility: hidden;
+}
+
 input[type=range]+.thumb.active {
     border-radius: 2px;
 }
@@ -429,7 +433,13 @@ input[type=range]+.thumb.active {
 input[type=range] {
   -webkit-appearance: none;
     border: none;
-    background-color: #fff !important; 
+    background-color: #fff !important;
+    -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
 }
 
 input[type=range]+.thumb {
