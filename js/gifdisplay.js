@@ -4,7 +4,7 @@ var hasStarted = false;
 var recording = false;
 var playback = false;
 var gpm = 1400;
-var clearRate = 8000;
+var clearRate = 3;
 var numResults;
 
 function StartGifStream() {
@@ -27,7 +27,7 @@ function ClearGifsByInterval () {
 	setTimeout(function(){
     	popupGridWrapper.innerHTML = emptyPopupGrid;
     	ClearGifsByInterval();
-    }, clearRate);
+    }, gpm * clearRate);
 }
 
 ClearGifsByInterval();
