@@ -81,10 +81,19 @@ $('.mood-channel').click(function() {
     var q = $(this).data("query");
     var l = $(this).data("limit");
     MoodSearch(q, l);
+    ResetMusic();
+});
+
+$('.select-channel').click(function() {
+    ResetMusic();
+    var q = $(this).data("playlist");
+    LoadPlaylist(selects[q].playlist, selects[q].timeline);
+    ToggleUI();
 });
 
 $(trendingButton).click(function() {
     GetTrending();
+    ResetMusic();
 })
 
 $(popupGridWrapper).click(function() {
@@ -162,17 +171,17 @@ $(gpmRange).on('input', function () {
     var currentGpmRange = gpmRange.value;
 
     if (currentGpmRange == 300) {
-        $(gpmContainer).html('💀💀💀');
+        $(gpmContainer).html('💀 💀 💀');
     } else if (currentGpmRange <= 600) {
-        $(gpmContainer).html('😰😰😰');
+        $(gpmContainer).html('😰 😰 😰');
     } else if (currentGpmRange <= 1000) {
-        $(gpmContainer).html('😮😮😮');
+        $(gpmContainer).html('😮 😮 😮');
     } else if (currentGpmRange <= 2000) {
-        $(gpmContainer).html('🔥🔥🔥');
+        $(gpmContainer).html('🔥 🔥 🔥');
     } else if (currentGpmRange <= 2500) {
-        $(gpmContainer).html('🏝🏝🏝');
+        $(gpmContainer).html('🏝 🏝 🏝');
     } else if (currentGpmRange <= 3000) {
-        $(gpmContainer).html('😴😴😴');
+        $(gpmContainer).html('😴 😴 😴');
     } else {
         $(gpmContainer).html('Error');
     }

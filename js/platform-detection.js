@@ -21,17 +21,17 @@ function getOS() {
   return os;
 }
 
-var dismissCookieButton = document.getElementById("dismissCookieButton");
+// var dismissCookieButton = document.getElementById("dismissCookieButton");
 
-function CheckCookie() {
-    // check cookie
-    var visited = Cookies.get('visited');
+// function CheckCookie() {
+//     // check cookie
+//     var visited = Cookies.get('visited');
 
-    if (visited == null) {
-        $('.tap-target').tapTarget('open');      
-    }
+//     if (visited == null) {
+//         $('.tap-target').tapTarget('open');      
+//     }
 
-    $(dismissCookieButton).click(function(){
-      Cookies.set('visited', 'true', { expires: 365, path: '' });
-    });
-}
+//     $(dismissCookieButton).click(function(){
+//       Cookies.set('visited', 'true', { expires: 365, path: '' });
+//     });
+// }

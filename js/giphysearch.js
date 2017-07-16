@@ -2,7 +2,7 @@ var channelgifs;
 var preHTML = '<img src="';
 var postHTML = '" />';
 var gifIndex = 0;
-var searchLimit = 100;
+var searchLimit = 50;
 var staticGifs;
 var staticSearchLimit = 30;
 
@@ -58,10 +58,9 @@ $(searchButton).click(function(){
 })
 
 function CustomSearch() {
-	if (!isMobile) {
-		CheckCookie();
-	}
-	
+	ToggleUI();
+	ResetMusic();
+
 	var query = giphySearch.value;
 	var customSearchLimit;
 
@@ -73,7 +72,6 @@ function CustomSearch() {
 		  	success: function(data) {
 				channelgifs = data;
 				StartGifStream();
-				ToggleUI();
 		  	}
 		});
 	} else {
@@ -83,7 +81,6 @@ function CustomSearch() {
 		  	success: function(data) {
 				channelgifs = data;
 				StartGifStream();
-				ToggleUI();
 		  	}
 		});
 	}

@@ -62,8 +62,14 @@ function ShowGif() {
 				randomPopup.innerHTML = '<img class="z-depth-' + randomDepth +'" src="' + channelgifPopup + '" width="100%" />';
 			}
 		} else {
-			channelgif = channelgifs.data[randomNum].images.original_mp4.mp4;
-			channelgifPopup = channelgifs.data[randomNum2].images.preview.mp4;
+			var largeGIF = channelgifs.data[randomNum].images.original_mp4.mp4;
+			var smallGIF = channelgifPopup = channelgifs.data[randomNum2].images.preview.mp4;
+			if (largeGIF) {
+				channelgif = largeGIF;
+			}
+			if (smallGIF) {
+				channelgifPopup = smallGIF;
+			}
 			videoBackground.innerHTML = '<video autoplay loop playsinline id="video-background" muted><source src="' + channelgif + '"></video>';
 			if (randomPopup) {
 				randomPopup.innerHTML = '<video autoplay loop playsinline id="video-background" class="z-depth-' + randomDepth +'" muted><source src="' + channelgifPopup + '"></video>';
