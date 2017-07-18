@@ -7,7 +7,7 @@ var isPaused = true;
 var player;
 
 SC.initialize({
-	client_id: 'WdmgKDChQxn0MXrmogfO6l8QXAdcihnC'
+	client_id: 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x'
 });
 
 // $(musicSearch).keydown(function( event ) {
@@ -18,7 +18,7 @@ SC.initialize({
 
 function LoadPlaylist (q, t) {
 	$.get(
-	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=WdmgKDChQxn0MXrmogfO6l8QXAdcihnC', 
+	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x', 
 	  	function (result) {
 	  		console.log(result);
 	    	ParsePlaylist(result);
