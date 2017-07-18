@@ -12,13 +12,26 @@
 		<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
 	</head>
 	<body style="padding: 80px;" class="white-text">
-	<p id="playlistNameCon"></p>
-	<p id="trackTitleCon"></p>
-	<p id="trackArtistCon"></p>
-	<p id="trackUrlCon"></p>
-	<p id="pauseButton" style="cursor: pointer;">pause</p>
-	<p id="playButton" style="cursor: pointer;">play</p>
+		<p id="playlistNameCon"></p>
+		<p id="trackTitleCon"></p>
+		<p id="trackArtistCon"></p>
+		<p id="trackUrlCon"></p>
+		<p id="pauseButton" style="cursor: pointer;">pause</p>
+		<p id="playButton" style="cursor: pointer;">play</p>
+		<a class="waves-effect waves-light btn" href="#modal1">Launch editor</a>
+
+		  <!-- Modal Structure -->
+		  <div id="modal1" class="modal bottom-sheet">
+		    <div class="modal-content">
+		      <h4>Modal Header</h4>
+		      <p>A bunch of text</p>
+		    </div>
+		    <div class="modal-footer">
+		      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+		    </div>
+		  </div>
 	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
 	<script src="js/test.js"></script>
 	</body>

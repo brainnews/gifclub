@@ -1,23 +1,15 @@
-var widgetContainer = document.getElementById("soundcloudContainer");
-var widgetIframe = document.getElementById('sc-widget'), 
-widget = SC.Widget(widgetIframe);
 var duration;
 var visuals;
 var millis = 0;
 var counter = null;
 var isPaused = true;
 
-widget.bind(SC.Widget.Events.READY, function() { 
-	widget.bind(SC.Widget.Events.PLAY, function() { 
-		// get information about currently playing sound 
-		widget.getCurrentSound(function(currentSound) {
-			console.log(currentSound);
-			duration = currentSound.duration;
-			// trackArtist = currentSound.user.username;
-			// trackUrl = currentSound.permalink_url;
-		});
-	});
+var player;
+
+SC.initialize({
+	client_id: 'WdmgKDChQxn0MXrmogfO6l8QXAdcihnC'
 });
+
 // $(musicSearch).keydown(function( event ) {
 // 	if ( event.which == 13 ) {
 // 	   LoadTrack(musicSearch.value);
@@ -25,19 +17,35 @@ widget.bind(SC.Widget.Events.READY, function() {
 // });
 
 function LoadPlaylist (q, t) {
-	widget.load(q, {
-		"auto_play": "true",
-		"buying": "false",
-		"liking": "false",
-		"download": "false",
-		"sharing": "false",
-		"show_artwork": "false",
-		"show_comments": "false",
-		"show_playcount": "false",
-		"show_user": "false"
-	});
-	visuals = t;
-	PlayVisuals();
+	$.get(
+	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=WdmgKDChQxn0MXrmogfO6l8QXAdcihnC', 
+	  	function (result) {
+	  		console.log(result);
+	    	ParsePlaylist(result);
+	    	visuals = t;
+			PlayVisuals();
+			PlayMusic();
+	  	}
+	);
+}
+
+function PlayMusic() {
+	player.then(function(player){
+  		player.play();
+  	});
+}
+
+function PauseMusic() {
+	if (player) {
+		player.then(function(player){
+	  		player.pause();
+	  	});
+	}
+}
+
+function ParsePlaylist(playlist) {
+	var track = '/tracks/' + playlist.tracks[0].id;
+    player = SC.stream(track);
 }
 
 function PlayVisuals() {
@@ -59,10 +67,10 @@ function ConvertTimestamp(timestamp) {
 
 function ResetMusic() {
 	clearInterval(counter);
-	widget.pause();
+	PauseMusic();
 	millis = 0;
 }
 
 if (duration == millis) {
-	ResetMusic();
+	PauseMusic();
 }

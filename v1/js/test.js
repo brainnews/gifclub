@@ -29,9 +29,6 @@ function PlayPlaylist(playlist) {
 	$(trackUrlCon).html('<a href=' + playlist.tracks[0].permalink_url + ' target="_blank">View on SoundCloud</a>');
 	testTrack = '/tracks/' + playlist.tracks[0].id;
     player = SC.stream(testTrack);
-    player.then(function(player){
-  		player.play();
-	});
 }
 
 $(pauseButton).click(function(){
@@ -45,3 +42,8 @@ $(playButton).click(function(){
   		player.play();
   	});
 });
+
+$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
