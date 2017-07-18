@@ -6,12 +6,12 @@ var trackTitleCon = document.getElementById('trackTitleCon');
 var playlistNameCon = document.getElementById('playlistNameCon');
 var trackUrlCon = document.getElementById('trackUrlCon');
 var pauseButton = document.getElementById('pauseButton');
+var playButton = document.getElementById('playButton');
 
 var player;
 
 SC.initialize({
-	client_id: 'WdmgKDChQxn0MXrmogfO6l8QXAdcihnC',
-	redirect_uri: 'http://example.com/callback'
+	client_id: 'WdmgKDChQxn0MXrmogfO6l8QXAdcihnC'
 });
 
 $.get(
@@ -28,11 +28,20 @@ function PlayPlaylist(playlist) {
 	$(trackArtistCon).html(playlist.tracks[0].user.username);
 	$(trackUrlCon).html('<a href=' + playlist.tracks[0].permalink_url + ' target="_blank">View on SoundCloud</a>');
 	testTrack = '/tracks/' + playlist.tracks[0].id;
-    player = SC.stream(testTrack).then(function(player){
+    player = SC.stream(testTrack);
+    player.then(function(player){
   		player.play();
 	});
 }
 
 $(pauseButton).click(function(){
-	player.pause();
-})
+  	player.then(function(player){
+  		player.pause();
+  	});
+});
+
+$(playButton).click(function(){
+  	player.then(function(player){
+  		player.play();
+  	});
+});

@@ -11,6 +11,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 	widget.bind(SC.Widget.Events.PLAY, function() { 
 		// get information about currently playing sound 
 		widget.getCurrentSound(function(currentSound) {
+			console.log(currentSound);
 			duration = currentSound.duration;
 			// trackArtist = currentSound.user.username;
 			// trackUrl = currentSound.permalink_url;
@@ -43,7 +44,6 @@ function PlayVisuals() {
 	counter = setInterval(function(){
 		for (x in visuals) {
 	    	if (ConvertTimestamp(x) == millis) {
-	    		console.log("timestamp matched!");
 	    		GetGifs(visuals[x]);
 	    	}
 		}
