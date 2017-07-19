@@ -465,7 +465,9 @@ input[type='range']::-webkit-slider-thumb {
   color: #fff;
 }
 
-
+.modal-content-waveform {
+  height: 100%;
+}
 
 .modal .modal-footer {
   background-color: #111;
@@ -474,7 +476,13 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal.bottom-sheet {
-  height: 230px;
+  height: 270px;
+}
+
+.waveform-container {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* CLICK EFFECTS */

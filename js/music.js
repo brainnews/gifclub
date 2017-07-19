@@ -6,6 +6,10 @@ var isPaused = true;
 var trackArtistCon = document.getElementById('trackArtistCon');
 var trackTitleCon = document.getElementById('trackTitleCon');
 var trackUrlCon = document.getElementById('trackUrlCon');
+var soundCloudSearch = document.getElementById('soundCloudSearch');
+var waveformContainer = document.getElementById('waveformContainer');
+var waveformCanvas = document.getElementById('waveformCanvas');
+var clientId = 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x';
 
 var player;
 
@@ -13,15 +17,32 @@ SC.initialize({
 	client_id: 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x'
 });
 
-// $(musicSearch).keydown(function( event ) {
-// 	if ( event.which == 13 ) {
-// 	   LoadTrack(musicSearch.value);
-// 	}
-// });
+$(soundCloudSearch).keydown(function( event ) {
+	if ( event.which == 13 ) {
+	   LoadTrackForEditor(soundCloudSearch.value);
+	}
+});
+
+function LoadTrackForEditor (q) {
+	$.get(
+	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=' + clientId, 
+	  	function (result) {
+	  		console.log(result);
+	  		$(waveformContainer).html('<canvas id="waveformCanvas"></canvas>');
+	  		var waveFormUrl = result.waveform_url;
+	  		var canvasHeight = $(waveformCanvas).parent().height();
+	  		var canvasWidth = $(waveformCanvas).parent().width();
+	  		$(waveformCanvas).attr("height", canvasHeight);
+	  		$(waveformCanvas).attr("width", canvasWidth);
+	  		// $(waveformContainer).css("background-image", 'url(' + waveFormUrl + ')');
+	  		// $(waveformContainer).html('');
+	  	}
+	);
+}
 
 function LoadPlaylist (q, t) {
 	$.get(
-	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x', 
+	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=' + clientId, 
 	  	function (result) {
 	  		console.log(result);
 	    	ParsePlaylist(result);
@@ -48,7 +69,11 @@ function PauseMusic() {
 
 function ParsePlaylist(playlist) {
 	var track = '/tracks/' + playlist.tracks[0].id;
-    player = SC.stream(track);
+    player = SC.stream(track, function(){
+    	player.on('finish', function(){
+			console.log("finished");
+		});
+    });
 }
 
 function PlayVisuals() {
