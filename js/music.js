@@ -3,6 +3,9 @@ var visuals;
 var millis = 0;
 var counter = null;
 var isPaused = true;
+var trackArtistCon = document.getElementById('trackArtistCon');
+var trackTitleCon = document.getElementById('trackTitleCon');
+var trackUrlCon = document.getElementById('trackUrlCon');
 
 var player;
 

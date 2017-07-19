@@ -21,7 +21,7 @@
 			<div id="uiContainer" class="ui-container">
 				<div class="row">
 			      <div class="col s12">
-			      	<input type="text" id="giphySearch" placeholder="Tap to search" name="giphysearch" class="ui-el">
+			      	<input class="input-standard z-depth-5" type="text" id="giphySearch" placeholder="Tap to search" name="giphysearch">
 			      	<a id="searchButton" class="btn-standard z-depth-5">Go</a>
 			      	<p class="white-text" style="opacity: 0.3; letter-spacing: 1px;"><strong>Pro-tip:</strong> include <strong>#40</strong> at the end or your search to limit your results to 40 gifs.<br/>Like this: <em>cute puppies #40</em></strong></p>
 			      </div>
@@ -39,10 +39,13 @@
 			    </div>
 			    <div class="row">
 			      <div class="col s12 m6 offset-m3">
-			      	<p class="white-text"><strong>GPM: <span id="gpmContainer">🔥 🔥 🔥</span></strong></p>
 			      	<p class="range-field">
+			      	<strong class="white-text">GPM: <span id="gpmContainer">🔥 🔥 🔥</span></strong>
 				      <input type="range" id="gpmRange" min="300" max="3000" />
 				    </p>
+			      </div>
+			      <div class="col s12 m6 offset-m3 hide-on-med-and-down">
+			      	<a class="waves-effect waves-light btn" href="#editorModal">Launch editor</a>
 			      </div>
 			    </div>
 			    <div class="fixed-action-btn click-to-toggle hide-on-med-and-down">
@@ -88,6 +91,25 @@
 		      <h5>Record and Playback GIFs</h5>
 		      <p>This is the GifClub Sampler. It lets you record GIFs and play them back like a music sampler. Just click somes GIFs when they appear to record them and hit play.</p>
 		      <a id="dismissCookieButton" href="#!">Don't show again</a>
+		    </div>
+		  </div>
+
+		  <!-- Modal Structure -->
+		  <div id="editorModal" class="modal bottom-sheet">
+		    <div class="modal-content">
+		      <div class="row">
+		      	<div class="col m12">
+		      		Editor
+		      	</div>
+		      </div>
+		      <div class="row">
+		      	<div class="col m12">
+		      		<input class="input-small" type="text" placeholder="Soundcloud URL" name="soundcloud-search">
+		      	</div>
+		      </div>
+		    </div>
+		    <div class="modal-footer">
+		      <a href="#!" class="modal-action modal-close waves-effect btn-flat">Agree</a>
 		    </div>
 		  </div>
 		</div>
