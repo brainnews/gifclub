@@ -7,8 +7,6 @@ var trackArtistCon = document.getElementById('trackArtistCon');
 var trackTitleCon = document.getElementById('trackTitleCon');
 var trackUrlCon = document.getElementById('trackUrlCon');
 var soundCloudSearch = document.getElementById('soundCloudSearch');
-var waveformContainer = document.getElementById('waveformContainer');
-var waveformCanvas = document.getElementById('waveformCanvas');
 var clientId = 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x';
 
 var player;
@@ -28,14 +26,6 @@ function LoadTrackForEditor (q) {
 	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=' + clientId, 
 	  	function (result) {
 	  		console.log(result);
-	  		$(waveformContainer).html('<canvas id="waveformCanvas"></canvas>');
-	  		var waveFormUrl = result.waveform_url;
-	  		var canvasHeight = $(waveformCanvas).parent().height();
-	  		var canvasWidth = $(waveformCanvas).parent().width();
-	  		$(waveformCanvas).attr("height", canvasHeight);
-	  		$(waveformCanvas).attr("width", canvasWidth);
-	  		// $(waveformContainer).css("background-image", 'url(' + waveFormUrl + ')');
-	  		// $(waveformContainer).html('');
 	  	}
 	);
 }
@@ -68,12 +58,22 @@ function PauseMusic() {
 }
 
 function ParsePlaylist(playlist) {
-	var track = '/tracks/' + playlist.tracks[0].id;
-    player = SC.stream(track, function(){
-    	player.on('finish', function(){
-			console.log("finished");
+	var track = '/tracks/333741455'; //+ playlist.tracks[0].id;
+	player = SC.stream(track, function(sound) {
+		sound.on('play', function(){
+			LogConsole();
 		});
-    });
+	});
+}
+
+function LogConsole() {
+	console.log("playing");
+}
+
+if (player) {
+	player.on(play, function() {
+		console.log("playing");
+	});
 }
 
 function PlayVisuals() {
