@@ -8,8 +8,11 @@ var trackTitleCon = document.getElementById('trackTitleCon');
 var trackUrlCon = document.getElementById('trackUrlCon');
 var soundCloudSearch = document.getElementById('soundCloudSearch');
 var clientId = 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x';
+var playlistTracks = [];
+var currentTrackNum = 0;
+var ended;
 
-var player;
+var scPlayer;
 
 SC.initialize({
 	client_id: 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x'
@@ -32,21 +35,49 @@ function LoadTrackForEditor (q) {
 
 function LoadPlaylist (q, t) {
 	$.get(
-	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=' + clientId, 
-	  	function (result) {
+	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=' + clientId, function (result) {
 	  		console.log(result);
 	    	ParsePlaylist(result);
 	    	visuals = t;
 			PlayVisuals();
-			PlayMusic();
+			PlayPlaylist();
 	  	}
 	);
 }
 
-function PlayMusic() {
-	player.then(function(player){
-  		player.play();
-  	});
+function ResolvePlaylist(url) {
+	SC.resolve(url).then(function(playlist){
+		var trackCount = playlist.tracks.length;
+		for (var i = 0; i < trackCount; i++) {
+			playlistTracks.push(playlist.tracks[i].id);
+		}
+        PlayPlaylist();
+    });
+}
+
+function PlayPlaylist(){
+
+  SC.stream('/tracks/' + playlistTracks[currentTrackNum]).then(function(player){       
+    //scPlayer = player;  
+    //trackDuration = scPlayer.options.duration;
+    ended = false;
+    player.on('finish', function (){
+        console.log("finished track");
+        currentTrackNum++;
+        if (currentTrackNum < playlistTracks.length) {
+        	console.log("playing track: " + (currentTrackNum + 1));
+        	PlayPlaylist();
+        } else {
+        	player.pause();
+        	ended = true;
+        	console.log("playlist ended");
+        	currentTrackNum = 0;
+        }
+    });
+    if (!ended) {
+	    player.play();
+	}
+  });  
 }
 
 function PauseMusic() {
@@ -58,22 +89,8 @@ function PauseMusic() {
 }
 
 function ParsePlaylist(playlist) {
-	var track = '/tracks/333741455'; //+ playlist.tracks[0].id;
-	player = SC.stream(track, function(sound) {
-		sound.on('play', function(){
-			LogConsole();
-		});
-	});
-}
-
-function LogConsole() {
-	console.log("playing");
-}
-
-if (player) {
-	player.on(play, function() {
-		console.log("playing");
-	});
+	var track = '/tracks/' + playlist.tracks[0].id;
+	player = SC.stream(track);
 }
 
 function PlayVisuals() {

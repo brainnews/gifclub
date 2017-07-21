@@ -1,6 +1,6 @@
 var selects = {
 	"complexion": {
-		"playlist": ["http://soundcloud.com/complexion/the-future-beats-show-150"],
+		"playlist": ["https://soundcloud.com/complexion/the-future-beats-show-150"],
 		"timeline": {
 			"00:00:00": "space trippy",
         	"00:00:49": "rocket launch",
@@ -13,7 +13,7 @@ var selects = {
 		}
 	},
 	"cute": {
-		"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club"],
+		"playlist": "http://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club",
 		"duration": 634000,
 		"timeline": {
 			"00:00:00": "love cute",

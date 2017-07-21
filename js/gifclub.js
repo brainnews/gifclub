@@ -85,9 +85,10 @@ $('.mood-channel').click(function() {
 });
 
 $('.select-channel').click(function() {
-    ResetMusic();
+    //ResetMusic();
     var q = $(this).data("playlist");
-    LoadPlaylist(selects[q].playlist, selects[q].timeline);
+    //LoadPlaylist(selects[q].playlist, selects[q].timeline);
+    ResolvePlaylist(selects[q].playlist);
     ToggleUI();
 });
 
