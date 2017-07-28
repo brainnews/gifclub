@@ -1,15 +1,14 @@
 var selects = {
-	"complexion": {
-		"playlist": ["https://soundcloud.com/complexion/the-future-beats-show-150"],
+	"hype": {
+		"playlist": ["https://soundcloud.com/dj-dav-8/workout-motivation-rap-trap-mix-by-dj-dav?in=nathaxn/sets/sport-mood"],
+		"gpm": 400,
 		"timeline": {
-			"00:00:00": "space trippy",
-        	"00:00:49": "rocket launch",
-        	"00:01:00": "city timelapse",
-        	"00:01:18": "nyc",
-        	"00:02:00": "city timelapse",
-        	"00:03:00": "sex and the city",
-        	"00:03:30": "city timelapse",
-        	"00:04:06": "rnb flirt"
+			"00:00:00": "screaming",
+        	"00:00:15": "dunk",
+        	"00:03:18": "drifting",
+        	"00:05:00": "workout",
+        	"00:07:00": "explosions",
+        	"00:11:06": "fast and furious"
 		}
 	},
 	"cute": {
@@ -23,6 +22,49 @@ var selects = {
         	"00:01:44": "love",
         	"00:02:10": "cute",
         	"00:02:22": "cute kiss",
+		}
+	},
+	"galactic": {
+		"playlist": "https://soundcloud.com/thunderstone-radio/gs5",
+		"gpm": 500,
+		"timeline": {
+			"00:00:00": "trippy space stars",
+        	"00:02:00": "space planets",
+        	"00:02:40": "lizard",
+        	"00:04:00": "art fubiz",
+        	"00:06:48": "surreal pink",
+        	"00:07:40": "strut",
+        	"00:09:28": "makeup",
+        	"00:11:48": "twirl",
+        	"00:14:10": "pixel pink",
+        	"00:15:50": "pixel black and white",
+        	"00:17:35": "black and white",
+        	"00:19:40": "swag",
+        	"00:20:53": "swag car",
+        	"00:21:20": "drifting",
+        	"00:24:20": "anime purple",
+        	"00:26:13": "purple",
+        	"00:28:08": "flirt sexy",
+        	"00:30:37": "dance",
+        	"00:31:22": "dance salsa",
+        	"00:34:43": "breakdance",
+        	"00:35:25": "pop it lock it",
+        	"00:38:55": "dj",
+        	"00:40:10": "eyes pretty beautiful"
+		}
+	},
+	"late-bloomer": {
+		"playlist": "https://soundcloud.com/discwoman/discwoman-04-x-yaeji",
+		"gpm": 2000,
+		"timeline": {
+			"00:00:00": "flowers black and white",
+        	"00:00:15": "flowers",
+        	"00:02:20": "stars surreal",
+        	"00:04:00": "pink rainbow",
+        	"00:06:48": "surreal rainbow",
+        	"00:07:40": "trippy surreal",
+        	"00:09:28": "beach 90s",
+        	"00:11:48": "2000s music",
 		}
 	}
 }

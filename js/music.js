@@ -3,19 +3,53 @@ var visuals;
 var millis = 0;
 var counter = null;
 var isPaused = true;
-var trackArtistCon = document.getElementById('trackArtistCon');
-var trackTitleCon = document.getElementById('trackTitleCon');
-var trackUrlCon = document.getElementById('trackUrlCon');
+var trackInfoContainer = document.getElementById('trackInfoContainer');
 var soundCloudSearch = document.getElementById('soundCloudSearch');
 var clientId = 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x';
 var playlistTracks = [];
 var currentTrackNum = 0;
 var ended;
 
-var scPlayer;
+// SC.initialize({
+// 	client_id: 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x'
+// });
 
-SC.initialize({
-	client_id: 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x'
+var widgetIframe = document.getElementById('sc-widget'), 
+widget = SC.Widget(widgetIframe);
+
+widget.bind(SC.Widget.Events.READY, function() { 
+	widget.bind(SC.Widget.Events.PLAY, function() {
+		// get information about currently playing sound 
+		widget.getCurrentSound(function(currentSound) {
+			console.log(currentSound);
+			var maxLength = 22;
+			var title = currentSound.title;
+			var artist = currentSound.user.username;
+			var url = currentSound.permalink_url;
+			$(trackInfoContainer).attr("href", url);
+			if (title.length > maxLength) {
+				var truncatedTitle = title.substring(0, maxLength);
+				$(trackInfoContainer).html("Now playing: " + truncatedTitle + "... by " + artist);
+			} else {
+				$(trackInfoContainer).html("Now playing: " + title + " by " + artist);
+			}
+		});
+		widget.getDuration(function(duration) {
+			console.log("Song duration: " + duration);
+		});
+		widget.getSounds(function(sounds) {
+			playlistLength = sounds.length;
+
+			if (playlistLength > 1) {
+				console.log("Playlist loaded.");
+			} else {
+				console.log("Single track loaded.");
+			}
+		});
+	});
+	widget.bind(SC.Widget.Events.FINISH, function() {
+		console.log("Track finished");
+	}); 
 });
 
 $(soundCloudSearch).keydown(function( event ) {
@@ -23,6 +57,24 @@ $(soundCloudSearch).keydown(function( event ) {
 	   LoadTrackForEditor(soundCloudSearch.value);
 	}
 });
+
+function LoadSoundToWidget (q, t, g) {
+	// var q = musicSearch.value;
+	widget.load(q, {
+		"auto_play": "true",
+		"buying": "false",
+		"liking": "false",
+		"download": "false",
+		"sharing": "false",
+		"show_artwork": "false",
+		"show_comments": "false",
+		"show_playcount": "false",
+		"show_user": "false"
+	});
+	visuals = t;
+	gpm = g;
+	PlayVisuals();
+}
 
 function LoadTrackForEditor (q) {
 	$.get(
@@ -33,70 +85,20 @@ function LoadTrackForEditor (q) {
 	);
 }
 
-function LoadPlaylist (q, t) {
-	$.get(
-	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=' + clientId, function (result) {
-	  		console.log(result);
-	    	ParsePlaylist(result);
-	    	visuals = t;
-			PlayVisuals();
-			PlayPlaylist();
-	  	}
-	);
-}
-
 function ResolvePlaylist(url) {
 	SC.resolve(url).then(function(playlist){
 		var trackCount = playlist.tracks.length;
 		for (var i = 0; i < trackCount; i++) {
 			playlistTracks.push(playlist.tracks[i].id);
 		}
-        PlayPlaylist();
     });
-}
-
-function PlayPlaylist(){
-
-  SC.stream('/tracks/' + playlistTracks[currentTrackNum]).then(function(player){       
-    //scPlayer = player;  
-    //trackDuration = scPlayer.options.duration;
-    ended = false;
-    player.on('finish', function (){
-        console.log("finished track");
-        currentTrackNum++;
-        if (currentTrackNum < playlistTracks.length) {
-        	console.log("playing track: " + (currentTrackNum + 1));
-        	PlayPlaylist();
-        } else {
-        	player.pause();
-        	ended = true;
-        	console.log("playlist ended");
-        	currentTrackNum = 0;
-        }
-    });
-    if (!ended) {
-	    player.play();
-	}
-  });  
-}
-
-function PauseMusic() {
-	if (player) {
-		player.then(function(player){
-	  		player.pause();
-	  	});
-	}
-}
-
-function ParsePlaylist(playlist) {
-	var track = '/tracks/' + playlist.tracks[0].id;
-	player = SC.stream(track);
 }
 
 function PlayVisuals() {
 	counter = setInterval(function(){
 		for (x in visuals) {
 	    	if (ConvertTimestamp(x) == millis) {
+	    		console.log("timestamp matched!");
 	    		GetGifs(visuals[x]);
 	    	}
 		}
@@ -112,10 +114,10 @@ function ConvertTimestamp(timestamp) {
 
 function ResetMusic() {
 	clearInterval(counter);
-	PauseMusic();
+	widget.pause();
 	millis = 0;
 }
 
 if (duration == millis) {
-	PauseMusic();
+	widget.pause();
 }

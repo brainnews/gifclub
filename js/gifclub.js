@@ -22,6 +22,7 @@ var recordTapeButton = document.getElementById("recordTapeButton");
 var iphoneUiButton = document.getElementById("iphoneUiButton");
 var gpmRange = document.getElementById("gpmRange");
 var gpmContainer = document.getElementById("gpmContainer");
+var pausePlayButton = document.getElementById("pausePlayButton");
 var recordTapeArray = [];
 var playback = false;
 var isMobile = false;
@@ -85,10 +86,9 @@ $('.mood-channel').click(function() {
 });
 
 $('.select-channel').click(function() {
-    //ResetMusic();
+    ResetMusic();
     var q = $(this).data("playlist");
-    //LoadPlaylist(selects[q].playlist, selects[q].timeline);
-    ResolvePlaylist(selects[q].playlist);
+    LoadSoundToWidget(selects[q].playlist, selects[q].timeline, selects[q].gpm);
     ToggleUI();
 });
 
@@ -129,6 +129,20 @@ $(stopRecordingButton).click(function(){
     recording = false;
     $(stopRecordingButton).fadeToggle(100);
     ToggleUI();
+});
+
+var paused = false
+
+$(pausePlayButton).click(function(){
+    if (!paused) {
+        widget.pause();
+        $(this).html('<i class="fa fa-play-circle" aria-hidden="true"></i>');
+        paused = true;
+    } else {
+        widget.play();
+        $(this).html('<i class="fa fa-pause-circle" aria-hidden="true"></i>');
+        paused = false;
+    }
 });
 
 $(popupGridWrapper).on('click', '> *', function(event) {

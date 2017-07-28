@@ -8,7 +8,6 @@ body {
 a {
 	color: #00ffd0;
 	font-weight: 800;
-	border-bottom: 2px solid #00ffd0;
 }
 
 .gifclub-version {
@@ -132,6 +131,10 @@ ul:not(.browser-default) {
     list-style-type: none;
 }
 
+.moods-container {
+  margin-top: 40px;
+    margin-bottom: 40px;
+}
 .moods-container a {
 	border-bottom: none;
     background-color: #0c0c0c;

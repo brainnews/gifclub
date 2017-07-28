@@ -2,7 +2,7 @@ var channelgifs;
 var preHTML = '<img src="';
 var postHTML = '" />';
 var gifIndex = 0;
-var searchLimit = 50;
+var searchLimit = 100;
 var staticGifs;
 var staticSearchLimit = 30;
 
@@ -22,6 +22,9 @@ function GetGifs(q) {
 	if (!hasStarted) {
         $(staticContainer).css('background-image', 'url(images/static.gif)');
     }
+    clearTimeout(gifStreamTimeout);
+    clearTimeout(clearGifsTimeout);
+    ClearGifsByInterval();
 }
 
 function GetTrending() {

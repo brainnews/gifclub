@@ -23,18 +23,18 @@
 			      <div class="col s12">
 			      	<input class="input-standard z-depth-5" type="text" id="giphySearch" placeholder="Tap to search" name="giphysearch">
 			      	<a id="searchButton" class="btn-standard z-depth-5">Go</a>
-			      	<p class="white-text" style="opacity: 0.3; letter-spacing: 1px;"><strong>Pro-tip:</strong> include <strong>#40</strong> at the end or your search to limit your results to 40 gifs.<br/>Like this: <em>cute puppies #40</em></strong></p>
 			      </div>
 			    </div>
 			    <div class="row">
 			      <div class="col s12">
 			      	<ul class="list-inline moods-container" id="moodsContainer">
 			      		<!-- <a class="z-depth-5 mood-channel" id="trendingButton"><li>trendy</li></a> -->
-			      		<a class="z-depth-5 select-channel" data-playlist="cute"><li><i class="fa fa-music" aria-hidden="true"></i> Cute</li></a>
-			      		<a class="z-depth-5 mood-channel" data-query="flowers" data-limit="50"><li>late bloomer</li></a>
-			      		<a class="z-depth-5 mood-channel" data-query="90s tv fashion"  data-limit="100"><li>Summer '95</li></a>
-			      		<a class="z-depth-5 mood-channel" data-query="barbie" data-limit="100"><li>barbie world</li></a>
+			      		<a class="z-depth-5 select-channel" data-playlist="galactic"><li><i class="fa fa-music" aria-hidden="true"></i> Galactic</li></a>
+			      		<a class="z-depth-5 select-channel" data-playlist="late-bloomer"><li><i class="fa fa-music" aria-hidden="true"></i> late bloomer</li></a>
+			      		<a class="z-depth-5 select-channel" data-playlist="hype"  data-limit="100"><li><i class="fa fa-music" aria-hidden="true"></i> Hype tho</li></a>
 			      	</ul>
+			      	<a href="#" target="_blank" id="trackInfoContainer" class="white-text" style="opacity: 0.3; letter-spacing: 1px;"></a>
+			      	<p id="pausePlayButton" class="white-text" style="font-size: 20px;"><i class="fa fa-pause-circle" aria-hidden="true"></i>
 			      </div>
 			    </div>
 			    <div class="row">
@@ -43,9 +43,6 @@
 			      	<strong class="white-text">GPM: <span id="gpmContainer">🔥 🔥 🔥</span></strong>
 				      <input type="range" id="gpmRange" min="300" max="3000" />
 				    </p>
-			      </div>
-			      <div class="col s12 m6 offset-m3 hide-on-med-and-down">
-			      	<a class="waves-effect waves-light btn" href="#editorModal">Launch editor</a>
 			      </div>
 			    </div>
 			    <div class="fixed-action-btn click-to-toggle hide-on-med-and-down">
@@ -79,6 +76,9 @@
 			</div>
 			<div class="giphy-badge"><a style="border-bottom: none;" href="http://www.giphy.com" target="_blank"><img src="images/Poweredby_100px-Black_VertLogo.png"></a></div>
 			<div class="static" id="staticContainer"></div>
+			<div id="soundcloudContainer" class="soundcloud-player">
+				<iframe id="sc-widget" width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/miles-gilbert-2/sets/test&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_artwork=false&amp;show_playcount=false&amp;buying=false&amp;show_user=false&amp;show_reposts=false&amp;liking=false&amp;download=false&amp;visual=false"></iframe>
+			</div>
 		  </div>
 		  <div class="fixed-action-btn hide-on-large-only hide" id="iphoneUiButton">
 			    <a class="btn-floating btn-large red">
@@ -128,8 +128,9 @@
 		<script src="js/giphysearch.js"></script>
 		<script src="js/gifdisplay.js"></script>
 		<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
-		<script src="js/music.js"></script>
+		<script src="js/sc-api.js"></script>
 		<script src="js/selects.js"></script>
+		<script src="js/music.js"></script>
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

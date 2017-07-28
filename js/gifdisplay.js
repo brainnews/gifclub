@@ -4,11 +4,13 @@ var hasStarted = false;
 var recording = false;
 var playback = false;
 var gpm = 1400;
-var clearRate = 3;
+var clearRate = 10000;
 var numResults;
+var gifStreamTimeout;
+var clearGifsTimeout;
 
 function StartGifStream() {
-	setTimeout(function(){
+	gifStreamTimeout = setTimeout(function(){
 		ShowGif();
 	}, gpm);
 }
@@ -24,13 +26,11 @@ function CheckPlaybackStatus() {
 }
 
 function ClearGifsByInterval () {
-	setTimeout(function(){
+	clearGifsTimeout = setTimeout(function(){
     	popupGridWrapper.innerHTML = emptyPopupGrid;
     	ClearGifsByInterval();
-    }, gpm * clearRate);
+    }, clearRate);
 }
-
-ClearGifsByInterval();
 
 function ShowStatic() {
 	var randomNum = Math.floor((Math.random() * staticSearchLimit) + 1);
@@ -62,7 +62,9 @@ function ShowGif() {
 				randomPopup.innerHTML = '<img class="z-depth-' + randomDepth +'" src="' + channelgifPopup + '" width="100%" />';
 			}
 		} else {
-			var largeGIF = channelgifs.data[randomNum].images.original_mp4.mp4;
+			if (channelgifs.data[randomNum].images.original_mp4.mp4) {
+				var largeGIF = channelgifs.data[randomNum].images.original_mp4.mp4;
+			}
 			var smallGIF = channelgifPopup = channelgifs.data[randomNum2].images.preview.mp4;
 			if (largeGIF) {
 				channelgif = largeGIF;
