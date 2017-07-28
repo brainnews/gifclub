@@ -4,11 +4,21 @@ var selects = {
 		"gpm": 400,
 		"timeline": {
 			"00:00:00": "screaming",
-        	"00:00:15": "dunk",
-        	"00:03:18": "drifting",
-        	"00:05:00": "workout",
-        	"00:07:00": "explosions",
-        	"00:11:06": "fast and furious"
+        	"00:00:15": "fire burn",
+        	"00:00:56": "make it rain",
+        	"00:01:22": "workout",
+        	"00:02:42": "ghost whip #15",
+        	"00:04:02": "funeral #10",
+        	"00:04:30": "cooking",
+        	"00:05:10": "drunk vintage",
+        	"00:06:43": "bad trip #40",
+        	"00:07:48": "swag old people #40",
+        	"00:08:44": "swag kid #20",
+        	"00:09:10": "squad",
+        	"00:12:34": "rihanna",
+        	"00:13:54": "420",
+        	"00:14:31": "dance black and white",
+        	"00:15:24": "explosions",
 		}
 	},
 	"cute": {

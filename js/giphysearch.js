@@ -2,7 +2,7 @@ var channelgifs;
 var preHTML = '<img src="';
 var postHTML = '" />';
 var gifIndex = 0;
-var searchLimit = 100;
+var searchLimit = 50;
 var staticGifs;
 var staticSearchLimit = 30;
 
@@ -11,14 +11,36 @@ var trendingUrl = 'https://api.giphy.com/v1/gifs/trending?api_key=' + config + '
 var searchUrlPost = '&api_key=' + config + '&limit=';
 
 function GetGifs(q) {
-	$.ajax({
-	  url: searchUrlPre + q + searchUrlPost + searchLimit,
-	  type: 'GET',
-	  success: function(data) {
-		channelgifs = data;
-		StartGifStream();
-	  }
-	});
+	if (q.includes('#')) {
+		var queryWithLimit = q.split('#');
+		$.ajax({
+		  	url: searchUrlPre + queryWithLimit[0] + searchUrlPost + queryWithLimit[1],
+		  	type: 'GET',
+		  	success: function(data) {
+				channelgifs = data;
+				StartGifStream();
+		  	}
+		});
+	} else {
+		$.ajax({
+		  	url: searchUrlPre + q + searchUrlPost + searchLimit,
+		  	type: 'GET',
+		  	success: function(data) {
+				channelgifs = data;
+				console.log(data);
+				StartGifStream();
+		  	}
+		});
+	}
+
+	// $.ajax({
+	//   url: searchUrlPre + q + searchUrlPost + searchLimit,
+	//   type: 'GET',
+	//   success: function(data) {
+	// 	channelgifs = data;
+	// 	StartGifStream();
+	//   }
+	// });
 	if (!hasStarted) {
         $(staticContainer).css('background-image', 'url(images/static.gif)');
     }
