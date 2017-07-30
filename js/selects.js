@@ -14,7 +14,7 @@ var selects = {
         	"00:06:43": "bad trip #40",
         	"00:07:48": "swag old people #40",
         	"00:08:44": "swag kid #20",
-        	"00:09:10": "squad",
+        	"00:09:10": "squad goals",
         	"00:12:34": "rihanna",
         	"00:13:54": "420",
         	"00:14:31": "dance black and white",

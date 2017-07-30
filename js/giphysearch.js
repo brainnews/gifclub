@@ -84,7 +84,8 @@ $(searchButton).click(function(){
 
 function CustomSearch() {
 	ToggleUI();
-	ResetMusic();
+	//ResetMusic();
+	StopSelectsVisuals();
 
 	var query = giphySearch.value;
 	var customSearchLimit;

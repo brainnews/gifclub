@@ -62,7 +62,9 @@ function ShowGif() {
 				randomPopup.innerHTML = '<img class="z-depth-' + randomDepth +'" src="' + channelgifPopup + '" width="100%" />';
 			}
 		} else {
-			if (channelgifs.data[randomNum].images.original_mp4.mp4) {
+			if (typeof(channelgifs.data[randomNum].images.original_mp4) == 'undefined') {
+				var largeGIF = 'images/static.gif';
+			} else {
 				var largeGIF = channelgifs.data[randomNum].images.original_mp4.mp4;
 			}
 			var smallGIF = channelgifPopup = channelgifs.data[randomNum2].images.preview.mp4;

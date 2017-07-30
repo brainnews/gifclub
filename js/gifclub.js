@@ -135,12 +135,14 @@ var paused = false
 
 $(pausePlayButton).click(function(){
     if (!paused) {
-        widget.pause();
-        $(this).html('<i class="fa fa-play-circle" aria-hidden="true"></i>');
+        widget.setVolume(0);
+        $(this).removeClass('fa-volume-up');
+        $(this).addClass('fa-volume-off');
         paused = true;
     } else {
-        widget.play();
-        $(this).html('<i class="fa fa-pause-circle" aria-hidden="true"></i>');
+        widget.setVolume(100);
+        $(this).removeClass('fa-volume-off');
+        $(this).addClass('fa-volume-up');
         paused = false;
     }
 });

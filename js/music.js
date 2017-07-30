@@ -118,6 +118,11 @@ function ResetMusic() {
 	millis = 0;
 }
 
+function StopSelectsVisuals() {
+	clearInterval(counter);
+	millis = 0;
+}
+
 if (duration == millis) {
 	widget.pause();
 }
