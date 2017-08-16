@@ -31,7 +31,7 @@
 			      		<!-- <a class="z-depth-5 mood-channel" id="trendingButton"><li>trendy</li></a> -->
 			      		<a class="z-depth-5 select-channel" data-playlist="galactic"><li><i class="fa fa-music hide-on-med-and-down" aria-hidden="true"></i> Galactic</li></a>
 			      		<a class="z-depth-5 select-channel" data-playlist="late-bloomer"><li><i class="fa fa-music hide-on-med-and-down" aria-hidden="true"></i> late bloomer</li></a>
-			      		<a class="z-depth-5 select-channel" data-playlist="hype"  data-limit="100"><li><i class="fa fa-music hide-on-med-and-down" aria-hidden="true"></i> Hype tho</li></a>
+			      		<a class="z-depth-5" href="#editorModal"><li><i class="fa fa-paint-brush hide-on-med-and-down" aria-hidden="true"></i> Create</li></a>
 			      	</ul>
 			      	<p class="white-text hide-on-med-and-down" style="opacity: 0.3; letter-spacing: 1px;"><a target="_blank" id="trackInfoContainer">Select an audio visual journey above</a> <i id="pausePlayButton" class="fa fa-volume-up" style="cursor: pointer;" aria-hidden="true"></i></p>
 			      </div>
@@ -40,7 +40,7 @@
 			      <div class="col s12 m6 offset-m3">
 			      	<p class="range-field">
 			      	<strong class="white-text">GPM: <span id="gpmContainer">🔥 🔥 🔥</span></strong>
-				      <input type="range" id="gpmRange" min="300" max="3000" />
+				      <input class="z-depth-5 white-dust-bg" type="range" id="gpmRange" min="300" max="3000" />
 				    </p>
 			      </div>
 			    </div>
@@ -94,12 +94,49 @@
 		  </div>
 
 		  <!-- Modal Structure -->
-		  <div id="editorModal" class="modal bottom-sheet">
-		    <div class="modal-content modal-content-waveform" id="waveformContainer">
-		    	<input id="soundCloudSearch" style="width: 300px;" class="input-small" type="text" placeholder="Enter SoundCloud URL" name="soundcloud-search">
-		    </div>
-		    <div class="modal-footer">
-		      <a href="#!" class="modal-action modal-close waves-effect btn-flat">Agree</a>
+		  <div id="editorModal" class="modal">
+		    <div class="modal-content">
+		    	<div class="row">
+			      	<div class="col s12">
+			    		<h5>Create a mood</h5>
+			    	</div>
+			    </div>
+		    	<div class="row">
+		    		<div class="col s8 left-align">
+			    		<div class="input-field" id="loadedTrackInfoContainer">
+			           		<input id="soundCloudSearch" class="input-small" type="text" placeholder="SoundCloud URL" name="soundcloud-search">
+			          	</div>
+						<!-- <p id="loadedTrackInfoContainer">Track Title by Artist</p> -->
+			        </div>
+			        <div class="col s4 right-align">
+			        	<a id="loadTrackButton" class="waves-effect waves-light btn">Load</a>
+						<!-- <p id="trackTimecode">00:00:00</p> -->
+			        </div>
+		    	</div>
+		    	<div class="row">
+			      	<div class="col s12">
+						<input type="range" id="trackScrubber" min="0" max="100" />
+			        </div>
+		    	</div>
+		    	<div class="row">
+			      	<div class="col s12">
+					    <table>
+					        <thead>
+					          <tr class="editor-table">
+					              <th>GIPHY search</th>
+					              <th>Time</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+					          <tr>
+					            <td><input class="input-small" type="text" placeholder="HH:MM:SS"></td>
+					            <td><input class="input-small" type="text" placeholder="cute, black and white, etc"></td>
+					          </tr>
+					        </tbody>
+			      		</table>
+			      	</div>
+			    </div>
 		    </div>
 		  </div>
 		</div>

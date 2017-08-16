@@ -1,6 +1,6 @@
 var selects = {
 	"hype": {
-		"playlist": ["https://soundcloud.com/dj-dav-8/workout-motivation-rap-trap-mix-by-dj-dav?in=nathaxn/sets/sport-mood"],
+		"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club"],
 		"gpm": 400,
 		"timeline": {
 			"00:00:00": "screaming",

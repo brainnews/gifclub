@@ -182,7 +182,7 @@ gpmRange.value = 1400;
 
 $(gpmRange).change(function(){
     gpm = gpmRange.value;
-})
+});
 
 $(gpmRange).on('input', function () {
     var currentGpmRange = gpmRange.value;

@@ -5,10 +5,17 @@ var counter = null;
 var isPaused = true;
 var trackInfoContainer = document.getElementById('trackInfoContainer');
 var soundCloudSearch = document.getElementById('soundCloudSearch');
+var loadedTrackInfoContainer = document.getElementById('loadedTrackInfoContainer');
+var loadTrackButton = document.getElementById('loadTrackButton');
+var editLoadedTrackButton;
 var clientId = 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x';
 var playlistTracks = [];
 var currentTrackNum = 0;
 var ended;
+var editorLoaded = null;
+var loadedTrackUrl;
+var trackScrubber = document.getElementById('trackScrubber');
+var msDuration;
 
 // SC.initialize({
 // 	client_id: 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x'
@@ -26,40 +33,60 @@ widget.bind(SC.Widget.Events.READY, function() {
 			var title = currentSound.title;
 			var artist = currentSound.user.username;
 			var url = currentSound.permalink_url;
-			$(trackInfoContainer).attr("href", url);
-			if (title.length > maxLength) {
-				var truncatedTitle = title.substring(0, maxLength);
-				$(trackInfoContainer).html("Now playing: " + truncatedTitle + "... by " + artist);
+
+			if (editorLoaded) {
+				$(loadedTrackInfoContainer).html("<p>" + title + " by " + artist + "</p>");
+				$(loadTrackButton).html("Edit");
 			} else {
-				$(trackInfoContainer).html("Now playing: " + title + " by " + artist);
+				$(trackInfoContainer).attr("href", url);
+				if (title.length > maxLength) {
+					var truncatedTitle = title.substring(0, maxLength);
+					$(trackInfoContainer).html("Now playing: " + truncatedTitle + "... by " + artist);
+				} else {
+					$(trackInfoContainer).html("Now playing: " + title + " by " + artist);
+				}
 			}
 		});
 		widget.getDuration(function(duration) {
-			console.log("Song duration: " + duration);
-		});
-		widget.getSounds(function(sounds) {
-			playlistLength = sounds.length;
-
-			if (playlistLength > 1) {
-				console.log("Playlist loaded.");
-			} else {
-				console.log("Single track loaded.");
-			}
+			msDuration = duration;
 		});
 	});
 	widget.bind(SC.Widget.Events.FINISH, function() {
 		console.log("Track finished");
-	}); 
+	});
+	widget.bind(SC.Widget.Events.PLAY_PROGRESS, function() {
+		widget.getPosition(function(position) {
+			var trackProgress = msToPercent(position, msDuration);
+			$(trackScrubber).val(trackProgress);
+		});
+	});
 });
 
 $(soundCloudSearch).keydown(function( event ) {
 	if ( event.which == 13 ) {
-	   LoadTrackForEditor(soundCloudSearch.value);
+	   	FetchTrackForEditor();
 	}
 });
 
+$(loadTrackButton).click(function() {
+	FetchTrackForEditor();
+});
+
+function FetchTrackForEditor(){
+	if (!editorLoaded) {
+		$(loadTrackButton).html("Loading");
+		LoadTrackForEditor(soundCloudSearch.value);
+		editorLoaded = true;
+	} else if (editorLoaded) {
+		$(loadTrackButton).html("Load");
+		$(loadedTrackInfoContainer).html('<input id="soundCloudSearch" class="input-small" type="text" placeholder="SoundCloud URL" name="soundcloud-search">');
+		editorLoaded = false;
+	}
+}
+
 function LoadSoundToWidget (q, t, g) {
 	// var q = musicSearch.value;
+	editorLoaded = false;
 	widget.load(q, {
 		"auto_play": "true",
 		"buying": "false",
@@ -77,12 +104,18 @@ function LoadSoundToWidget (q, t, g) {
 }
 
 function LoadTrackForEditor (q) {
-	$.get(
-	  'http://api.soundcloud.com/resolve.json?url=' + q + '&client_id=' + clientId, 
-	  	function (result) {
-	  		console.log(result);
-	  	}
-	);
+	editorLoaded = true;
+	widget.load(q, {
+		"auto_play": "false",
+		"buying": "false",
+		"liking": "false",
+		"download": "false",
+		"sharing": "false",
+		"show_artwork": "false",
+		"show_comments": "false",
+		"show_playcount": "false",
+		"show_user": "false"
+	});
 }
 
 function ResolvePlaylist(url) {
@@ -126,3 +159,25 @@ function StopSelectsVisuals() {
 if (duration == millis) {
 	widget.pause();
 }
+
+function msToTime(duration) {
+    var seconds = parseInt((duration/1000)%60)
+        , minutes = parseInt((duration/(1000*60))%60)
+        , hours = parseInt((duration/(1000*60*60))%24);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds;
+}
+
+function msToPercent(milliseconds, duration) {
+	return ((milliseconds/duration) * 100);
+}
+
+$(trackScrubber).on('input', function (){
+	var seekPosition = msDuration * (trackScrubber.value / 100);
+	console.log(trackScrubber.value);
+    widget.seekTo(seekPosition);
+});
