@@ -102,41 +102,40 @@
 			    	</div>
 			    </div>
 		    	<div class="row">
-		    		<div class="col s8 left-align">
-			    		<div class="input-field" id="loadedTrackInfoContainer">
-			           		<input id="soundCloudSearch" class="input-small" type="text" placeholder="SoundCloud URL" name="soundcloud-search">
+		    		<div class="col s12">
+			    		<div class="input-field" id="soundCloudSearchContainer">
+			           		<input id="soundCloudSearch" class="input-small" type="text" placeholder="Enter a SoundCloud URL (Track, Artist, or Playlist)" name="soundcloud-search">
 			          	</div>
-						<!-- <p id="loadedTrackInfoContainer">Track Title by Artist</p> -->
-			        </div>
-			        <div class="col s4 right-align">
-			        	<a id="loadTrackButton" class="waves-effect waves-light btn">Load</a>
-						<!-- <p id="trackTimecode">00:00:00</p> -->
+			          	<div id="loadedTrackInfoContainer" class="hide"></div>
 			        </div>
 		    	</div>
-		    	<div class="row">
-			      	<div class="col s12">
-						<input type="range" id="trackScrubber" min="0" max="100" step="0.1" />
-			        </div>
-		    	</div>
-		    	<div class="row">
-			      	<div class="col s12">
-					    <table>
-					        <thead>
-					          <tr class="editor-table">
-					              <th>GIPHY search</th>
-					              <th>Time</th>
-					          </tr>
-					        </thead>
-
-					        <tbody>
-					          <tr>
-					            <td><input class="input-small" type="text" placeholder="HH:MM:SS"></td>
-					            <td><input class="input-small" type="text" placeholder="cute, black and white, etc"></td>
-					          </tr>
-					        </tbody>
-			      		</table>
-			      	</div>
-			    </div>
+		    	<div id="trackControls" class="hide">
+			    	<div class="row">
+				      	<div class="col s12">
+							<input type="range" id="trackScrubber" value="0" min="0" max="100" step="0.1" />
+				        </div>
+			    	</div>
+			    	<div class="row">
+			    		<div class="col s12 center-align">
+			    			<i id="editorPlayPauseButton" class="fa fa-play fa-2x" aria-hidden="true" style="cursor: pointer;"></i>
+				        </div>
+			    	</div>
+			    	<div class="row">
+			    		<div class="col s2" id="timeCodeContainer">
+				        	<p class="time-code active-time-code">00:00:00</p>
+				        </div>
+			    		<div class="col s10">
+				    		<div class="input-field" id="">
+				           		<input id="editorGifSearch" class="input-small" type="text" placeholder="GIPHY Search" name="editor-giphy-search">
+				          	</div>
+				        </div>
+			    	</div>
+			    	<div class="row">
+			    		<div class="col s12 center-align">
+			    			<a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Search</a>
+			    		</div>
+			    	</div>
+			    </div>	
 		    </div>
 		  </div>
 		</div>

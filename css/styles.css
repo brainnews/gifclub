@@ -531,7 +531,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 6px;
 }
  
 ::-webkit-scrollbar-track {
@@ -616,4 +616,10 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #0c0c0c;
+}
+
+.avoid-clicks {
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: not-allowed;
 }

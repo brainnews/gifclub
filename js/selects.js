@@ -1,39 +1,4 @@
 var selects = {
-	"hype": {
-		"playlist": ["https://soundcloud.com/miles-gilbert-2/sets/hype-tho-visuals-thegif-club"],
-		"gpm": 400,
-		"timeline": {
-			"00:00:00": "screaming",
-        	"00:00:15": "fire burn",
-        	"00:00:56": "make it rain",
-        	"00:01:22": "workout",
-        	"00:02:42": "ghost whip #15",
-        	"00:04:02": "funeral #10",
-        	"00:04:30": "cooking",
-        	"00:05:10": "drunk vintage",
-        	"00:06:43": "bad trip #40",
-        	"00:07:48": "swag old people #40",
-        	"00:08:44": "swag kid #20",
-        	"00:09:10": "squad goals",
-        	"00:12:34": "rihanna",
-        	"00:13:54": "420",
-        	"00:14:31": "dance black and white",
-        	"00:15:24": "explosions",
-		}
-	},
-	"cute": {
-		"playlist": "http://soundcloud.com/miles-gilbert-2/sets/cute-visuals-thegif-club",
-		"duration": 634000,
-		"timeline": {
-			"00:00:00": "love cute",
-        	"00:00:24": "kiss",
-        	"00:00:50": "flirt",
-        	"00:01:17": "hug cute",
-        	"00:01:44": "love",
-        	"00:02:10": "cute",
-        	"00:02:22": "cute kiss",
-		}
-	},
 	"galactic": {
 		"playlist": "https://soundcloud.com/thunderstone-radio/gs5",
 		"gpm": 500,
