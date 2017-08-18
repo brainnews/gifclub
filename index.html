@@ -7,6 +7,7 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel = "stylesheet" type = "text/css" href = "css/magic.min.css" />
+		<link rel = "stylesheet" type = "text/css" href = "css/nouislider.css" />
 		<link rel = "stylesheet" type = "text/css" href = "css/styles.css" />
 		<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
 		<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
@@ -101,27 +102,36 @@
 			    		<h5>Create a mood</h5>
 			    	</div>
 			    </div>
-		    	<div class="row">
-		    		<div class="col s12">
-			    		<div class="input-field" id="soundCloudSearchContainer">
-			           		<input id="soundCloudSearch" class="input-small" type="text" placeholder="Enter a SoundCloud URL (Track, Artist, or Playlist)" name="soundcloud-search">
-			          	</div>
-			          	<div id="loadedTrackInfoContainer" class="hide"></div>
-			        </div>
-		    	</div>
-		    	<div id="trackControls" class="hide">
-			    	<div class="row">
-				      	<div class="col s12">
-							<input type="range" id="trackScrubber" value="0" min="0" max="100" step="0.1" />
+			    <div class="mb-40" id="editorPlayer">
+			    	<div class="row mb-0">
+			    		<div class="editor-input col s12">
+				    		<div class="input-field" id="soundCloudSearchContainer">
+				           		<input id="soundCloudSearch" class="input-small" type="text" placeholder="Enter a SoundCloud URL (Track, Artist, or Playlist)" name="soundcloud-search">
+				          	</div>
+				          	<div id="loadedTrackInfoContainer" class="hide"></div>
 				        </div>
 			    	</div>
 			    	<div class="row">
-			    		<div class="col s12 center-align">
+			    		<div class="col s12 track-controls hide">
+			    			<div id="trackScrubber"></div>
+				        	<!-- <input type="range" id="trackScrubber" value="0" min="0" max="100" step="0.1"> -->
+				        </div>
+			    	</div>
+			    	<div class="row valign-wrapper">
+			    		<div class="col s2 track-controls hide">
+				        	<p class="time-code active-time-code"></p>
+				        </div>
+			    		<div class="col s8 track-controls hide center-align">
 			    			<i id="editorPlayPauseButton" class="fa fa-play fa-2x" aria-hidden="true" style="cursor: pointer;"></i>
 				        </div>
+				        <div class="col s2 track-controls hide right-align">
+				        	<p id="trackDurationContainer"></p>
+				        </div>
 			    	</div>
+			    </div>
+		    	<div class="hide track-controls">
 			    	<div class="row">
-			    		<div class="col s2" id="timeCodeContainer">
+			    		<div class="col s2">
 				        	<p class="time-code active-time-code">00:00:00</p>
 				        </div>
 			    		<div class="col s10">
@@ -158,6 +168,7 @@
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/platform-detection.js"></script>
 		<script src="js/jquery.timer.js"></script>
+		<script src="js/nouislider.js"></script>
 		<script src="js/config.js"></script>
 		<script src="js/gifclub.js"></script>
 		<script src="js/giphysearch.js"></script>

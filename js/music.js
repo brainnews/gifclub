@@ -16,16 +16,26 @@ var ended;
 var editorLoaded = null;
 var userStarted = false;
 var loadedTrackUrl;
-var trackScrubber = document.getElementById('trackScrubber');
+//var trackScrubber = document.getElementById('trackScrubber');
 var editorGifSearch = document.getElementById('editorGifSearch');
 var msDuration;
 var gifSearchTimecode;
 var editorArray = [];
 var editorPlayPauseButton = document.getElementById('editorPlayPauseButton');
-var trackControls = document.getElementById('trackControls');
 var soundCloudSearchContainer = document.getElementById('soundCloudSearchContainer');
+var trackDurationContainer = document.getElementById('trackDurationContainer');
 
 var trackInputHtml = "<input id='soundCloudSearch' class='input-small' type='text' placeholder='Enter a SoundCloud URL (Track, Artist, or Playlist)' name='soundcloud-search'>";
+
+var slider = document.getElementById('trackScrubber');
+	noUiSlider.create(slider, {
+	start: [0],
+	connect: [true, false],
+	range: {
+	 'min': 0,
+	 'max': 100
+	}
+});
 
 // SC.initialize({
 // 	client_id: 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x'
@@ -44,7 +54,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 			var url = currentSound.permalink_url;
 
 			if (editorLoaded) {
-				$(loadedTrackInfoContainer).html("<p>" + title + " by " + artist + " <i onclick='ClearEditorTrack();' class='fa fa-pencil' aria-hidden='true' style='cursor: pointer; margin-left: 5px;'></i></p>");
+				$(loadedTrackInfoContainer).html("<p><strong><a href='" + url + "' target='_blank'>" + title + "</a></strong> by " + artist + " <span onclick='ClearEditorTrack();' class='right edit-track-button' style='cursor: pointer;'>Edit track</span></p>");
 
 			} else {
 				$(trackInfoContainer).attr("href", url);
@@ -58,6 +68,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 		});
 		widget.getDuration(function(duration) {
 			msDuration = duration;
+			$(trackDurationContainer).html(msToTime(msDuration));
 		});
 		if (!userStarted) {
 			widget.seekTo(0);
@@ -74,7 +85,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 			gifSearchTimecode = msToTime(position);
 			$('.active-time-code').html(gifSearchTimecode);
 			var trackProgress = msToPercent(position, msDuration);
-			$(trackScrubber).val(trackProgress);
+			slider.noUiSlider.set(trackProgress);
 		});
 	});
 });
@@ -85,13 +96,17 @@ $(soundCloudSearch).keydown(function( event ) {
 	}
 });
 
+function TogglePlayerControls(){
+	$(soundCloudSearchContainer).toggleClass("hide");
+	$(loadedTrackInfoContainer).toggleClass("hide").html("<p class='center-align'><i class='fa fa-spinner fa-spin' aria-hidden='true'></i></p>");
+	$('.track-controls').toggleClass("hide");
+	$('#editorPlayer').toggleClass("editor-player");
+}
 
 function FetchTrackForEditor(){
 	editorLoaded = true;
-	$(soundCloudSearchContainer).toggleClass("hide");
-	$(loadedTrackInfoContainer).toggleClass("hide").html("<p>Loading</p>");
+	TogglePlayerControls();
 	LoadTrackForEditor(soundCloudSearch.value);
-	$(trackControls).toggleClass("hide");
 }
 
 function LoadSoundToWidget (q, t, g) {
@@ -186,10 +201,16 @@ function msToPercent(milliseconds, duration) {
 	return ((milliseconds/duration) * 100);
 }
 
-$(trackScrubber).on('input', function (){
-	var seekPosition = msDuration * (trackScrubber.value / 100);
-	console.log(trackScrubber.value);
-    widget.seekTo(seekPosition);
+// $(trackScrubber).on('input', function (){
+// 	var seekPosition = msDuration * (trackScrubber.value / 100);
+// 	console.log(trackScrubber.value);
+//     widget.seekTo(seekPosition);
+// });
+
+slider.noUiSlider.on('slide', function(){
+	var seekPosition = slider.noUiSlider.get();
+	var seekPercentage = msDuration * (seekPosition / 100);
+    widget.seekTo(seekPercentage);
 });
 
 $(editorGifSearch).focus(function(){
@@ -221,8 +242,6 @@ function ClearEditorTrack(){
 	playing = false;
 	widget.pause();
 	$(editorPlayPauseButton).removeClass('fa-pause').addClass('fa-play');
-	$(loadedTrackInfoContainer).toggleClass("hide");
-	$(soundCloudSearchContainer).toggleClass("hide");
-	$(trackControls).toggleClass("hide");
+	TogglePlayerControls();
 	soundCloudSearch = document.getElementById('soundCloudSearch');
 }

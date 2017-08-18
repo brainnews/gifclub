@@ -418,6 +418,10 @@ ul:not(.browser-default) {
 
 /* HELPERS */
 
+.mb-0 {
+  margin-bottom: 0px;
+}
+
 .mb-10 {
 	margin-bottom: 10px;
 }
@@ -473,6 +477,8 @@ input[type='range']::-webkit-slider-thumb {
 .modal {
   background-color: #0c0c0c;
   color: #fff;
+  width: 70%;
+  max-height: 80%;
 }
 
 .modal-content-waveform {
@@ -556,30 +562,30 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 30px;
   cursor: pointer;
-  background: #111;
+  background: #6552F1;
 }
 input[type=range]::-webkit-slider-thumb {
   height: 30px;
   width: 4px;
-  background: #0089ec;
+  background: #fff;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: 0px;
   border-radius: 0px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #111;
+  background: #6552F1;
 }
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 30px;
   cursor: pointer;
-  background: #0c0c0c;
+  background: #6552F1;
 }
 input[type=range]::-moz-range-thumb {
   height: 25px;
   width: 4px;
-  background: #0089ec;
+  background: #fff;
   cursor: pointer;
 }
 input[type=range]::-ms-track {
@@ -612,14 +618,34 @@ input[type=range]::-ms-thumb {
   height: 25px;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #0c0c0c;
+  background: #6552F1;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #0c0c0c;
+  background: #6552F1;
 }
 
 .avoid-clicks {
   opacity: 0.3;
   pointer-events: none;
   cursor: not-allowed;
+}
+
+.editor-player {
+  padding: 5px 15px;
+  background-color: #4431D3;
+  border-radius: 2px;
+}
+
+.edit-track-button {
+    cursor: pointer;
+    background-color: #c33167;
+    padding: 2px 7px 0px 8px;
+    border-radius: 2px;
+}
+
+.edit-track-button:hover {
+    cursor: pointer;
+    background-color: #222;
+    padding: 2px 7px 0px 8px;
+    border-radius: 2px;
 }
