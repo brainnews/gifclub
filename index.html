@@ -32,7 +32,7 @@
 			      		<!-- <a class="z-depth-5 mood-channel" id="trendingButton"><li>trendy</li></a> -->
 			      		<a class="z-depth-5 select-channel" data-playlist="galactic"><li><i class="fa fa-music hide-on-med-and-down" aria-hidden="true"></i> Galactic</li></a>
 			      		<a class="z-depth-5 select-channel" data-playlist="late-bloomer"><li><i class="fa fa-music hide-on-med-and-down" aria-hidden="true"></i> late bloomer</li></a>
-			      		<a class="z-depth-5" href="#editorModal"><li><i class="fa fa-paint-brush hide-on-med-and-down" aria-hidden="true"></i> Create</li></a>
+			      		<a onclick="ToggleUI();" class="z-depth-5" href="#editorModal"><li><i class="fa fa-paint-brush hide-on-med-and-down" aria-hidden="true"></i> Create</li></a>
 			      	</ul>
 			      	<p class="white-text hide-on-med-and-down" style="opacity: 0.3; letter-spacing: 1px;"><a target="_blank" id="trackInfoContainer">Select an audio visual journey above</a> <i id="pausePlayButton" class="fa fa-volume-up" style="cursor: pointer;" aria-hidden="true"></i></p>
 			      </div>
@@ -95,57 +95,40 @@
 		  </div>
 
 		  <!-- Modal Structure -->
-		  <div id="editorModal" class="modal">
+		  <div id="editorModal" class="modal bottom-sheet">
 		    <div class="modal-content">
-		    	<div class="row">
-			      	<div class="col s12">
-			    		<h5>Create a mood</h5>
-			    	</div>
-			    </div>
-			    <div class="mb-40" id="editorPlayer">
-			    	<div class="row mb-0">
-			    		<div class="editor-input col s12">
+		    	<div class="row mb-0">
+		    		<div class="col s4 offset-s3 track-controls invisible">
+		    			<ul class="list-inline">
+			        		<li class="time-code active-time-code"></li>
+			        		<li id="trackDurationContainer"></li>
+			        		<li><i id="editorPlayPauseButton" class="fa fa-play ml-10" aria-hidden="true" style="cursor: pointer;"></i></li>
+			        	</ul>
+			        </div>
+		    	</div>
+		    	<div id="editorPlayer">
+			    	<div class="row valign-wrapper">
+			    		<div class="editor-input col s3 ml-0">
 				    		<div class="input-field" id="soundCloudSearchContainer">
-				           		<input id="soundCloudSearch" class="input-small" type="text" placeholder="Enter a SoundCloud URL (Track, Artist, or Playlist)" name="soundcloud-search">
+				           		<input id="soundCloudSearch" class="input-small" type="text" placeholder="SoundCloud URL" name="soundcloud-search">
+				           		<label for="soundcloud-search">Sound</label>
 				          	</div>
 				          	<div id="loadedTrackInfoContainer" class="hide"></div>
 				        </div>
-			    	</div>
-			    	<div class="row">
-			    		<div class="col s12 track-controls hide">
-			    			<div id="trackScrubber"></div>
-				        	<!-- <input type="range" id="trackScrubber" value="0" min="0" max="100" step="0.1"> -->
+				        <div class="col s9">
+			    			<div id="trackScrubber">
+			    				<div id="scrubberButtonContainer">
+			    					<i id="scrubberButton" class="fa fa-file-image-o"></i>
+			    					<div id="scrubberInputContainer" class="input-field hide">
+						           		<input id="scrubberInput" class="input-small scrubber-input" type="text" placeholder="Search GIPHY">
+						           		<div class="input-close"><i class="fa fa-times-circle"></i>
+						          	</div>
+			    				</div>
+			    			</div>
+
 				        </div>
 			    	</div>
-			    	<div class="row valign-wrapper">
-			    		<div class="col s2 track-controls hide">
-				        	<p class="time-code active-time-code"></p>
-				        </div>
-			    		<div class="col s8 track-controls hide center-align">
-			    			<i id="editorPlayPauseButton" class="fa fa-play fa-2x" aria-hidden="true" style="cursor: pointer;"></i>
-				        </div>
-				        <div class="col s2 track-controls hide right-align">
-				        	<p id="trackDurationContainer"></p>
-				        </div>
-			    	</div>
-			    </div>
-		    	<div class="hide track-controls">
-			    	<div class="row">
-			    		<div class="col s2">
-				        	<p class="time-code active-time-code">00:00:00</p>
-				        </div>
-			    		<div class="col s10">
-				    		<div class="input-field" id="">
-				           		<input id="editorGifSearch" class="input-small" type="text" placeholder="GIPHY Search" name="editor-giphy-search">
-				          	</div>
-				        </div>
-			    	</div>
-			    	<div class="row">
-			    		<div class="col s12 center-align">
-			    			<a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Search</a>
-			    		</div>
-			    	</div>
-			    </div>	
+		    	</div>
 		    </div>
 		  </div>
 		</div>

@@ -24,6 +24,10 @@ var editorArray = [];
 var editorPlayPauseButton = document.getElementById('editorPlayPauseButton');
 var soundCloudSearchContainer = document.getElementById('soundCloudSearchContainer');
 var trackDurationContainer = document.getElementById('trackDurationContainer');
+var scrubberInputContainer = document.getElementById('scrubberInputContainer');
+var scrubberButton = document.getElementById('scrubberButton');
+var scrubberInput = document.getElementById('scrubberInput');
+var scrubberInputOpen = false;
 
 var trackInputHtml = "<input id='soundCloudSearch' class='input-small' type='text' placeholder='Enter a SoundCloud URL (Track, Artist, or Playlist)' name='soundcloud-search'>";
 
@@ -48,14 +52,19 @@ widget.bind(SC.Widget.Events.READY, function() {
 	widget.bind(SC.Widget.Events.PLAY, function() {
 		// get information about currently playing sound 
 		widget.getCurrentSound(function(currentSound) {
+			var art = currentSound.artwork_url;
 			var maxLength = 22;
 			var title = currentSound.title;
 			var artist = currentSound.user.username;
 			var url = currentSound.permalink_url;
 
 			if (editorLoaded) {
-				$(loadedTrackInfoContainer).html("<p><strong><a href='" + url + "' target='_blank'>" + title + "</a></strong> by " + artist + " <span onclick='ClearEditorTrack();' class='right edit-track-button' style='cursor: pointer;'>Edit track</span></p>");
-
+				$(loadedTrackInfoContainer).html(
+					'<div class="row valign-wrapper mb-0"><div class="col s4 pl-0"><img onclick="ClearEditorTrack();" src="' + art + '" class="circle responsive-img ml-0 track-art"></div><div class="col s8"><a class="truncate" href="' + title + '" target="_blank">' + title + '</a>' + artist + '</div></div>'
+					// "<img class='track-art circle' src='" + art + "'><strong><a href='" + url + "' target='_blank'>" + title + "</a></strong><br>by " + artist
+					);
+				// "<div onclick='ClearEditorTrack();' class='edit-track-button' style='cursor: pointer;'><i class='fa fa-pencil'></i></div>"
+				
 			} else {
 				$(trackInfoContainer).attr("href", url);
 				if (title.length > maxLength) {
@@ -68,25 +77,43 @@ widget.bind(SC.Widget.Events.READY, function() {
 		});
 		widget.getDuration(function(duration) {
 			msDuration = duration;
-			$(trackDurationContainer).html(msToTime(msDuration));
+			$(trackDurationContainer).html(" / " + msToTime(msDuration));
 		});
 		if (!userStarted) {
 			widget.seekTo(0);
 			widget.pause();
 		}
 	});
+
 	widget.bind(SC.Widget.Events.FINISH, function() {
 		console.log("Track finished");
 		playing = false;
 		$(editorPlayPauseButton).removeClass('fa-pause').addClass('fa-play');
 	});
+
 	widget.bind(SC.Widget.Events.PLAY_PROGRESS, function() {
 		widget.getPosition(function(position) {
 			gifSearchTimecode = msToTime(position);
 			$('.active-time-code').html(gifSearchTimecode);
 			var trackProgress = msToPercent(position, msDuration);
 			slider.noUiSlider.set(trackProgress);
+			if (trackProgress >= 80 && scrubberInputOpen == true) {
+				$(scrubberButtonContainer).css("margin-left", "-145px");
+			} else {
+				$(scrubberButtonContainer).css("margin-left", "-15px");
+			}
+			$(scrubberButtonContainer).css("left", trackProgress + "%");
 		});
+	});
+
+	widget.bind(SC.Widget.Events.PAUSE, function() {
+		playing = false;
+		$(editorPlayPauseButton).removeClass('fa-pause').addClass('fa-play');
+	});
+
+	widget.bind(SC.Widget.Events.PLAY, function() {
+		playing = true;
+		$(editorPlayPauseButton).removeClass('fa-play').addClass('fa-pause');
 	});
 });
 
@@ -99,7 +126,7 @@ $(soundCloudSearch).keydown(function( event ) {
 function TogglePlayerControls(){
 	$(soundCloudSearchContainer).toggleClass("hide");
 	$(loadedTrackInfoContainer).toggleClass("hide").html("<p class='center-align'><i class='fa fa-spinner fa-spin' aria-hidden='true'></i></p>");
-	$('.track-controls').toggleClass("hide");
+	$('.track-controls').toggleClass("invisible");
 	$('#editorPlayer').toggleClass("editor-player");
 }
 
@@ -194,7 +221,11 @@ function msToTime(duration) {
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-    return hours + ":" + minutes + ":" + seconds;
+    if (hours > 0) {
+    	return hours + ":" + minutes + ":" + seconds;
+    } else {
+    	return minutes + ":" + seconds;
+    }
 }
 
 function msToPercent(milliseconds, duration) {
@@ -226,12 +257,8 @@ $(editorGifSearch).keydown(function( event ) {
 $(editorPlayPauseButton).click(function(){
 	if(playing) {
 		widget.pause();
-		$(editorPlayPauseButton).removeClass('fa-pause').addClass('fa-play');
-		playing = false;
 	} else if (!playing) {
 		widget.play();
-		$(editorPlayPauseButton).removeClass('fa-play').addClass('fa-pause');
-		playing = true;
 		userStarted = true;
 	}
 });
@@ -241,7 +268,21 @@ function ClearEditorTrack(){
 	userStarted = false;
 	playing = false;
 	widget.pause();
-	$(editorPlayPauseButton).removeClass('fa-pause').addClass('fa-play');
 	TogglePlayerControls();
 	soundCloudSearch = document.getElementById('soundCloudSearch');
 }
+
+$(scrubberButton).click(function() {
+	scrubberInputOpen = true;
+	widget.pause();
+	$(scrubberButton).addClass('hide');
+	$(scrubberInputContainer).removeClass('hide');
+});
+
+$('.input-close').click(function() {
+	scrubberInputOpen = false;
+	widget.play();
+	$(scrubberInput).val('');
+	$(scrubberInputContainer).addClass('hide');
+	$(scrubberButton).removeClass('hide');
+});

@@ -75,7 +75,7 @@ function BlurSearch(){
 }
 
 function ToggleUI() {
-        $(uiContainer).fadeToggle(300);
+    $(uiContainer).fadeToggle(300);
 }
 
 $('.mood-channel').click(function() {

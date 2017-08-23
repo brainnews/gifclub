@@ -126,10 +126,6 @@ a {
   font-size: 12px;
 }
 
-ul:not(.browser-default) {
-    padding-left: 12px;
-    list-style-type: none;
-}
 
 .moods-container {
   margin-top: 40px;
@@ -280,7 +276,7 @@ ul:not(.browser-default) {
 }
 
 .input-field {
-  margin-top: 0px;
+  /*margin-top: 0px;*/
 }
 
 .limit-button {
@@ -434,6 +430,26 @@ ul:not(.browser-default) {
 	margin-bottom: 40px;
 }
 
+.ml-0 {
+  margin-left: 0px !important;
+}
+
+.ml-10 {
+  margin-left: 10px !important;
+}
+
+.mt-30 {
+  margin-top: 30px !important;
+}
+
+.pl-0 {
+  padding-left: 0px;
+}
+
+.invisible {
+  opacity: 0;
+}
+
 /*GPM SLIDER*/
 .thumb {
   visibility: hidden;
@@ -492,7 +508,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal.bottom-sheet {
-  height: 270px;
+  height: 240px;
 }
 
 .waveform-container {
@@ -630,11 +646,7 @@ input[type=range]:focus::-ms-fill-upper {
   cursor: not-allowed;
 }
 
-.editor-player {
-  padding: 5px 15px;
-  background-color: #4431D3;
-  border-radius: 2px;
-}
+
 
 .edit-track-button {
     cursor: pointer;
@@ -648,4 +660,62 @@ input[type=range]:focus::-ms-fill-upper {
     background-color: #222;
     padding: 2px 7px 0px 8px;
     border-radius: 2px;
+}
+
+.track-art {
+  cursor: pointer;
+}
+
+.track-art:hover {
+  border: 2px solid red;
+}
+
+.noUi-handle {
+    position: relative;
+}
+.noUi-inner {
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: -40px;
+    height: 100%;
+    text-align: center;
+    font: 400 11px/40px Arial;
+}
+.noUi-active:after {
+    display: none;
+}
+
+#trackScrubber {
+  position: relative;
+}
+
+#scrubberButtonContainer {
+  text-align: center;
+  padding: 5px 10px;
+  color: #0c0c0c;
+  position: absolute;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  top: 15px;
+  margin-left: -15px;
+  z-index: 999;
+}
+
+.scrubber-input, .scrubber-input:focus {
+  border-bottom: none !important;
+  height: 1rem !important;
+  box-shadow: none !important;
+}
+
+.input-close {
+  position: absolute;
+  right: 0px;
+  margin: -20px -4px;
+  cursor: pointer;
+}
+
+.input-close:hover {
+  color: #ef2358;
 }
