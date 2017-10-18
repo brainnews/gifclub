@@ -17,7 +17,6 @@ var editorLoaded = null;
 var userStarted = false;
 var loadedTrackUrl;
 //var trackScrubber = document.getElementById('trackScrubber');
-var editorGifSearch = document.getElementById('editorGifSearch');
 var msDuration;
 var gifSearchTimecode;
 var editorArray = [];
@@ -28,18 +27,36 @@ var scrubberInputContainer = document.getElementById('scrubberInputContainer');
 var scrubberButton = document.getElementById('scrubberButton');
 var scrubberInput = document.getElementById('scrubberInput');
 var scrubberInputOpen = false;
+var trackProgress;
 
 var trackInputHtml = "<input id='soundCloudSearch' class='input-small' type='text' placeholder='Enter a SoundCloud URL (Track, Artist, or Playlist)' name='soundcloud-search'>";
 
+var pipHtmlPre = '<div class="noUi-value noUi-value-horizontal noUi-value-large search-pip" style="left: ';
+
 var slider = document.getElementById('trackScrubber');
-	noUiSlider.create(slider, {
+
+noUiSlider.create(slider, {
 	start: [0],
 	connect: [true, false],
 	range: {
 	 'min': 0,
 	 'max': 100
+	},
+	pips: {
+		mode: 'positions',
+		values: [],
+		density: 4
 	}
 });
+
+var pips = slider.querySelector('.noUi-pips');
+
+var customTrack = {
+	"name": "Test",
+	"timeline": {
+
+	}
+};
 
 // SC.initialize({
 // 	client_id: 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x'
@@ -60,7 +77,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 
 			if (editorLoaded) {
 				$(loadedTrackInfoContainer).html(
-					'<div class="row valign-wrapper mb-0"><div class="col s4 pl-0"><img onclick="ClearEditorTrack();" src="' + art + '" class="circle responsive-img ml-0 track-art"></div><div class="col s8"><a class="truncate" href="' + title + '" target="_blank">' + title + '</a>' + artist + '</div></div>'
+					'<div class="row valign-wrapper mb-0"><div class="col s4 pl-0"><img onclick="ClearEditorTrack();" src="' + art + '" class="circle responsive-img ml-0 track-art"></div><div class="col s8"><a class="truncate" href="' + url + '" target="_blank">' + title + '</a>' + artist + '</div></div>'
 					// "<img class='track-art circle' src='" + art + "'><strong><a href='" + url + "' target='_blank'>" + title + "</a></strong><br>by " + artist
 					);
 				// "<div onclick='ClearEditorTrack();' class='edit-track-button' style='cursor: pointer;'><i class='fa fa-pencil'></i></div>"
@@ -95,7 +112,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 		widget.getPosition(function(position) {
 			gifSearchTimecode = msToTime(position);
 			$('.active-time-code').html(gifSearchTimecode);
-			var trackProgress = msToPercent(position, msDuration);
+			trackProgress = msToPercent(position, msDuration);
 			slider.noUiSlider.set(trackProgress);
 			if (trackProgress >= 80 && scrubberInputOpen == true) {
 				$(scrubberButtonContainer).css("margin-left", "-145px");
@@ -244,15 +261,6 @@ slider.noUiSlider.on('slide', function(){
     widget.seekTo(seekPercentage);
 });
 
-$(editorGifSearch).focus(function(){
-	console.log(gifSearchTimecode);
-});
-
-$(editorGifSearch).keydown(function( event ) {
-	if ( event.which == 13 ) {
-	   	PushVisualToArray(editorGifSearch.value, gifSearchTimecode);
-	}
-});
 
 $(editorPlayPauseButton).click(function(){
 	if(playing) {
@@ -280,9 +288,58 @@ $(scrubberButton).click(function() {
 });
 
 $('.input-close').click(function() {
+	CloseGifSearch();
+});
+
+$(scrubberInput).keydown(function( event ) {
+	if ( event.which == 13 ) {
+		var obj = {
+			'query': scrubberInput.value,
+			'bpm': 500
+		};
+		//create and populate the key value pair in timeline
+	   	customTrack.timeline[gifSearchTimecode] = obj;
+	   	$(pips).append(pipHtmlPre + trackProgress + '%;">' + scrubberInput.value + '</div>');
+	  	createDraggable();
+	   	CloseGifSearch();
+	}
+});
+
+function createDraggable() {
+	var recoupLeft, recoupTop;
+	var positionInPercent;
+	$('.search-pip').draggable({
+		addClasses: false,
+		axis: 'x',
+		containment: pips,
+		scroll: false,
+		cursor: 'ew-resize',
+		start: function (event, ui) {
+            var left = parseInt($(this).css('left'),10);
+            left = isNaN(left) ? 0 : left;
+            var top = parseInt($(this).css('top'),10);
+            top = isNaN(top) ? 0 : top;
+            recoupLeft = left - ui.position.left;
+            recoupTop = top - ui.position.top;
+        },
+        drag: function (event, ui) {
+            ui.position.left += recoupLeft;
+            ui.position.top += recoupTop;
+        },
+        stop: function (event, ui) {
+        	var q = $(this).html();
+        	positionInPercent = (ui.position.left / pips.offsetWidth) * 100;
+        	$(this).css('left', positionInPercent + '%');
+        	console.log(_.findKey(customTrack, { 'query': q }));
+        }
+	});
+}
+
+
+function CloseGifSearch(){
 	scrubberInputOpen = false;
 	widget.play();
 	$(scrubberInput).val('');
 	$(scrubberInputContainer).addClass('hide');
 	$(scrubberButton).removeClass('hide');
-});
+}

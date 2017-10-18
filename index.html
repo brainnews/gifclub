@@ -8,6 +8,8 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel = "stylesheet" type = "text/css" href = "css/magic.min.css" />
 		<link rel = "stylesheet" type = "text/css" href = "css/nouislider.css" />
+		<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" 
+         rel = "stylesheet">
 		<link rel = "stylesheet" type = "text/css" href = "css/styles.css" />
 		<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
 		<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
@@ -97,7 +99,6 @@
 		  <!-- Modal Structure -->
 		  <div id="editorModal" class="modal bottom-sheet">
 		    <div class="modal-content">
-		    	<h6>Create</h6>
 		    	<div class="row mb-0">
 		    		<div class="col s4 offset-s3 track-controls invisible">
 		    			<ul class="list-inline">
@@ -106,26 +107,35 @@
 			        		<li><i id="editorPlayPauseButton" class="fa fa-play ml-10" aria-hidden="true" style="cursor: pointer;"></i></li>
 			        	</ul>
 			        </div>
+			        <div class="col s2 right track-controls invisible right-align">
+			        	<a href="http://www.soundcloud.com"><img src="images/soundcloud-logo-white.png" class="responsive-img"></a>
+			        </div>
 		    	</div>
 		    	<div id="editorPlayer">
 			    	<div class="row valign-wrapper">
 			    		<div class="editor-input col s3 ml-0">
 				    		<div id="soundCloudSearchContainer">
-				           		<input id="soundCloudSearch" class="input-small" type="text" placeholder="SoundCloud URL" name="soundcloud-search">
+				    			<div class="row valign-wrapper mb-0">
+				    				<div class="col s4 pl-0">
+				    					<img src="images/editor-track-placeholder.png" class="circle responsive-img">
+				    				</div>
+				    				<div class="col s8">
+				    					<input id="soundCloudSearch" class="input-small editor-track-input" type="text" placeholder="SoundCloud URL" name="soundcloud-search">
+				    				</div>
+				    			</div>
 				          	</div>
 				          	<div id="loadedTrackInfoContainer" class="hide"></div>
 				        </div>
-				        <div class="col s9">
+				        <div class="col s9 track-controls invisible">
 			    			<div id="trackScrubber">
 			    				<div id="scrubberButtonContainer">
 			    					<i id="scrubberButton" class="fa fa-file-image-o"></i>
 			    					<div id="scrubberInputContainer" class="input-field hide">
 						           		<input id="scrubberInput" class="input-small scrubber-input" type="text" placeholder="Search GIPHY">
-						           		<div class="input-close"><i class="fa fa-times-circle"></i>
+						           		<div class="input-close"><i class="fa fa-times-circle"></i></div>
 						          	</div>
 			    				</div>
 			    			</div>
-
 				        </div>
 			    	</div>
 		    	</div>
@@ -146,6 +156,8 @@
 		  firebase.initializeApp(config);
 		</script>
 		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
 		<script src="js/jquery.cookie.js"></script>

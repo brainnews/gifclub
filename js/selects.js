@@ -3,7 +3,7 @@ var selects = {
 		"playlist": "https://soundcloud.com/thunderstone-radio/gs5",
 		"gpm": 500,
 		"timeline": {
-			"00:00:00": "trippy space stars",
+		"00:00:00": "trippy space stars",
         	"00:02:00": "space planets",
         	"00:02:40": "lizard",
         	"00:04:00": "art fubiz",

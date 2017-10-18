@@ -448,6 +448,8 @@ a {
 
 .invisible {
   opacity: 0;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 /*GPM SLIDER*/
@@ -709,6 +711,15 @@ input[type=range]:focus::-ms-fill-upper {
   box-shadow: none !important;
 }
 
+.editor-track-input, .editor-track-input:focus {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: #222 !important;
+  padding: 0px 10px !important;
+  border-radius: 2px !important;
+  color: #fff !important;
+}
+
 .input-close {
   position: absolute;
   right: 0px;
@@ -718,4 +729,18 @@ input[type=range]:focus::-ms-fill-upper {
 
 .input-close:hover {
   color: #ef2358;
+}
+
+.search-pip {
+  font-size: 12px;
+  transform-origin: left;
+  transform: rotate(90deg);
+  margin-top: -11px;
+  text-align: left;
+  cursor: ew-resize;
+}
+
+.noUi-marker {
+  background: #222;
+    margin-top: -75px;
 }
