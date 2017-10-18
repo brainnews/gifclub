@@ -330,11 +330,11 @@ function createDraggable() {
         	var q = $(this).html();
         	positionInPercent = (ui.position.left / pips.offsetWidth) * 100;
         	$(this).css('left', positionInPercent + '%');
-        	console.log(_.findKey(customTrack, { 'query': q }));
+        	var newTimecode = msToTime(msDuration * (positionInPercent / 100));
+        	
         }
 	});
 }
-
 
 function CloseGifSearch(){
 	scrubberInputOpen = false;

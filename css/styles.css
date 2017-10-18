@@ -735,9 +735,12 @@ input[type=range]:focus::-ms-fill-upper {
   font-size: 12px;
   transform-origin: left;
   transform: rotate(90deg);
-  margin-top: -11px;
+  margin-top: -19px;
   text-align: left;
   cursor: ew-resize;
+  background-color: #292929;
+  padding: 0px 5px;
+  border-radius: 0 2px 2px 0;
 }
 
 .noUi-marker {
