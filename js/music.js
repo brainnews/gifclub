@@ -126,6 +126,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 			}
 			$(scrubberButtonContainer).css("left", trackProgress + "%");
 
+			//play current gif for anything less than the milliseconds of the next one
 			for (x in timeline) {
 		    	if (x == trackMillis) {
 		    		console.log("Search: " + timeline[x]);
@@ -335,6 +336,11 @@ function createDraggable() {
 	var positionInPercent;
 	var currentMillis;
 	var newMillis;
+	var elHeight = $(this).height();
+	$('search-pip').resizable({
+		maxHeight: elHeight,
+      	minHeight: elHeight
+	});
 	$('.search-pip').draggable({
 		addClasses: false,
 		axis: 'x',
