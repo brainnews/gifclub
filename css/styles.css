@@ -493,7 +493,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal {
-  background-color: #0c0c0c;
+  background-color: rgba(0,0,0,0.95);
   color: #fff;
   width: 70%;
   max-height: 80%;

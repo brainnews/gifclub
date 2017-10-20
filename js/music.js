@@ -28,6 +28,8 @@ var scrubberButton = document.getElementById('scrubberButton');
 var scrubberInput = document.getElementById('scrubberInput');
 var scrubberInputOpen = false;
 var trackProgress;
+var trackMillis;
+var previewTimelineButton = document.getElementById("previewTimelineButton");
 
 var trackInputHtml = "<input id='soundCloudSearch' class='input-small' type='text' placeholder='Enter a SoundCloud URL (Track, Artist, or Playlist)' name='soundcloud-search'>";
 
@@ -57,6 +59,8 @@ var customTrack = {
 
 	}
 };
+
+var timeline = {};
 
 // SC.initialize({
 // 	client_id: 'ARX6YqJeUZYURsTksMBlqrzkPmdLqI3x'
@@ -103,7 +107,6 @@ widget.bind(SC.Widget.Events.READY, function() {
 	});
 
 	widget.bind(SC.Widget.Events.FINISH, function() {
-		console.log("Track finished");
 		playing = false;
 		$(editorPlayPauseButton).removeClass('fa-pause').addClass('fa-play');
 	});
@@ -111,6 +114,8 @@ widget.bind(SC.Widget.Events.READY, function() {
 	widget.bind(SC.Widget.Events.PLAY_PROGRESS, function() {
 		widget.getPosition(function(position) {
 			gifSearchTimecode = msToTime(position);
+			trackMillis = Math.round(position / 100) * 100;
+			//trackMillis = Math.trunc(position);
 			$('.active-time-code').html(gifSearchTimecode);
 			trackProgress = msToPercent(position, msDuration);
 			slider.noUiSlider.set(trackProgress);
@@ -120,6 +125,13 @@ widget.bind(SC.Widget.Events.READY, function() {
 				$(scrubberButtonContainer).css("margin-left", "-15px");
 			}
 			$(scrubberButtonContainer).css("left", trackProgress + "%");
+
+			for (x in timeline) {
+		    	if (x == trackMillis) {
+		    		console.log("Search: " + timeline[x]);
+		    		GetGifs(timeline[x]);
+		    	}
+			}
 		});
 	});
 
@@ -208,6 +220,22 @@ function PlayVisuals() {
 	}, 1000);
 }
 
+// function PreviewTimeline() {
+// 	counter = setInterval(function(){
+// 		for (x in timeline) {
+// 	    	if (x == millis) {
+// 	    		console.log("Search: " + timeline[x]);
+// 	    		GetGifs(timeline[x]);
+// 	    	}
+// 		}
+// 		millis = millis + 1000;
+// 	}, 1000);
+// }
+
+// $(previewTimelineButton).click(function(){
+// 	PreviewTimeline();
+// });
+
 function ConvertTimestamp(timestamp) {
 	var a = timestamp.split(":");
 	var timeInMs = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);;
@@ -293,13 +321,10 @@ $('.input-close').click(function() {
 
 $(scrubberInput).keydown(function( event ) {
 	if ( event.which == 13 ) {
-		var obj = {
-			'query': scrubberInput.value,
-			'bpm': 500
-		};
 		//create and populate the key value pair in timeline
-	   	customTrack.timeline[gifSearchTimecode] = obj;
-	   	$(pips).append(pipHtmlPre + trackProgress + '%;">' + scrubberInput.value + '</div>');
+	   	timeline[trackMillis] = scrubberInput.value;
+	   	console.log(timeline);
+	   	$(pips).append(pipHtmlPre + trackProgress + '%;" data-millis="' + trackMillis + '">' + scrubberInput.value + '</div>');
 	  	createDraggable();
 	   	CloseGifSearch();
 	}
@@ -308,6 +333,8 @@ $(scrubberInput).keydown(function( event ) {
 function createDraggable() {
 	var recoupLeft, recoupTop;
 	var positionInPercent;
+	var currentMillis;
+	var newMillis;
 	$('.search-pip').draggable({
 		addClasses: false,
 		axis: 'x',
@@ -321,24 +348,32 @@ function createDraggable() {
             top = isNaN(top) ? 0 : top;
             recoupLeft = left - ui.position.left;
             recoupTop = top - ui.position.top;
+            //get current position of search in millis
+            currentMillis = $(this).attr('data-millis');
         },
         drag: function (event, ui) {
             ui.position.left += recoupLeft;
             ui.position.top += recoupTop;
         },
         stop: function (event, ui) {
-        	var q = $(this).html();
+        	//update HTML position to be in percent rather than px (not entirely necessary, but I like it for cleanliness)
         	positionInPercent = (ui.position.left / pips.offsetWidth) * 100;
-        	$(this).css('left', positionInPercent + '%');
-        	var newTimecode = msToTime(msDuration * (positionInPercent / 100));
-        	
+			$(this).css('left', Math.round(positionInPercent * 10) / 10 + '%');
+        	//get new position of search in millis
+        	newMillis = Math.round(Math.trunc(positionInPercent / 100 * msDuration) / 100) * 100;
+        	//newMillis = Math.trunc(positionInPercent / 100 * msDuration);
+        	//update data-millis with new position in millis
+        	$(this).attr('data-millis', newMillis);
+        	//push new millis to timeline and delete old one
+        	timeline[newMillis] = timeline[currentMillis];
+			delete timeline[currentMillis];
         }
 	});
 }
 
 function CloseGifSearch(){
 	scrubberInputOpen = false;
-	widget.play();
+	//widget.play();
 	$(scrubberInput).val('');
 	$(scrubberInputContainer).addClass('hide');
 	$(scrubberButton).removeClass('hide');

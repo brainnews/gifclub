@@ -27,7 +27,6 @@ function GetGifs(q) {
 		  	type: 'GET',
 		  	success: function(data) {
 				channelgifs = data;
-				console.log(data);
 				StartGifStream();
 		  	}
 		});
