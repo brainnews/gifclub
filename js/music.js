@@ -133,6 +133,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 		    		GetGifs(timeline[x]);
 		    	}
 			}
+
 		});
 	});
 
@@ -324,7 +325,7 @@ $(scrubberInput).keydown(function( event ) {
 	if ( event.which == 13 ) {
 		//create and populate the key value pair in timeline
 	   	timeline[trackMillis] = scrubberInput.value;
-	   	console.log(timeline);
+	   	GetGifs(scrubberInput.value);
 	   	$(pips).append(pipHtmlPre + trackProgress + '%;" data-millis="' + trackMillis + '">' + scrubberInput.value + '</div>');
 	  	createDraggable();
 	   	CloseGifSearch();
@@ -379,7 +380,7 @@ function createDraggable() {
 
 function CloseGifSearch(){
 	scrubberInputOpen = false;
-	//widget.play();
+	widget.play();
 	$(scrubberInput).val('');
 	$(scrubberInputContainer).addClass('hide');
 	$(scrubberButton).removeClass('hide');
