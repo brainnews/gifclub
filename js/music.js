@@ -377,7 +377,6 @@ function createDraggable() {
 
 function CloseGifSearch(){
 	scrubberInputOpen = false;
-	//widget.play();
 	$(scrubberInput).val('');
 	$(scrubberInputContainer).addClass('hide');
 	$(scrubberButton).removeClass('hide');
