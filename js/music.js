@@ -126,7 +126,6 @@ widget.bind(SC.Widget.Events.READY, function() {
 			}
 			$(scrubberButtonContainer).css("left", trackProgress + "%");
 
-			//play current gif for anything less than the milliseconds of the next one
 			for (x in timeline) {
 		    	if (x == trackMillis) {
 		    		console.log("Search: " + timeline[x]);
@@ -324,7 +323,6 @@ $(scrubberInput).keydown(function( event ) {
 	if ( event.which == 13 ) {
 		//create and populate the key value pair in timeline
 	   	timeline[trackMillis] = scrubberInput.value;
-	   	console.log(timeline);
 	   	$(pips).append(pipHtmlPre + trackProgress + '%;" data-millis="' + trackMillis + '">' + scrubberInput.value + '</div>');
 	  	createDraggable();
 	   	CloseGifSearch();
