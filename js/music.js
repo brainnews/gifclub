@@ -37,6 +37,9 @@ var pipHtmlPre = '<div class="noUi-value noUi-value-horizontal noUi-value-large 
 
 var slider = document.getElementById('trackScrubber');
 
+var editorMenuHtml = 
+				"<a class='dropdown-button' href='#' data-activates='dropdown1'><i class='material-icons'>more_vert</i></a><ul id='dropdown1' class='dropdown-content'><li><a href='#!'>Save track</a></li><li class='divider'></li><li><a href='#!''>Clear track</a></li></ul>";
+
 noUiSlider.create(slider, {
 	start: [0],
 	connect: [true, false],
@@ -82,9 +85,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 			if (editorLoaded) {
 				$(loadedTrackInfoContainer).html(
 					'<div class="row valign-wrapper mb-0"><div class="col s4 pl-0"><img onclick="ClearEditorTrack();" src="' + art + '" class="circle responsive-img ml-0 track-art"></div><div class="col s8"><a class="truncate" href="' + url + '" target="_blank">' + title + '</a>' + artist + '</div></div>'
-					// "<img class='track-art circle' src='" + art + "'><strong><a href='" + url + "' target='_blank'>" + title + "</a></strong><br>by " + artist
 					);
-				// "<div onclick='ClearEditorTrack();' class='edit-track-button' style='cursor: pointer;'><i class='fa fa-pencil'></i></div>"
 				
 			} else {
 				$(trackInfoContainer).attr("href", url);
@@ -132,6 +133,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 		    		GetGifs(timeline[x]);
 		    	}
 			}
+
 		});
 	});
 
@@ -323,6 +325,7 @@ $(scrubberInput).keydown(function( event ) {
 	if ( event.which == 13 ) {
 		//create and populate the key value pair in timeline
 	   	timeline[trackMillis] = scrubberInput.value;
+	   	GetGifs(scrubberInput.value);
 	   	$(pips).append(pipHtmlPre + trackProgress + '%;" data-millis="' + trackMillis + '">' + scrubberInput.value + '</div>');
 	  	createDraggable();
 	   	CloseGifSearch();
@@ -377,6 +380,7 @@ function createDraggable() {
 
 function CloseGifSearch(){
 	scrubberInputOpen = false;
+	widget.play();
 	$(scrubberInput).val('');
 	$(scrubberInputContainer).addClass('hide');
 	$(scrubberButton).removeClass('hide');

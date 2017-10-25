@@ -99,13 +99,15 @@
 		  <!-- Modal Structure -->
 		  <div id="editorModal" class="modal bottom-sheet">
 		    <div class="modal-content">
-		    	<div class="row mb-0">
-		    		<div class="col s4 offset-s3 track-controls invisible">
+		    	<div class="row valign-wrapper mb-0">
+		    		<div class="col s7 offset-s3 track-controls invisible">
 		    			<ul class="list-inline">
 			        		<li class="time-code active-time-code"></li>
 			        		<li id="trackDurationContainer"></li>
-			        		<li><i id="editorPlayPauseButton" class="fa fa-play ml-10" aria-hidden="true" style="cursor: pointer;"></i></li>
-			        		<!-- <li id="previewTimelineButton">Preview</li> -->
+			        		<li class="ml-10"><a class="btn-flat"><i id="editorPlayPauseButton" class="fa fa-play" aria-hidden="true"></i></a></li>
+			        		<li class="ml-10"><a class="btn-flat tooltipped" data-position="top" data-delay="50" data-tooltip="Delete Track"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+			        		<li class="ml-10"><a class="btn-flat tooltipped" data-position="top" data-delay="50" data-tooltip="Clear Searches"><i class="fa fa-eraser" aria-hidden="true"></i></a></li>
+			        		<li class="ml-10"><a class="btn-flat tooltipped" data-position="top" data-delay="50" data-tooltip="Save Track"><i class="fa fa-floppy-o" aria-hidden="true"></i></a></li>
 			        	</ul>
 			        </div>
 			        <div class="col s2 right track-controls invisible right-align">

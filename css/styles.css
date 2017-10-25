@@ -83,6 +83,15 @@ a {
 	cursor: pointer;
 }
 
+.btn-flat {
+  padding: 0 1rem;
+  color: #fff;
+}
+
+.btn-flat:hover {
+  color: #c33667;
+}
+
 .btn-floating {
   border-radius: 2px;
   background: url(../images/dark_green_dust.jpg) repeat center center fixed;
@@ -499,6 +508,10 @@ input[type='range']::-webkit-slider-thumb {
   max-height: 80%;
 }
 
+.modal .modal-content {
+    padding: 14px;
+}
+
 .modal-content-waveform {
   height: 100%;
 }
@@ -510,7 +523,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal.bottom-sheet {
-  height: 240px;
+  height: 250px;
 }
 
 .waveform-container {
