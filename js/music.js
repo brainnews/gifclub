@@ -84,7 +84,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 
 			if (editorLoaded) {
 				$(loadedTrackInfoContainer).html(
-					'<div class="row valign-wrapper mb-0"><div class="col s4 pl-0"><img onclick="ClearEditorTrack();" src="' + art + '" class="circle responsive-img ml-0 track-art"></div><div class="col s8"><a class="truncate" href="' + url + '" target="_blank">' + title + '</a>' + artist + '</div></div>'
+					'<div class="row valign-wrapper mb-0"><div class="col s4 pl-0"><img onclick="ClearEditorTrack();" src="' + art + '" class="circle responsive-img ml-0 track-art"></div><div class="col s8"><a class="truncate" href="' + url + '" target="_blank">' + title + '</a><span class="truncate">' + artist + '</span></div></div>'
 					);
 				
 			} else {

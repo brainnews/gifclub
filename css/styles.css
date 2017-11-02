@@ -509,7 +509,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal .modal-content {
-    padding: 14px;
+    padding: 0 5px;
 }
 
 .modal-content-waveform {
@@ -523,7 +523,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal.bottom-sheet {
-  height: 250px;
+  height: 190px;
 }
 
 .waveform-container {
@@ -688,6 +688,7 @@ input[type=range]:focus::-ms-fill-upper {
 .noUi-handle {
     position: relative;
 }
+
 .noUi-inner {
     display: block;
     width: 100%;
@@ -757,6 +758,18 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .noUi-marker {
-  background: #222;
-    margin-top: -75px;
+  background: #000;
+}
+
+.song-controls {
+  border-left: 1px solid #222;
+}
+
+.song-controls, .visual-controls {
+    border-right: 1px solid #222;
+    padding: 14px 10px 10px 10px;
+}
+
+.button-controls {
+      margin: 5px 0 -2px 0
 }
