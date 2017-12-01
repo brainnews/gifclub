@@ -523,7 +523,8 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal.bottom-sheet {
-  height: 190px;
+  height: 160px;
+  overflow-y: hidden;
 }
 
 .waveform-container {
@@ -675,14 +676,6 @@ input[type=range]:focus::-ms-fill-upper {
     background-color: #222;
     padding: 2px 7px 0px 8px;
     border-radius: 2px;
-}
-
-.track-art {
-  cursor: pointer;
-}
-
-.track-art:hover {
-  border: 2px solid red;
 }
 
 .noUi-handle {
