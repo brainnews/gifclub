@@ -32,7 +32,7 @@ var selects = {
 		"playlist": "https://soundcloud.com/discwoman/discwoman-04-x-yaeji",
 		"gpm": 2000,
 		"timeline": {
-			"00:00:00": "flowers black and white",
+		"00:00:00": "flowers black and white",
         	"00:00:15": "flowers",
         	"00:02:20": "stars surreal",
         	"00:04:00": "pink rainbow",

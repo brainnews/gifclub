@@ -40,6 +40,8 @@ var slider = document.getElementById('trackScrubber');
 var editorMenuHtml = 
 				"<a class='dropdown-button' href='#' data-activates='dropdown1'><i class='material-icons'>more_vert</i></a><ul id='dropdown1' class='dropdown-content'><li><a href='#!'>Save track</a></li><li class='divider'></li><li><a href='#!''>Clear track</a></li></ul>";
 
+var preloaderHtml = '<div class="progress"><div class="indeterminate"></div></div>';
+
 noUiSlider.create(slider, {
 	start: [0],
 	connect: [true, false],
@@ -101,7 +103,7 @@ widget.bind(SC.Widget.Events.READY, function() {
 			msDuration = duration;
 			$(trackDurationContainer).html(" / " + msToTime(msDuration));
 		});
-		if (!userStarted) {
+		if (!userStarted && editorLoaded) {
 			widget.seekTo(0);
 			widget.pause();
 		}
@@ -156,7 +158,7 @@ $(soundCloudSearch).keydown(function( event ) {
 
 function TogglePlayerControls(){
 	$(soundCloudSearchContainer).toggleClass("hide");
-	$(loadedTrackInfoContainer).toggleClass("hide").html("<p class='center-align'><i class='fa fa-spinner fa-spin' aria-hidden='true'></i></p>");
+	$(loadedTrackInfoContainer).toggleClass("hide").html(preloaderHtml);
 	$('.track-controls').toggleClass("invisible");
 	$('#editorPlayer').toggleClass("editor-player");
 }
@@ -168,7 +170,7 @@ function FetchTrackForEditor(){
 }
 
 function LoadSoundToWidget (q, t, g) {
-	// var q = musicSearch.value;
+	//var q = musicSearch.value;
 	editorLoaded = false;
 	widget.load(q, {
 		"auto_play": "true",
@@ -309,6 +311,7 @@ function ClearEditorTrack(){
 	TogglePlayerControls();
 	ClearVisuals();
 	soundCloudSearch = document.getElementById('soundCloudSearch');
+	soundCloudSearch.value = "";
 }
 
 $(scrubberButton).click(function() {
@@ -325,9 +328,10 @@ $('.input-close').click(function() {
 $(scrubberInput).keydown(function( event ) {
 	if ( event.which == 13 ) {
 		//create and populate the key value pair in timeline
-	   	timeline[trackMillis] = scrubberInput.value;
-	   	GetGifs(scrubberInput.value);
-	   	$(pips).append(pipHtmlPre + trackProgress + '%;" data-millis="' + trackMillis + '">' + scrubberInput.value + '</div>');
+		var inputQuery = scrubberInput.value;
+	   	timeline[trackMillis] = inputQuery;
+	   	GetGifs(inputQuery);
+	   	$(pips).append(pipHtmlPre + trackProgress + '%;" data-millis="' + trackMillis + '" title="' + inputQuery + '">' + inputQuery + '</div>');
 	  	createDraggable();
 	   	CloseGifSearch();
 	}

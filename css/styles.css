@@ -523,14 +523,36 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal.bottom-sheet {
-  height: 160px;
-  overflow-y: hidden;
+  height: 140px;
+  overflow: hidden;
 }
 
 .waveform-container {
   height: 100%;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+#soundCloudSearchContainer {
+  width: 100%;
+  position: absolute;
+  padding: 0 20%;
+  margin-top: -10px;
+}
+
+.progress {
+    position: relative;
+    height: 4px;
+    display: block;
+    width: 100%;
+    background-color: #222;
+    border-radius: 2px;
+    margin: .5rem 0 1rem 0;
+    overflow: hidden;
+}
+
+.progress .indeterminate {
+  background-color: #c33167;
 }
 
 /* CLICK EFFECTS */
@@ -742,27 +764,37 @@ input[type=range]:focus::-ms-fill-upper {
   font-size: 12px;
   transform-origin: left;
   transform: rotate(90deg);
-  margin-top: -19px;
-  text-align: left;
+  margin-top: -79px;
+  text-align: center;
   cursor: ew-resize;
-  background-color: #292929;
+  background-color: #fff;
   padding: 0px 5px;
   border-radius: 0 2px 2px 0;
+  width: 72px;
+  z-index: 9999;
+  border-right: 12px solid #adadad;
+  color: #222;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .noUi-marker {
   background: #000;
 }
 
+.noUi-pips-horizontal {
+  height: 0px;
+}
+
 .song-controls {
-  border-left: 1px solid #222;
 }
 
 .song-controls, .visual-controls {
-    border-right: 1px solid #222;
-    padding: 14px 10px 10px 10px;
+    padding: 0px;
 }
 
 .button-controls {
-      margin: 5px 0 -2px 0
+    margin: 5px 0;
 }

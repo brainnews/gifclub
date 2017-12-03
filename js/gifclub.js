@@ -90,6 +90,7 @@ $('.select-channel').click(function() {
     var q = $(this).data("playlist");
     LoadSoundToWidget(selects[q].playlist, selects[q].timeline, selects[q].gpm);
     ToggleUI();
+    ClearEditorTrack();
 });
 
 $(trendingButton).click(function() {

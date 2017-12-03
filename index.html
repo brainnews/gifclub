@@ -99,8 +99,7 @@
 		  <!-- Modal Structure -->
 		  <div id="editorModal" class="modal bottom-sheet">
 		    <div class="modal-content">
-		    	<div class="row valign-wrapper mb-0">
-		    		
+		    	<div class="row valign-wrapper mb-0">	
 		    		<div class="col s7 offset-s3 track-controls invisible">
 		    			<ul class="list-inline button-controls">
 		    				<span class="song-controls">
@@ -121,17 +120,10 @@
 		    	</div>
 		    	<div id="editorPlayer">
 			    	<div class="row valign-wrapper">
-			    		<div class="editor-input col s3 ml-0">
-				    		<div id="soundCloudSearchContainer">
-				    			<div class="row valign-wrapper mb-0">
-				    				<div class="col s4 pl-0">
-				    					<img src="images/editor-track-placeholder.png" class="circle responsive-img">
-				    				</div>
-				    				<div class="col s8">
-				    					<input id="soundCloudSearch" class="input-small editor-track-input" type="text" placeholder="SoundCloud URL" name="soundcloud-search">
-				    				</div>
-				    			</div>
-				          	</div>
+			    		<div id="soundCloudSearchContainer">
+	    					<input id="soundCloudSearch" class="input-small editor-track-input" type="text" placeholder="Enter a SoundCloud URL" name="soundcloud-search">
+			          	</div>
+			    		<div class="col s3 ml-0">
 				          	<div id="loadedTrackInfoContainer" class="hide"></div>
 				        </div>
 				        <div class="col s9 track-controls invisible">
@@ -180,6 +172,11 @@
 		<script src="js/sc-api.js"></script>
 		<script src="js/selects.js"></script>
 		<script src="js/music.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
