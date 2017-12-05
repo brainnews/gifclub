@@ -83,6 +83,16 @@ a {
 	cursor: pointer;
 }
 
+.btn, .btn-large {
+  background-color: #6552F1;
+  line-height: 48px;
+  height: 3rem;
+}
+
+.btn:hover, .btn-large:hover {
+  background-color: #c33167;
+}
+
 .btn-flat {
   padding: 0 1rem;
   color: #fff;
@@ -509,9 +519,9 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal .modal-content {
-    padding: 0 5px;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 10px;
 }
 
 .modal-content-waveform {
@@ -525,7 +535,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .modal.bottom-sheet {
-  height: 140px;
+  height: 200px;
   overflow: hidden;
 }
 
@@ -536,10 +546,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 #soundCloudSearchContainer {
-  width: 100%;
-  position: absolute;
-  padding: 0 20%;
-  margin-top: -10px;
+
 }
 
 .progress {
@@ -742,13 +749,29 @@ input[type=range]:focus::-ms-fill-upper {
   box-shadow: none !important;
 }
 
-.editor-track-input, .editor-track-input:focus {
+.editor-track-input {
   border: none !important;
   box-shadow: none !important;
-  background-color: #222 !important;
+  background-color: #6451f1 !important;
   padding: 0px 10px !important;
   border-radius: 2px !important;
   color: #fff !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.editor-track-input:hover {
+  background-color: #c33167 !important;
+}
+
+.editor-track-input:focus {
+  background-color: #222 !important;
+}
+
+.editor-track-input::-webkit-input-placeholder {
+  color: #fff;
 }
 
 .input-close {

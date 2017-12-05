@@ -22,6 +22,8 @@ var gifSearchTimecode;
 var editorArray = [];
 var editorPlayPauseButton = document.getElementById('editorPlayPauseButton');
 var soundCloudSearchContainer = document.getElementById('soundCloudSearchContainer');
+var loadPlaylistButton = document.getElementById('loadPlaylistButton');
+var loadUrlContainer = document.getElementById('loadUrlContainer');
 var trackDurationContainer = document.getElementById('trackDurationContainer');
 var scrubberInputContainer = document.getElementById('scrubberInputContainer');
 var scrubberButton = document.getElementById('scrubberButton');
@@ -156,8 +158,17 @@ $(soundCloudSearch).keydown(function( event ) {
 	}
 });
 
+$(soundCloudSearch).focus(function() {
+    $(this).attr('placeholder', 'Enter a SoundCloud URL');
+    $(this).css({'text-transform': 'none', 'text-align': 'left'});
+}).blur(function() {
+	$(this).val('');
+    $(this).attr('placeholder', 'New mood');
+    $(this).css({'text-transform': 'uppercase', 'text-align': 'center'});
+});
+
 function TogglePlayerControls(){
-	$(soundCloudSearchContainer).toggleClass("hide");
+	$(loadUrlContainer).toggleClass("hide");
 	$(loadedTrackInfoContainer).toggleClass("hide").html(preloaderHtml);
 	$('.track-controls').toggleClass("invisible");
 	$('#editorPlayer').toggleClass("editor-player");
